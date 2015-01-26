@@ -1,8 +1,0 @@
-V3 3
-FL //sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/Afficheur/afficheur.vhd 2015/01/20.14:47:14 P.58f
-EN work/afficheur 1421783237 \
-      FL //sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/Afficheur/afficheur.vhd \
-      PB ieee/std_logic_1164 1364358218 PB ieee/NUMERIC_STD 1364358223
-AR work/afficheur/Behavioral 1421783238 \
-      FL //sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/Afficheur/afficheur.vhd \
-      EN work/afficheur 1421783237

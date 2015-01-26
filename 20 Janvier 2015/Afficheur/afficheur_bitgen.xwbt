@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=J:\ELE740\Afficheur\afficheur.ncd
+OUTFILE=J:\ELE740\Afficheur\afficheur.bit
+FAMILY=Virtex5
+PART=xc5vlx50t-1ff1136
+WORKINGDIR=J:\ELE740\Afficheur
+LICENSE=WebPack
+USER_INFO=175201985_0_0_375

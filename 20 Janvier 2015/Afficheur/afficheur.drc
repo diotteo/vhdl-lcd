@@ -1,0 +1,8 @@
+Release 14.5 Drc P.58f (nt)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Tue Jan 20 14:48:57 2015
+
+drc -z afficheur.ncd afficheur.pcf
+
+DRC detected 0 errors and 0 warnings.

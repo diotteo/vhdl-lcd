@@ -1,0 +1,75 @@
+--------------------------------------------------------------------------------
+Release 14.5 Trace  (nt)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.5\ISE_DS\ISE\bin\nt\unwrapped\trce.exe -intstyle ise -v 3 -s 1 -n
+3 -fastpaths -xml afficheur.twx afficheur.ncd -o afficheur.twr afficheur.pcf
+-ucf GenesysGeneral.ucf
+
+Design file:              afficheur.ncd
+Physical constraint file: afficheur.pcf
+Device,package,speed:     xc5vlx50t,ff1136,-1 (PRODUCTION 1.73 2013-03-26, STEPPING level 0)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock clk to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+LCDD<0>     |    8.501(R)|clk_BUFGP         |   0.000|
+LCDD<1>     |    8.509(R)|clk_BUFGP         |   0.000|
+LCDD<2>     |    8.370(R)|clk_BUFGP         |   0.000|
+LCDD<3>     |    8.536(R)|clk_BUFGP         |   0.000|
+LCDD<4>     |    8.564(R)|clk_BUFGP         |   0.000|
+LCDD<5>     |    8.572(R)|clk_BUFGP         |   0.000|
+LCDD<6>     |    8.543(R)|clk_BUFGP         |   0.000|
+LCDEN       |    8.751(R)|clk_BUFGP         |   0.000|
+LCDRS       |    8.525(R)|clk_BUFGP         |   0.000|
+Led<3>      |    8.905(R)|clk_BUFGP         |   0.000|
+Led<4>      |    8.750(R)|clk_BUFGP         |   0.000|
+Led<5>      |    8.732(R)|clk_BUFGP         |   0.000|
+Led<6>      |    8.573(R)|clk_BUFGP         |   0.000|
+Led<7>      |    8.536(R)|clk_BUFGP         |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    5.457|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Analysis completed Tue Jan 20 14:48:36 2015 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 261 MB
+
+
+

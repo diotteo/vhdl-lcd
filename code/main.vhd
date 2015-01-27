@@ -1,28 +1,28 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    11:13:42 01/20/2015 
--- Design Name: 
--- Module Name:    afficheur - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:
+-- Design Name:
+-- Module Name:
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -30,170 +30,147 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity afficheur is
-	port( Led : out STD_LOGIC_VECTOR(7 downto 0);
-			LCDD : inout STD_LOGIC_VECTOR(7 downto 0);
-			LCDEN : out STD_LOGIC;
-			LCDRS : out STD_LOGIC;
-			LCDRW : out STD_LOGIC;
-			clk :	in	STD_LOGIC
-			);
+	port(
+		clk   : in    std_logic
+		);
 
 end afficheur;
 
 
-architecture Behavioral of afficheur is
-   TYPE STATE_TYPE IS (INIT, FUNCTION_SET, DISP_ON, DISP_CLR, PRINT_CHAR, DONE);
-   SIGNAL current_state   : STATE_TYPE := INIT;
+architecture afficheur_main of afficheur is
+	type State_Type is (
+			INIT_STATE,
+			CLR_DISP_STATE,
+			WRITE_FIRST_LINE_STATE,
+			RST_CURSOR_STATE,
+			SET_J_STATE,
+			SET_I_STATE,
+			DECR_I_STATE,
+			WRITE_EXPR_STATE,
+			DECR_J_STATE,
+			WAIT_ANIM_DELAY_STATE,
+			ADD_OFFSET_STATE,
+			INCR_EXPR_STATE,
+			WAIT_TRANSITION_DELAY_STATE
+			);
+	signal current_state : State_Type := INIT;
 
-	constant INS_FUNCTION_SET : Std_Logic_Vector(7 downto 0) := "00111000";
-	constant INS_DISP_ON		  : Std_Logic_Vector(7 downto 0) := "00001111";
-	constant INS_DISP_CLR	  : Std_Logic_Vector(7 downto 0) := "00000001";
 begin
-	
 	process(clk)
-		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
-		variable enable_counter : integer range 0 to 100 := 0; --Compteur d'horloge pour minuter l'activation du signal enable
-		variable ins_loop_counter : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
+		variable j, i: integer;
 	begin
-		
 		if rising_edge(clk) then
-		
 			case current_state is
-			
+
+
 				when INIT =>
-					Led <= "10000000";
-					LCDEN <= '0';
-					LCDRS <= '0';
-					LCDRW <= '0';
-					
-					timer_counter := timer_counter + 1;
-					
-					--Delais 40ms
-					if timer_counter > 4000000 then
-						current_state <= FUNCTION_SET;
-						timer_counter := 0;
+					-- raise power on init's enable bit
+					COMP_INIT: POWER_ON_INIT port map ();
+
+					if (done) then
+						--enable <= 0
+						current_state <= CLR_DISP_STATE;
 					end if;
-					
-					
-					
-				when FUNCTION_SET =>
-					Led <= "01000000";
-					
-					LCDD <= INS_FUNCTION_SET;
-					LCDRS <= '0';
-					LCDRW <= '0';
-					timer_counter := timer_counter + 1;
-					
-					--Delai d'activation enable 80 ns
-					if enable_counter > 8 then
-						LCDEN <= '0';
-					else
-						LCDEN <= '1';
-						enable_counter := enable_counter + 1;
-					end if;
-					
-					--Délais 37 us
-					if timer_counter > 3700 then
-						enable_counter := 0;
-						timer_counter := 0;
-						
-						if ins_loop_counter < 3 then
-							ins_loop_counter := ins_loop_counter + 1;
-							current_state <= FUNCTION_SET;
+
+
+				when CLR_DISP_STATE =>
+					COMP_CLR_DISP: CLR_DISP port map ();
+
+					if (done) then
+						--enable <= 0
+
+						--if != 0
+						if (offset) then
+							current_state <= WRITE_FIRST_LINE_STATE port map ();
 						else
-							current_state <= DISP_ON;
-							ins_loop_counter := 0;
+							current_state <= RST_CURSOR_STATE port map ();
 						end if;
 					end if;
-			
-				when DISP_ON =>
-					Led <= "00100000";
-					
-					LCDD <= INS_DISP_ON;
-					LCDRS <= '0';
-					LCDRW <= '0';
-					timer_counter := timer_counter + 1;
-					
-					--Delai d'activation enable 80 ns
-					if enable_counter > 8 then
-						LCDEN <= '0';
-					else
-						LCDEN <= '1';
-						enable_counter := enable_counter + 1;
-					end if;
-					
-					--Délais 37 us
-					if timer_counter > 3700 then
-						enable_counter := 0;
-						timer_counter := 0;
-						current_state <= DISP_CLR;
-						
-					end if;
-					
-				when DISP_CLR =>
-					Led <= "00010000";
-					
-					LCDD <= INS_DISP_CLR;
-					LCDRS <= '0';
-					LCDRW <= '0';
-					timer_counter := timer_counter + 1;
-					
-					--Delai d'activation enable 80 ns
-					if enable_counter > 8 then
-						LCDEN <= '0';
-					else
-						LCDEN <= '1';
-						enable_counter := enable_counter + 1;
-					end if;
-					
-					--Délais 1.52ms
-					if timer_counter > 152000 then
-						enable_counter := 0;
-						timer_counter := 0;
-						current_state <= PRINT_CHAR;
-						
+
+
+				when WRITE_FIRST_LINE_STATE =>
+					COMP_WRITE_LINE: WRITE_LINE port map ();
+
+					if (done) then
+						--enable <= 0
+						current_state <= RST_CURSOR_STATE port map ();
 					end if;
 
-				when PRINT_CHAR =>
-					Led <= "00001000";
-					
-					LCDD <= "01000001";
-					LCDRS <= '1';
-					LCDRW <= '0';
-					timer_counter := timer_counter + 1;
-					
-					--Delai d'activation enable 80 ns
-					if enable_counter > 8 then
-						LCDEN <= '0';
+
+				when RST_CURSOR_STATE =>
+					COMP_RST_CURSOR: SET_DDRAM port map (x"50");
+
+					if (done) then
+						--enable <= 0
+						current_state <= SET_J_STATE;
+					end if;
+
+
+				when SET_J_STATE =>
+					j := 16;
+					current_state <= SET_I_STATE;
+
+
+				when SET_I_STATE =>
+					i := 16;
+					current_state <= DECR_I_STATE;
+
+
+				when DECR_I_STATE =>
+					-- Must wait one clock cycle for decrement to take effect
+					i := i - 1;
+
+					-- FIXME: Is such a thing even possible? Or must we add another step?
+					charpos := expr_id << 5 + i - 1
+					current_state <= WRITE_EXPR_STATE;
+
+
+				when WRITE_EXPR_STATE =>
+					COMP_CHAR_WRITE: WRITE_CHAR port map (expr(charpos))
+
+					if (done) then
+						-- FIXME: Is this possible?
+						if (i < j) then
+							current_state <= WAIT_ANIM_DELAY_STATE;
+						else
+							current_state <= DECR_I_STATE;
+						end if
+					end if
+
+
+				when WAIT_ANIM_DELAY_STATE =>
+					if (done) then
+						if (j) then
+							current_state <= SET_I_STATE;
+						elsif (not offset) then
+							current_state <= ADD_OFFSET_STATE;
+						else
+							current_state <= INCR_EXPR_STATE;
+					end if;
+
+
+				when ADD_OFFSET_STATE =>
+					offset := 16;
+					current_state <= CLR_DISP_STATE;
+
+
+				when INCR_EXPR_STATE =>
+					if expr_idx xnor EXPR_IDX_MAX then
+						expr_idx := 0;
 					else
-						LCDEN <= '1';
-						enable_counter := enable_counter + 1;
+						expr_idx := expr_idx + 1
 					end if;
-					
-					--Délais 37us
-					if timer_counter >3700 then
-						enable_counter := 0;
-						timer_counter := 0;
-						current_state <= DONE;
-						
+
+					offset := 0;
+					current_state <= WAIT_TRANSITION_DELAY_STATE;
+
+
+				when WAIT_TRANSITION_DELAY_STATE =>
+					if (done) then
+						current_state <= CLR_DISP_STATE
 					end if;
-				
-				when DONE =>
-					
-				
-				when others =>
-					Led <= "11110000";
-			
 			end case;
 		end if;
 	end process;
 
-	--LCDD <= "00000000";
-	--LCDEN <= '0';
-	--LCDRS <= '0';
-	--LCDRW <= '0';
-	--Led <= "01010101";
-	
-	
-end Behavioral;
-
+end afficheur_main;

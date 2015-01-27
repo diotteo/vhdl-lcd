@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "J:/ELE740/write_module/write_module/write_module_isim_beh.exe" -prj "J:/ELE740/write_module/write_module/write_module_beh.prj" "work.write_module" 

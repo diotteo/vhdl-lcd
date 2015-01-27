@@ -65,7 +65,7 @@ begin
 
 				when INIT =>
 					-- raise power on init's enable bit
-					COMP_INIT: POWER_ON_INIT port map ();
+					COMP_INIT: Power_On_Init port map ();
 
 					if (done) then
 						--enable <= 0

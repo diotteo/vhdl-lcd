@@ -84,14 +84,14 @@
 # NET "FlashCLK"   LOC = "AG21"; # Bank = 4,  Pin name = IO_L4P_GC_4,               Sch name = P30-CLK
 # 
 # onBoard Leds
- NET "Led<0>"  LOC = "AG8";  # Bank = 22, Pin name = IO_L18P_22,     Sch name = LD0
- NET "Led<1>"  LOC = "AH8";  # Bank = 22, Pin name = IO_L18N_22,     Sch name = LD1
- NET "Led<2>"  LOC = "AH9";  # Bank = 22, Pin name = IO_L17P_22,     Sch name = LD2
- NET "Led<3>"  LOC = "AG10"; # Bank = 22, Pin name = IO_L19P_22,     Sch name = LD3
- NET "Led<4>"  LOC = "AH10"; # Bank = 22, Pin name = IO_L17N_22,     Sch name = LD4
- NET "Led<5>"  LOC = "AG11"; # Bank = 22, Pin name = IO_L19N_22,     Sch name = LD5
- NET "Led<6>"  LOC = "AF11"; # Bank = 22, Pin name = IO_L16P_22,     Sch name = LD6
- NET "Led<7>"  LOC = "AE11"; # Bank = 22, Pin name = IO_L16N_22,     Sch name = LD7
+ NET "led<0>"  LOC = "AG8";  # Bank = 22, Pin name = IO_L18P_22,     Sch name = LD0
+ NET "led<1>"  LOC = "AH8";  # Bank = 22, Pin name = IO_L18N_22,     Sch name = LD1
+ NET "led<2>"  LOC = "AH9";  # Bank = 22, Pin name = IO_L17P_22,     Sch name = LD2
+ NET "led<3>"  LOC = "AG10"; # Bank = 22, Pin name = IO_L19P_22,     Sch name = LD3
+ NET "led<4>"  LOC = "AH10"; # Bank = 22, Pin name = IO_L17N_22,     Sch name = LD4
+ NET "led<5>"  LOC = "AG11"; # Bank = 22, Pin name = IO_L19N_22,     Sch name = LD5
+ NET "led<6>"  LOC = "AF11"; # Bank = 22, Pin name = IO_L16P_22,     Sch name = LD6
+ NET "led<7>"  LOC = "AE11"; # Bank = 22, Pin name = IO_L16N_22,     Sch name = LD7
  
 ## onBoard PUSH BUTTONS 
 # NET "btn<0>" LOC = "G6";  # Bank = 12, Pin name = IO_L17P_12,        Sch name = BTN0
@@ -361,17 +361,17 @@
 # NET "JD<7>"  LOC = "AK8";    # BANK = 22,  Pin name = IO_L13P_22,      Sch name = JD10
 # 
 # onboard LCD
- NET "LCDEN"   LOC = "AA5";  # BANK = 18, Pin name = IO_L2P_18,     Sch name = LCD-E
- NET "LCDRS"   LOC = "V7";   # BANK = 18, Pin name = IO_L11N_CC_18, Sch name = LCD-RS  
- NET "LCDRW"   LOC = "W6";   # BANK = 18, Pin name = IO_L8P_CC_18,  Sch name = LCD-RW  
- NET "LCDD<0>" LOC = "Y8";   # BANK = 18, Pin name = IO_L4P_18,     Sch name = LCD-D0  
- NET "LCDD<1>" LOC = "AB7";  # BANK = 18, Pin name = IO_L1N_18,     Sch name = LCD-D1  
- NET "LCDD<2>" LOC = "AB5";  # BANK = 18, Pin name = IO_L2N_18,     Sch name = LCD-D2  
- NET "LCDD<3>" LOC = "AC4";  # BANK = 18, Pin name = IO_L0P_18,     Sch name = LCD-D3  
- NET "LCDD<4>" LOC = "AB6";  # BANK = 18, Pin name = IO_L1P_18,     Sch name = LCD-D4  
- NET "LCDD<5>" LOC = "AC5";  # BANK = 18, Pin name = IO_L0N_18,     Sch name = LCD-D5  
- NET "LCDD<6>" LOC = "AC7";  # BANK = 18, Pin name = IO_L3P_18,     Sch name = LCD-D6  
- NET "LCDD<7>" LOC = "AD7";  # BANK = 18, Pin name = IO_L3N_18,     Sch name = LCD-D7  
+ NET "lcden"   LOC = "AA5";  # BANK = 18, Pin name = IO_L2P_18,     Sch name = LCD-E
+ NET "lcdrs"   LOC = "V7";   # BANK = 18, Pin name = IO_L11N_CC_18, Sch name = LCD-RS  
+ NET "lcdrw"   LOC = "W6";   # BANK = 18, Pin name = IO_L8P_CC_18,  Sch name = LCD-RW  
+ NET "lcdd<0>" LOC = "Y8";   # BANK = 18, Pin name = IO_L4P_18,     Sch name = LCD-D0  
+ NET "lcdd<1>" LOC = "AB7";  # BANK = 18, Pin name = IO_L1N_18,     Sch name = LCD-D1  
+ NET "lcdd<2>" LOC = "AB5";  # BANK = 18, Pin name = IO_L2N_18,     Sch name = LCD-D2  
+ NET "lcdd<3>" LOC = "AC4";  # BANK = 18, Pin name = IO_L0P_18,     Sch name = LCD-D3  
+ NET "lcdd<4>" LOC = "AB6";  # BANK = 18, Pin name = IO_L1P_18,     Sch name = LCD-D4  
+ NET "lcdd<5>" LOC = "AC5";  # BANK = 18, Pin name = IO_L0N_18,     Sch name = LCD-D5  
+ NET "lcdd<6>" LOC = "AC7";  # BANK = 18, Pin name = IO_L3P_18,     Sch name = LCD-D6  
+ NET "lcdd<7>" LOC = "AD7";  # BANK = 18, Pin name = IO_L3N_18,     Sch name = LCD-D7  
 # 
 ## PS/2 connector
 # NET "PS2C" LOC = "H9";  # Bank = 20, Pin name = IO_L7N_20,  Sch name = PS2C

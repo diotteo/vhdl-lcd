@@ -29,25 +29,33 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity afficheur is
-	port( Led : out STD_LOGIC_VECTOR(7 downto 0);
-			LCDD : inout STD_LOGIC_VECTOR(7 downto 0);
-			LCDEN : out STD_LOGIC;
-			LCDRS : out STD_LOGIC;
-			LCDRW : out STD_LOGIC;
-			clk :	in	STD_LOGIC
-			);
+entity Power_On_Init is
+	port(
+		clk   : in    std_logic;
+		enable: in    std_logic;
+		done  : in    std_logic;
+		led   : out   std_logic_vector(7 downto 0);
+		lcdd  : inout std_logic_vector(7 downto 0);
+		lcden : out   std_logic;
+		lcdrs : out   std_logic;
+		lcdrw : out   std_logic
+		);
+end Power_On_Init;
 
-end afficheur;
 
+architecture Power_On_Init of Power_On_Init is
+   type STATE_TYPE is (
+			INIT_STATE,
+			FUNCTION_SET_STATE,
+			DISP_ON_STATE,
+			DISP_CLR_STATE,
+			PRINT_CHAR_STATE,
+			DONE_STATE);
+   signal current_state   : STATE_TYPE := INIT_STATE;
 
-architecture Behavioral of afficheur is
-   TYPE STATE_TYPE IS (INIT, FUNCTION_SET, DISP_ON, DISP_CLR, PRINT_CHAR, DONE);
-   SIGNAL current_state   : STATE_TYPE := INIT;
-
-	constant INS_FUNCTION_SET : Std_Logic_Vector(7 downto 0) := "00111000";
-	constant INS_DISP_ON		  : Std_Logic_Vector(7 downto 0) := "00001111";
-	constant INS_DISP_CLR	  : Std_Logic_Vector(7 downto 0) := "00000001";
+	constant INS_FUNCTION_SET : std_logic_vector(7 downto 0) := "00111000";
+	constant INS_DISP_ON		  : std_logic_vector(7 downto 0) := "00001111";
+	constant INS_DISP_CLR	  : std_logic_vector(7 downto 0) := "00000001";
 begin
 	
 	process(clk)
@@ -60,11 +68,11 @@ begin
 		
 			case current_state is
 			
-				when INIT =>
-					Led <= "10000000";
-					LCDEN <= '0';
-					LCDRS <= '0';
-					LCDRW <= '0';
+				when INIT_STATE =>
+					led <= x"1";
+					lcden <= '0';
+					lcdrs <= '0';
+					lcdrw <= '0';
 					
 					timer_counter := timer_counter + 1;
 					
@@ -77,18 +85,18 @@ begin
 					
 					
 				when FUNCTION_SET =>
-					Led <= "01000000";
+					led <= "01000000";
 					
-					LCDD <= INS_FUNCTION_SET;
-					LCDRS <= '0';
-					LCDRW <= '0';
+					lcdd <= INS_FUNCTION_SET;
+					lcdrs <= '0';
+					lcdrw <= '0';
 					timer_counter := timer_counter + 1;
 					
 					--Delai d'activation enable 80 ns
 					if enable_counter > 8 then
-						LCDEN <= '0';
+						lcden <= '0';
 					else
-						LCDEN <= '1';
+						lcden <= '1';
 						enable_counter := enable_counter + 1;
 					end if;
 					
@@ -107,18 +115,18 @@ begin
 					end if;
 			
 				when DISP_ON =>
-					Led <= "00100000";
+					led <= "00100000";
 					
-					LCDD <= INS_DISP_ON;
-					LCDRS <= '0';
-					LCDRW <= '0';
+					lcdd <= INS_DISP_ON;
+					lcdrs <= '0';
+					lcdrw <= '0';
 					timer_counter := timer_counter + 1;
 					
 					--Delai d'activation enable 80 ns
 					if enable_counter > 8 then
-						LCDEN <= '0';
+						lcden <= '0';
 					else
-						LCDEN <= '1';
+						lcden <= '1';
 						enable_counter := enable_counter + 1;
 					end if;
 					
@@ -131,18 +139,18 @@ begin
 					end if;
 					
 				when DISP_CLR =>
-					Led <= "00010000";
+					led <= "00010000";
 					
-					LCDD <= INS_DISP_CLR;
-					LCDRS <= '0';
-					LCDRW <= '0';
+					lcdd <= INS_DISP_CLR;
+					lcdrs <= '0';
+					lcdrw <= '0';
 					timer_counter := timer_counter + 1;
 					
 					--Delai d'activation enable 80 ns
 					if enable_counter > 8 then
-						LCDEN <= '0';
+						lcden <= '0';
 					else
-						LCDEN <= '1';
+						lcden <= '1';
 						enable_counter := enable_counter + 1;
 					end if;
 					
@@ -155,18 +163,18 @@ begin
 					end if;
 
 				when PRINT_CHAR =>
-					Led <= "00001000";
+					led <= "00001000";
 					
-					LCDD <= "01000001";
-					LCDRS <= '1';
-					LCDRW <= '0';
+					lcdd <= "01000001";
+					lcdrs <= '1';
+					lcdrw <= '0';
 					timer_counter := timer_counter + 1;
 					
 					--Delai d'activation enable 80 ns
 					if enable_counter > 8 then
-						LCDEN <= '0';
+						lcden <= '0';
 					else
-						LCDEN <= '1';
+						lcden <= '1';
 						enable_counter := enable_counter + 1;
 					end if;
 					
@@ -182,18 +190,16 @@ begin
 					
 				
 				when others =>
-					Led <= "11110000";
+					led <= "11110000";
 			
 			end case;
 		end if;
 	end process;
 
-	--LCDD <= "00000000";
-	--LCDEN <= '0';
-	--LCDRS <= '0';
-	--LCDRW <= '0';
-	--Led <= "01010101";
-	
-	
-end Behavioral;
+	--lcdd <= "00000000";
+	--lcden <= '0';
+	--lcdrs <= '0';
+	--lcdrw <= '0';
+	--led <= "01010101";
+end Power_On_Init;
 

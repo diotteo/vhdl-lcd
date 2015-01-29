@@ -46,6 +46,16 @@ end afficheur;
 
 
 architecture afficheur_main of afficheur is
+	component Power_On_Init
+		port (
+			clk:    in    std_logic;
+			enable: in    std_logic;
+			done:   out   std_logic;
+			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
+		);
+	end component;
+
+
 	type state_t is (
 			INIT_STATE,
 			CLR_DISP_STATE,
@@ -61,16 +71,6 @@ architecture afficheur_main of afficheur is
 			INCR_EXPR_STATE,
 			WAIT_TRANSITION_DELAY_STATE
 			);
-
-
-	component Power_On_Init
-		port (
-			clk:    in    std_logic;
-			enable: in    std_logic;
-			done:   out   std_logic;
-			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
-		);
-	end component;
 
 	signal fsm_state : state_t := INIT;
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);

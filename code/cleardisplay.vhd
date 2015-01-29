@@ -38,7 +38,7 @@ entity Clear_Display is
 			clk    : in    std_logic;
 			enable : in    std_logic;
 			done   : out   std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Clear_Display;
 

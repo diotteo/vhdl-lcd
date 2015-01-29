@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.ALL;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -33,12 +33,13 @@ entity Power_On_Init is
 	port(
 		clk   : in    std_logic;
 		enable: in    std_logic;
-		done  : in    std_logic;
-		led   : out   std_logic_vector(7 downto 0);
-		lcdd  : inout std_logic_vector(7 downto 0);
-		lcden : out   std_logic;
-		lcdrs : out   std_logic;
-		lcdrw : out   std_logic
+		done  : out   std_logic;
+		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
+		--led   : out   std_logic_vector(7 downto 0);
+		--lcdd  : inout std_logic_vector(7 downto 0);
+		--lcden : out   std_logic;
+		--lcdrs : out   std_logic;
+		--lcdrw : out   std_logic
 		);
 end Power_On_Init;
 

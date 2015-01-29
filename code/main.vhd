@@ -18,11 +18,11 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+use IEEE.std_logic_1164.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use IEEE.NUMERIC_STD.all;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -31,7 +31,12 @@ use IEEE.NUMERIC_STD.all;
 
 entity afficheur is
 	port(
-		clk   : in    std_logic
+		clk   : in    std_logic;
+		--led   : out   std_logic_vector(7 downto 0);
+		lcden : out   std_logic;
+		lcdrs : out   std_logic;
+		lcdrw : out   std_logic;
+		lcdd  : inout std_logic_vector(7 downto 0)
 		);
 
 end afficheur;
@@ -53,9 +58,25 @@ architecture afficheur_main of afficheur is
 			INCR_EXPR_STATE,
 			WAIT_TRANSITION_DELAY_STATE
 			);
+
+	constant LCD_LEN : integer := 11;
+
+
+	component Power_On_Init
+		port (clk:    in    std_logic;
+			enable: in    std_logic;
+			done:   out   std_logic;
+			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
+		);
+	end component;
+
 	signal current_state : State_Type := INIT;
+	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 
 begin
+
+	lcd <= lcden & lcdrs & lcdrw & lcdd;
+
 	process(clk)
 		variable j, i: integer;
 	begin
@@ -65,7 +86,7 @@ begin
 
 				when INIT =>
 					-- raise power on init's enable bit
-					COMP_INIT: Power_On_Init port map ();
+					COMP_INIT: Power_On_Init port map (clk, enable, done, lcd);
 
 					if (done) then
 						--enable <= 0

@@ -58,7 +58,16 @@ architecture Clear_Display of Clear_Display is
 	end component;
 
 begin
-	COMP_WRITE: write_module port map (clk, enable, 0 & x"01", done, lcd_rs, lcd_en, lcd_rw, lcd_data);
+	COMP_WRITE: write_module port map (
+			clk,
+			enable,
+			'0' & x"01",
+			done,
+			lcd(9),  --LCD_rs
+			lcd(10), --LCD_enable
+			lcd(8),  --LCD_rw
+			lcd(7 downto 0) --LCDD
+			);
 end Clear_Display;
 
 

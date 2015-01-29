@@ -17,6 +17,9 @@
 -- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
+
+use work.defs.all;
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 

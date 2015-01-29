@@ -17,6 +17,9 @@
 -- Additional Comments:
 --
 ----------------------------------------------------------------------------------
+
+use work.defs.all;
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -58,8 +61,6 @@ architecture afficheur_main of afficheur is
 			INCR_EXPR_STATE,
 			WAIT_TRANSITION_DELAY_STATE
 			);
-
-	constant LCD_LEN : integer := 11;
 
 
 	component Power_On_Init

@@ -46,7 +46,7 @@ end afficheur;
 
 
 architecture afficheur_main of afficheur is
-	type State_Type is (
+	type state_t is (
 			INIT_STATE,
 			CLR_DISP_STATE,
 			WRITE_FIRST_LINE_STATE,
@@ -64,14 +64,15 @@ architecture afficheur_main of afficheur is
 
 
 	component Power_On_Init
-		port (clk:    in    std_logic;
+		port (
+			clk:    in    std_logic;
 			enable: in    std_logic;
 			done:   out   std_logic;
 			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
 		);
 	end component;
 
-	signal current_state : State_Type := INIT;
+	signal fsm_state : state_t := INIT;
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 
 begin
@@ -82,7 +83,7 @@ begin
 		variable j, i: integer;
 	begin
 		if rising_edge(clk) then
-			case current_state is
+			case fsm_state is
 
 
 				when INIT =>
@@ -91,7 +92,7 @@ begin
 
 					if (done) then
 						--enable <= 0
-						current_state <= CLR_DISP_STATE;
+						fsm_state <= CLR_DISP_STATE;
 					end if;
 
 
@@ -103,9 +104,9 @@ begin
 
 						--if != 0
 						if (offset) then
-							current_state <= WRITE_FIRST_LINE_STATE port map ();
+							fsm_state <= WRITE_FIRST_LINE_STATE port map ();
 						else
-							current_state <= RST_CURSOR_STATE port map ();
+							fsm_state <= RST_CURSOR_STATE port map ();
 						end if;
 					end if;
 
@@ -115,7 +116,7 @@ begin
 
 					if (done) then
 						--enable <= 0
-						current_state <= RST_CURSOR_STATE port map ();
+						fsm_state <= RST_CURSOR_STATE port map ();
 					end if;
 
 
@@ -124,18 +125,18 @@ begin
 
 					if (done) then
 						--enable <= 0
-						current_state <= SET_J_STATE;
+						fsm_state <= SET_J_STATE;
 					end if;
 
 
 				when SET_J_STATE =>
 					j := 16;
-					current_state <= SET_I_STATE;
+					fsm_state <= SET_I_STATE;
 
 
 				when SET_I_STATE =>
 					i := 16;
-					current_state <= DECR_I_STATE;
+					fsm_state <= DECR_I_STATE;
 
 
 				when DECR_I_STATE =>
@@ -144,7 +145,7 @@ begin
 
 					-- FIXME: Is such a thing even possible? Or must we add another step?
 					charpos := expr_id << 5 + i - 1
-					current_state <= WRITE_EXPR_STATE;
+					fsm_state <= WRITE_EXPR_STATE;
 
 
 				when WRITE_EXPR_STATE =>
@@ -153,9 +154,9 @@ begin
 					if (done) then
 						-- FIXME: Is this possible?
 						if (i < j) then
-							current_state <= WAIT_ANIM_DELAY_STATE;
+							fsm_state <= WAIT_ANIM_DELAY_STATE;
 						else
-							current_state <= DECR_I_STATE;
+							fsm_state <= DECR_I_STATE;
 						end if
 					end if
 
@@ -163,17 +164,17 @@ begin
 				when WAIT_ANIM_DELAY_STATE =>
 					if (done) then
 						if (j) then
-							current_state <= SET_I_STATE;
+							fsm_state <= SET_I_STATE;
 						elsif (not offset) then
-							current_state <= ADD_OFFSET_STATE;
+							fsm_state <= ADD_OFFSET_STATE;
 						else
-							current_state <= INCR_EXPR_STATE;
+							fsm_state <= INCR_EXPR_STATE;
 					end if;
 
 
 				when ADD_OFFSET_STATE =>
 					offset := 16;
-					current_state <= CLR_DISP_STATE;
+					fsm_state <= CLR_DISP_STATE;
 
 
 				when INCR_EXPR_STATE =>
@@ -184,12 +185,12 @@ begin
 					end if;
 
 					offset := 0;
-					current_state <= WAIT_TRANSITION_DELAY_STATE;
+					fsm_state <= WAIT_TRANSITION_DELAY_STATE;
 
 
 				when WAIT_TRANSITION_DELAY_STATE =>
 					if (done) then
-						current_state <= CLR_DISP_STATE
+						fsm_state <= CLR_DISP_STATE
 					end if;
 			end case;
 		end if;

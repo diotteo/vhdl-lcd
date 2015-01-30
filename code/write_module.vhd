@@ -68,10 +68,10 @@ begin
 			case w_state is
 
 				when READY =>
-					done_write <= '0';
+					done_write <= false;
 
-					if send = '1' then
-						w_state <=  INIT;
+					if (send) then
+						w_state <= INIT;
 					end if;
 
 				when INIT =>
@@ -82,9 +82,9 @@ begin
 					LCD_enable_w <= '0';
 					LCD_rw_out_w <= '0'; --Mode write
 
-					counter <=  0;
+					counter <= 0;
 
-					w_state <=  ENABLE;
+					w_state <= ENABLE;
 
 
 				when ENABLE =>
@@ -114,15 +114,15 @@ begin
 
 				when DONE =>
 
-					done_write <= '1';
+					done_write <= true;
 
-					if send = '0' then
-						w_state <=  READY;
+					if (send) then
+						w_state <= READY;
 					end if;
 
 				when others =>
 
-					w_state <=  READY;
+					w_state <= READY;
 
 			end case;
 		end if;

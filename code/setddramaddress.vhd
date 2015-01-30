@@ -48,9 +48,9 @@ architecture Set_Ddram_Address of Set_Ddram_Address is
 	component write_module
 		port (
 			clk : in std_logic;
-			enable : in std_logic;
+			enable : in boolean;
 			rs_and_instr : in std_logic_vector(8 downto 0);
-			done : out std_logic;
+			done : out boolean;
 			lcd_rs : out std_logic;
 			lcd_en : out std_logic;
 			lcd_rw : out std_logic;

@@ -49,8 +49,8 @@ architecture afficheur_main of afficheur is
 	component Power_On_Init
 		port (
 			clk:    in    std_logic;
-			enable: in    std_logic;
-			done:   out   std_logic;
+			enable: in    boolean;
+			done:   out   boolean;
 			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
 		);
 	end component;
@@ -58,8 +58,8 @@ architecture afficheur_main of afficheur is
 	component Set_Ddram_Address is
 		port(
 				clk    : in    std_logic;
-				enable : in    std_logic;
-				done   : out   std_logic;
+				enable : in    boolean;
+				done   : out   boolean;
 				address: in    std_logic_vector(6 downto 0);
 				lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 				);
@@ -88,7 +88,8 @@ architecture afficheur_main of afficheur is
 	signal do_set_ddram_addr: boolean;
 	signal done: boolean;
 
-	signal LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
+	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
+	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
 begin
 
 	-- lcd variables are hidden in a vector
@@ -103,6 +104,13 @@ begin
 
 	process(clk)
 		variable i, j: integer;
+		variable offset: integer := 0;
+		variable charpos: integer := 0;
+		variable expr_idx: integer := 0;
+
+		--FIXME: We need to figure out how to print characters and therefore which type to use
+		constant EXPR_IDX_MAX: integer := 8 * 32 * 3 - 1;
+		variable expr: std_logic_vector(EXPR_IDX_MAX downto 0);
 	begin
 		if rising_edge(clk) then
 			case fsm_state is
@@ -130,7 +138,7 @@ begin
 						--enable <= 0
 
 						--if != 0
-						if (offset) then
+						if (offset /= 0) then
 							fsm_state <= WRITE_FIRST_LINE_STATE;
 						else
 							fsm_state <= RST_CURSOR_STATE;
@@ -148,10 +156,10 @@ begin
 
 
 				when RST_CURSOR_STATE =>
-					do_set_ddram_addr <= '1';
+					do_set_ddram_addr <= true;
 
 					if (done) then
-						do_set_ddram_addr <= '0';
+						do_set_ddram_addr <= false;
 						fsm_state <= SET_J_STATE;
 					end if;
 
@@ -170,7 +178,7 @@ begin
 					i := i - 1;
 
 					-- i - 1 as decrement will take effect only at next clock cycle
-					charpos := shl(expr_id, 5) + i - 1
+					charpos := to_integer(to_unsigned(expr_idx, 10) sll 5) + i - 1;
 					fsm_state <= WRITE_EXPR_STATE;
 
 
@@ -190,9 +198,9 @@ begin
 
 				when WAIT_ANIM_DELAY_STATE =>
 					if (done) then
-						if (j) then
+						if (j /= 0) then
 							fsm_state <= SET_I_STATE;
-						elsif (not offset) then
+						elsif (offset = 0) then
 							fsm_state <= ADD_OFFSET_STATE;
 						else
 							fsm_state <= INCR_EXPR_STATE;
@@ -206,7 +214,7 @@ begin
 
 
 				when INCR_EXPR_STATE =>
-					if expr_idx xnor EXPR_IDX_MAX then
+					if expr_idx = EXPR_IDX_MAX then
 						expr_idx := 0;
 					else
 						expr_idx := expr_idx + 1;

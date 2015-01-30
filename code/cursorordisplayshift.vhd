@@ -38,8 +38,8 @@ entity Cursor_Or_Display_Shift is
 			clk    : in    std_logic;
 			enable : in    std_logic;
 			done   : out   std_logic;
-			sh_d_c : out   std_logic; -- shift entire display, !cursor
-			sh_r_l : out   std_logic; -- shift right, !left
+			sh_d_c : in    std_logic; -- shift entire display, !cursor
+			sh_r_l : in    std_logic; -- shift right, !left
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Cursor_Or_Display_Shift;

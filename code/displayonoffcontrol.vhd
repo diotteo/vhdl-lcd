@@ -38,9 +38,9 @@ entity Display_On_Off_Control is
 			clk         : in    std_logic;
 			enable      : in    std_logic;
 			done        : out   std_logic;
-			disp_on     : out   std_logic;
-			cur_on      : out   std_logic;
-			cur_blink_on: out   std_logic;
+			disp_on     : in    std_logic;
+			cur_on      : in    std_logic;
+			cur_blink_on: in    std_logic;
 			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Display_On_Off_Control;

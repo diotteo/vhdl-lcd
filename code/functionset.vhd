@@ -38,9 +38,9 @@ entity Function_Set is
 			clk    : in    std_logic;
 			enable : in    std_logic;
 			done   : out   std_logic;
-			data_len : out   std_logic;
-			nlines : out   std_logic;
-			font   : out   std_logic;
+			data_len: in    std_logic;
+			nlines : in    std_logic;
+			font   : in    std_logic;
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Function_Set;

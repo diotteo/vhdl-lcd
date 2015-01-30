@@ -36,8 +36,8 @@ use IEEE.numeric_std.all;
 entity Set_Ddram_Address is
 	port(
 			clk    : in    std_logic;
-			enable : in    std_logic;
-			done   : out   std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
 			address: in    std_logic_vector(6 downto 0);
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);

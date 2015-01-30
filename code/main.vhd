@@ -55,9 +55,20 @@ architecture afficheur_main of afficheur is
 		);
 	end component;
 
+	component Set_Ddram_Address is
+		port(
+				clk    : in    std_logic;
+				enable : in    std_logic;
+				done   : out   std_logic;
+				address: in    std_logic_vector(6 downto 0);
+				lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+				);
+	end component;
+
 
 	type state_t is (
 			INIT_STATE,
+			POWER_ON_INIT_STATE,
 			CLR_DISP_STATE,
 			WRITE_FIRST_LINE_STATE,
 			RST_CURSOR_STATE,
@@ -65,66 +76,82 @@ architecture afficheur_main of afficheur is
 			SET_I_STATE,
 			DECR_I_STATE,
 			WRITE_EXPR_STATE,
-			DECR_J_STATE,
 			WAIT_ANIM_DELAY_STATE,
 			ADD_OFFSET_STATE,
 			INCR_EXPR_STATE,
 			WAIT_TRANSITION_DELAY_STATE
 			);
 
-	signal fsm_state : state_t := INIT;
+	signal fsm_state : state_t := POWER_ON_INIT_STATE;
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal do_power_on_init: boolean;
+	signal do_set_ddram_addr: boolean;
+	signal done: boolean;
 
+	signal LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
 begin
 
-	lcd <= lcden & lcdrs & lcdrw & lcdd;
+	-- lcd variables are hidden in a vector
+	lcden <= lcd(10);
+	lcdrs <= lcd(9);
+	lcdrw <= lcd(8);
+	lcdd <= lcd(7 downto 0);
+
+	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, done, lcd);
+
+	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, done, LAST_ADDR (6 downto 0), lcd);
 
 	process(clk)
-		variable j, i: integer;
+		variable i, j: integer;
 	begin
 		if rising_edge(clk) then
 			case fsm_state is
 
+				when INIT_STATE =>
+					--Init variables and what not here
 
-				when INIT =>
+					fsm_state <= POWER_ON_INIT_STATE;
+
+
+				when POWER_ON_INIT_STATE =>
 					-- raise power on init's enable bit
-					COMP_INIT: Power_On_Init port map (clk, enable, done, lcd);
+					do_power_on_init <= true;
 
 					if (done) then
-						--enable <= 0
+						do_power_on_init <= false;
 						fsm_state <= CLR_DISP_STATE;
 					end if;
 
 
 				when CLR_DISP_STATE =>
-					COMP_CLR_DISP: CLR_DISP port map ();
+					--COMP_CLR_DISP: CLR_DISP port map ();
 
 					if (done) then
 						--enable <= 0
 
 						--if != 0
 						if (offset) then
-							fsm_state <= WRITE_FIRST_LINE_STATE port map ();
+							fsm_state <= WRITE_FIRST_LINE_STATE;
 						else
-							fsm_state <= RST_CURSOR_STATE port map ();
+							fsm_state <= RST_CURSOR_STATE;
 						end if;
 					end if;
 
 
 				when WRITE_FIRST_LINE_STATE =>
-					COMP_WRITE_LINE: WRITE_LINE port map ();
+					--COMP_WRITE_LINE: WRITE_LINE port map ();
 
 					if (done) then
 						--enable <= 0
-						fsm_state <= RST_CURSOR_STATE port map ();
+						fsm_state <= RST_CURSOR_STATE;
 					end if;
 
 
 				when RST_CURSOR_STATE =>
-					COMP_RST_CURSOR: SET_DDRAM port map (x"50");
+					do_set_ddram_addr <= '1';
 
 					if (done) then
-						--enable <= 0
+						do_set_ddram_addr <= '0';
 						fsm_state <= SET_J_STATE;
 					end if;
 
@@ -140,25 +167,25 @@ begin
 
 
 				when DECR_I_STATE =>
-					-- Must wait one clock cycle for decrement to take effect
 					i := i - 1;
 
-					-- FIXME: Is such a thing even possible? Or must we add another step?
-					charpos := expr_id << 5 + i - 1
+					-- i - 1 as decrement will take effect only at next clock cycle
+					charpos := shl(expr_id, 5) + i - 1
 					fsm_state <= WRITE_EXPR_STATE;
 
 
 				when WRITE_EXPR_STATE =>
-					COMP_CHAR_WRITE: WRITE_CHAR port map (expr(charpos))
+					--COMP_CHAR_WRITE: WRITE_CHAR port map (expr(charpos))
 
 					if (done) then
 						-- FIXME: Is this possible?
 						if (i < j) then
+							j := j - 1;
 							fsm_state <= WAIT_ANIM_DELAY_STATE;
 						else
 							fsm_state <= DECR_I_STATE;
-						end if
-					end if
+						end if;
+					end if;
 
 
 				when WAIT_ANIM_DELAY_STATE =>
@@ -169,6 +196,7 @@ begin
 							fsm_state <= ADD_OFFSET_STATE;
 						else
 							fsm_state <= INCR_EXPR_STATE;
+						end if;
 					end if;
 
 
@@ -181,7 +209,7 @@ begin
 					if expr_idx xnor EXPR_IDX_MAX then
 						expr_idx := 0;
 					else
-						expr_idx := expr_idx + 1
+						expr_idx := expr_idx + 1;
 					end if;
 
 					offset := 0;
@@ -190,7 +218,7 @@ begin
 
 				when WAIT_TRANSITION_DELAY_STATE =>
 					if (done) then
-						fsm_state <= CLR_DISP_STATE
+						fsm_state <= CLR_DISP_STATE;
 					end if;
 			end case;
 		end if;

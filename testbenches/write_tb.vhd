@@ -31,7 +31,7 @@ architecture behav of write_tb is
 begin
 	comp_test: write_module port map (clock, enable, rs_instr, done, lcd_rs, lcd_en, lcd_rw, lcdd);
 
-	clock <= not clock after 500 ns; -- 1 MHz clock
+	clock <= not clock after 5 ns; -- 100 MHz clock
 
 	process
 		type pattern_type is record

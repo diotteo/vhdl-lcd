@@ -1,0 +1,7 @@
+vhdl isim_temp "../../write_module.vhd"
+vhdl isim_temp "../../defs.vhd"
+vhdl isim_temp "../../functionset.vhd"
+vhdl isim_temp "../../entrymodeset.vhd"
+vhdl isim_temp "../../displayonoffcontrol.vhd"
+vhdl isim_temp "../../cleardisplay.vhd"
+vhdl isim_temp "../../poweroninit.vhd"

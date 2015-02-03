@@ -1,0 +1,3 @@
+vhdl isim_temp "../../write_module.vhd"
+vhdl isim_temp "../../defs.vhd"
+vhdl isim_temp "../../returnhome.vhd"

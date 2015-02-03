@@ -51,13 +51,15 @@ end write_module;
 
 architecture Behavioral of write_module is
 
-	TYPE STATE_TYPE IS (READY,
-							  INIT,
-							  ENABLE,
-							  HOLD,
-							  DONE);
+	TYPE STATE_TYPE IS (
+			READY,
+			INIT,
+			SIGNAL_SETTLE,
+			ENABLE,
+			HOLD,
+			DONE);
 
-	SIGNAL w_state   : STATE_TYPE := READY;
+	SIGNAL w_state : STATE_TYPE := READY;
 	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les états 100Mhz (T=10 ns)
 begin
 	process(clk)
@@ -84,8 +86,11 @@ begin
 
 					counter <= 0;
 
-					w_state <= ENABLE;
+					w_state <= SIGNAL_SETTLE;
 
+				when SIGNAL_SETTLE =>
+					LCD_enable_w <= '1';
+					w_state <= ENABLE;
 
 				when ENABLE =>
 

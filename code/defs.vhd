@@ -69,6 +69,18 @@ package defs is
 			);
 	end component;
 	
+	component Function_Set is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data_len: in   std_logic;
+			nlines : in    std_logic;
+			font   : in    std_logic;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
 end package defs;
 
 --package body defs is

@@ -46,26 +46,6 @@ end afficheur;
 
 
 architecture afficheur_main of afficheur is
-	component Power_On_Init
-		port (
-			clk:    in    std_logic;
-			enable: in    boolean;
-			done:   out   boolean;
-			lcd:    inout std_logic_vector(LCD_LEN - 1 downto 0)
-		);
-	end component;
-
-	component Set_Ddram_Address is
-		port(
-				clk    : in    std_logic;
-				enable : in    boolean;
-				done   : out   boolean;
-				address: in    std_logic_vector(6 downto 0);
-				lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-				);
-	end component;
-
-
 	type state_t is (
 			INIT_STATE,
 			POWER_ON_INIT_STATE,
@@ -85,9 +65,19 @@ architecture afficheur_main of afficheur is
 	signal fsm_state : state_t := POWER_ON_INIT_STATE;
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal do_power_on_init: boolean;
+	signal power_on_init_done: boolean;
 	signal do_set_ddram_addr: boolean;
-	signal done: boolean;
+	signal set_ddram_addr_done: boolean;
+	signal do_clr_disp: boolean;
+	signal clr_disp_done: boolean;
+	
+	
+	signal do_write_char: boolean;
+	signal write_char_done: boolean;
 
+	signal wait_anim_done: boolean;
+	signal wait_transition_done: boolean;
+	
 	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
 	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
 begin
@@ -98,10 +88,10 @@ begin
 	lcden <= lcd(8);
 	lcdd <= lcd(7 downto 0);
 
-	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, done, lcd);
-
-	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, done, LAST_ADDR (6 downto 0), lcd);
-
+	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, lcd);
+	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), lcd);
+	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, lcd);
+	
 	process(clk)
 		variable i, j: integer;
 		variable offset: integer := 0;
@@ -125,17 +115,17 @@ begin
 					-- raise power on init's enable bit
 					do_power_on_init <= true;
 
-					if (done) then
+					if (power_on_init_done) then
 						do_power_on_init <= false;
 						fsm_state <= CLR_DISP_STATE;
 					end if;
 
 
 				when CLR_DISP_STATE =>
-					--COMP_CLR_DISP: CLR_DISP port map ();
-
-					if (done) then
-						--enable <= 0
+					do_clr_disp <= true;
+					
+					if (clr_disp_done) then
+						do_clr_disp <= false;
 
 						--if != 0
 						if (offset /= 0) then
@@ -149,16 +139,16 @@ begin
 				when WRITE_FIRST_LINE_STATE =>
 					--COMP_WRITE_LINE: WRITE_LINE port map ();
 
-					if (done) then
+					--if (done) then
 						--enable <= 0
-						fsm_state <= RST_CURSOR_STATE;
-					end if;
+					--	fsm_state <= RST_CURSOR_STATE;
+					--end if;
 
 
 				when RST_CURSOR_STATE =>
 					do_set_ddram_addr <= true;
 
-					if (done) then
+					if (set_ddram_addr_done) then
 						do_set_ddram_addr <= false;
 						fsm_state <= SET_J_STATE;
 					end if;
@@ -185,7 +175,7 @@ begin
 				when WRITE_EXPR_STATE =>
 					--COMP_CHAR_WRITE: WRITE_CHAR port map (expr(charpos))
 
-					if (done) then
+					if (write_char_done) then
 						-- FIXME: Is this possible?
 						if (i < j) then
 							j := j - 1;
@@ -197,7 +187,7 @@ begin
 
 
 				when WAIT_ANIM_DELAY_STATE =>
-					if (done) then
+					if (wait_anim_done) then
 						if (j /= 0) then
 							fsm_state <= SET_I_STATE;
 						elsif (offset = 0) then
@@ -225,7 +215,7 @@ begin
 
 
 				when WAIT_TRANSITION_DELAY_STATE =>
-					if (done) then
+					if (wait_transition_done) then
 						fsm_state <= CLR_DISP_STATE;
 					end if;
 			end case;

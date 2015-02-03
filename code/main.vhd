@@ -39,7 +39,7 @@ entity afficheur is
 		lcdrs : out   std_logic;
 		lcdrw : out   std_logic;
 		lcden : out   std_logic;
-		lcdd  : inout std_logic_vector(7 downto 0)
+		lcdd  : out std_logic_vector(7 downto 0)
 		);
 
 end afficheur;
@@ -78,6 +78,17 @@ architecture afficheur_main of afficheur is
 	signal wait_anim_done: boolean;
 	signal wait_transition_done: boolean;
 	
+	signal enable_wr: boolean;
+	signal done_wr: boolean;
+	signal rs_wr:	std_logic;
+	signal instr_wr: std_logic_vector(7 downto 0);
+	
+	signal rs_clear_disp: std_logic;
+	signal instr_clear_disp: std_logic_vector(7 downto 0);
+	
+	signal rs_rst_curs: std_logic;
+	signal instr_rst_curs: std_logic_vector(7 downto 0);
+	
 	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
 	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
 begin
@@ -88,10 +99,24 @@ begin
 	lcden <= lcd(8);
 	lcdd <= lcd(7 downto 0);
 
-	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, lcd);
-	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), lcd);
-	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, lcd);
+	--COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, lcd);
+	--COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), lcd);
+	COMP_RST_CURSOR: Set_Ddram_Address port map (LAST_ADDR (6 downto 0),rs_rst_curs, instr_rst_curs);
+	--COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, lcd);
+	COMP_CLR_DISP: Clear_Display port map (rs_clear_disp, instr_clear_disp);
 	
+	COMP_WRITE: write_module port map (
+		clk,
+		enable_wr,
+		done_wr,
+		rs_wr,
+		instr_wr,
+		lcd(LCD_RS_IDX),
+		lcd(LCD_RW_IDX),
+		lcd(LCD_EN_IDX),
+		lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+		);
+			
 	process(clk)
 		variable i, j: integer;
 		variable offset: integer := 0;
@@ -122,10 +147,16 @@ begin
 
 
 				when CLR_DISP_STATE =>
-					do_clr_disp <= true;
+					--do_clr_disp <= true;
 					
-					if (clr_disp_done) then
-						do_clr_disp <= false;
+					
+					enable_wr <= true;
+					
+					rs_wr <= rs_clear_disp;
+					instr_wr <= instr_clear_disp;
+					
+					if (done_wr) then
+						enable_wr <= false;
 
 						--if != 0
 						if (offset /= 0) then
@@ -146,9 +177,15 @@ begin
 
 
 				when RST_CURSOR_STATE =>
-					do_set_ddram_addr <= true;
-
-					if (set_ddram_addr_done) then
+					--do_set_ddram_addr <= true;
+					
+					enable_wr <= true;
+					
+					rs_wr <= rs_rst_curs;
+					instr_wr <= instr_rst_curs;
+					
+					
+					if (done_wr) then
 						do_set_ddram_addr <= false;
 						fsm_state <= SET_J_STATE;
 					end if;

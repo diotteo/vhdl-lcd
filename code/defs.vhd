@@ -104,7 +104,7 @@ package defs is
 			);
 	end component;
 
-	entity Set_Ddram_Address is
+	component Set_Ddram_Address is
 		port(
 			clk    : in    std_logic;
 			enable : in    boolean;

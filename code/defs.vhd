@@ -58,6 +58,17 @@ package defs is
 			);
 	end component;
 	
+	component Entry_Mode_Set is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			i_d    : in    std_logic;
+			sh     : in    std_logic;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
 end package defs;
 
 --package body defs is

@@ -44,29 +44,17 @@ end Clear_Display;
 
 
 architecture Clear_Display of Clear_Display is
-	component write_module
-		port (
-			clk : in std_logic;
-			enable : in boolean;
-			done : out boolean;
-			rs   : in boolean;
-			instr : in std_logic_vector(7 downto 0);
-			lcd_rs : out std_logic;
-			lcd_en : out std_logic;
-			lcd_rw : out std_logic;
-			lcd_data : out std_logic_vector(7 downto 0)
-		);
-	end component;
 
 begin
 	COMP_WRITE: write_module port map (
 			clk,
 			enable,
-			'0' & x"01",
 			done,
-			lcd(9),  --LCD_rs
-			lcd(10), --LCD_enable
-			lcd(8),  --LCD_rw
+			'0',
+			x"01",
+			lcd(10),--LCD_rs
+			lcd(9), --LCD_rw
+			lcd(8), --LCD_enable
 			lcd(7 downto 0) --LCDD
 			);
 end Clear_Display;

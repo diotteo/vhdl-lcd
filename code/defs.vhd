@@ -124,6 +124,16 @@ package defs is
 			);
 	end component;
 	
+	
+	component Power_On_Init is
+	port(
+		clk   : in    std_logic;
+		enable: in    boolean;
+		done  : out   boolean;
+		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
+		);
+	end component;
+	
 end package defs;
 
 --package body defs is

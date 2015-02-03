@@ -47,7 +47,7 @@ end Set_Ddram_Address;
 architecture Set_Ddram_Address of Set_Ddram_Address is
 	signal instr: std_logic_vector(7 downto 0);
 begin
-	instr <= x"80" or address;
+	instr <= x"80" or ("0" & address);
 
 	COMP_WRITE: write_module port map (
 			clk,

@@ -39,7 +39,7 @@ entity Function_Set is
 			data_len: in   std_logic;
 			nlines : in    std_logic;
 			font   : in    std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Function_Set;
 

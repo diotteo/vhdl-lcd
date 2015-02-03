@@ -2,13 +2,13 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 package defs is
+	constant LCDD_MIN_IDX : natural := 0;
+	constant LCDD_MAX_IDX : natural := 7;
+	constant LCD_RS_IDX : natural := 8;
+	constant LCD_RW_IDX : natural := 9;
+	constant LCD_EN_IDX : natural := 10;
 	-- length in bits of the lcd vector
 	constant LCD_LEN : natural := 11;
-	constant LCD_RS_IDX : natural := 10;
-	constant LCD_RW_IDX : natural := 9;
-	constant LCD_EN_IDX : natural := 8;
-	constant LCDD_MAX_IDX : natural := 7;
-	constant LCDD_MIN_IDX : natural := 0;
 	
 	--- Component declarations ---
 	

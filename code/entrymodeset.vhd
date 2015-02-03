@@ -48,7 +48,7 @@ end Entry_Mode_Set;
 architecture Entry_Mode_Set of Entry_Mode_Set is
 	signal instr: std_logic_vector(7 downto 0);
 begin
-	instr <= x"04" or (i_d & sh);
+	instr <= x"04" or ("000000" & i_d & sh);
 
 	COMP_WRITE: write_module port map (
 			clk,

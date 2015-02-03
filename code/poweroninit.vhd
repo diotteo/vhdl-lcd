@@ -204,6 +204,7 @@ begin
 					disp_clr_enable <= true;
 					if (disp_clr_done) then
 						disp_clr_enable <= false;
+						fsm_state <= DISP_CLR_WAIT_STATE;
 					end if;
 
 --					--Delai d'activation enable 80 ns

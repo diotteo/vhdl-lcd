@@ -49,7 +49,7 @@ end Display_On_Off_Control;
 architecture Display_On_Off_Control of Display_On_Off_Control is
 	signal instr: std_logic_vector(7 downto 0);
 begin
-	instr <= x"08" or (disp_on & cur_on & cur_blink_on);
+	instr <= x"08" or ("00000" & disp_on & cur_on & cur_blink_on);
 
 	COMP_WRITE: write_module port map (
 			clk,

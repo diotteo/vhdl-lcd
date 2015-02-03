@@ -52,10 +52,10 @@ begin
 			done,
 			'0',
 			x"01",
-			lcd(10),--LCD_rs
-			lcd(9), --LCD_rw
-			lcd(8), --LCD_enable
-			lcd(7 downto 0) --LCDD
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
 			);
 end Clear_Display;
 

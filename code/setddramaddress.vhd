@@ -55,9 +55,9 @@ begin
 			done,
 			'0',
 			instr,
-			lcd(LCD_RS_IDX), --LCD_rs
-			lcd(LCD_RW_IDX), --LCD_rw
-			lcd(LCD_EN_IDX), --LCD_enable
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX) --LCDD
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
 			);
 end Set_Ddram_Address;

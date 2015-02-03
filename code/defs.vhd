@@ -46,6 +46,18 @@ package defs is
 			);
 	end component;
 	
+	component Display_On_Off_Control is
+	port(
+			clk         : in    std_logic;
+			enable      : in    boolean;
+			done        : out   boolean;
+			disp_on     : in    std_logic;
+			cur_on      : in    std_logic;
+			cur_blink_on: in    std_logic;
+			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
 end package defs;
 
 --package body defs is

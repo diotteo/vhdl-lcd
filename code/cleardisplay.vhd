@@ -36,8 +36,8 @@ use IEEE.numeric_std.all;
 entity Clear_Display is
 	port(
 			clk    : in    std_logic;
-			enable : in    std_logic;
-			done   : out   std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Clear_Display;
@@ -47,9 +47,10 @@ architecture Clear_Display of Clear_Display is
 	component write_module
 		port (
 			clk : in std_logic;
-			enable : in std_logic;
-			rs_and_instr : in std_logic_vector(8 downto 0);
-			done : out std_logic;
+			enable : in boolean;
+			done : out boolean;
+			rs   : in boolean;
+			instr : in std_logic_vector(7 downto 0);
 			lcd_rs : out std_logic;
 			lcd_en : out std_logic;
 			lcd_rw : out std_logic;

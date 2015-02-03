@@ -36,15 +36,16 @@ entity write_module is
 			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
 
 			-- Signaux permettant de contrôler l'état du module
-			send   : in  boolean; -- Démarre la séquence d'envoie sur un front montant
-			ins_in : in  std_logic_vector(8 downto 0); -- Instruction ou donnée à envoyer(7 downto 0) + bit RS(8)
-			done_write   : out boolean; -- Niveau haut lorsque le module a terminé l'envoie
+			enable: in  boolean; -- Démarre la séquence d'envoie sur un front montant
+			done  : out boolean; -- Niveau haut lorsque le module a terminé l'envoie
+			rs    : in  std_logic;
+			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnée à envoyer(7 downto 0)
 
 			-- Signaux qui seront liés au LCD
-			LCD_rs_out_w : out std_logic; -- Signal permettant de choisir entre DATA/INSTRUCTION
-			LCD_enable_w : out std_logic; -- Signal permettant de valider la commande
-			LCD_rw_out_w : out std_logic; -- Signal permettant de sélectionner le mode write ou read
-			LCDD_out_w   : out std_logic_vector(7 downto 0) -- Bus d'instruction vers le LDC
+			LCD_rs : out std_logic; -- Signal permettant de choisir entre DATA/INSTRUCTION
+			LCD_rw : out std_logic; -- Signal permettant de sélectionner le mode write ou read
+			LCD_en : out std_logic; -- Signal permettant de valider la commande
+			LCDD   : out std_logic_vector(7 downto 0) -- Bus d'instruction vers le LDC
 			);
 end write_module;
 
@@ -52,14 +53,14 @@ end write_module;
 architecture Behavioral of write_module is
 
 	TYPE STATE_TYPE IS (
-			READY,
-			INIT,
-			SIGNAL_SETTLE,
-			ENABLE,
-			HOLD,
-			DONE);
+			READY_STATE,
+			INIT_STATE,
+			SIGNAL_SETTLE_STATE,
+			ENABLE_STATE,
+			HOLD_STATE,
+			DONE_STATE);
 
-	SIGNAL w_state : STATE_TYPE := READY;
+	SIGNAL w_state : STATE_TYPE := READY_STATE;
 	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les états 100Mhz (T=10 ns)
 begin
 	process(clk)
@@ -69,65 +70,65 @@ begin
 
 			case w_state is
 
-				when READY =>
-					done_write <= false;
+				when READY_STATE =>
+					done <= false;
 
-					if (send) then
-						w_state <= INIT;
+					if (enable) then
+						w_state <= INIT_STATE;
 					end if;
 
-				when INIT =>
+				when INIT_STATE =>
 
 					-- Prépare les signaux qui seront envoyés au LCD
-					LCDD_out_w <= ins_in(7 downto 0);
-					LCD_rs_out_w <= ins_in(8);
-					LCD_enable_w <= '0';
-					LCD_rw_out_w <= '0'; --Mode write
+					LCD_rs <= rs;
+					LCD_rw <= '0'; --Mode write
+					LCD_en <= '0';
+					LCDD <= instr;
 
 					counter <= 0;
 
-					w_state <= SIGNAL_SETTLE;
+					w_state <= SIGNAL_SETTLE_STATE;
 
-				when SIGNAL_SETTLE =>
-					LCD_enable_w <= '1';
-					w_state <= ENABLE;
+				when SIGNAL_SETTLE_STATE =>
+					LCD_en <= '1';
+					w_state <= ENABLE_STATE;
 
-				when ENABLE =>
+				when ENABLE_STATE =>
 
-					LCD_enable_w <= '1';
+					LCD_en <= '1';
 
 					--Delai d'activation enable 80 ns
 					if counter >= 7 then
-						w_state <= HOLD;
+						w_state <= HOLD_STATE;
 						counter <= 0;
 					else
 						counter <= counter + 1;
 					end if;
 
-				when HOLD =>
+				when HOLD_STATE =>
 
-					LCD_enable_w <= '0';
+					LCD_en <= '0';
 
 					--Delai avant le prochain write 1200 ns
 					if counter >= 119 then
-						w_state <= DONE;
+						w_state <= DONE_STATE;
 						counter <= 0;
 					else
 						counter <= counter + 1;
 					end if;
 
 
-				when DONE =>
+				when DONE_STATE =>
 
-					done_write <= true;
+					done <= true;
 
-					if (send) then
-						w_state <= READY;
+					if (enable) then
+						w_state <= READY_STATE;
 					end if;
 
 				when others =>
 
-					w_state <= READY;
+					w_state <= READY_STATE;
 
 			end case;
 		end if;

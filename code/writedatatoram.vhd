@@ -36,8 +36,8 @@ use IEEE.numeric_std.all;
 entity Write_Data_To_Ram is
 	port(
 			clk    : in    std_logic;
-			enable : in    std_logic;
-			done   : out   std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
 			data   : in    std_logic_vector(7 downto 0);
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);

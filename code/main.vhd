@@ -36,9 +36,9 @@ entity afficheur is
 	port(
 		clk   : in    std_logic;
 		--led   : out   std_logic_vector(7 downto 0);
-		lcden : out   std_logic;
 		lcdrs : out   std_logic;
 		lcdrw : out   std_logic;
+		lcden : out   std_logic;
 		lcdd  : inout std_logic_vector(7 downto 0)
 		);
 
@@ -93,9 +93,9 @@ architecture afficheur_main of afficheur is
 begin
 
 	-- lcd variables are hidden in a vector
-	lcden <= lcd(10);
-	lcdrs <= lcd(9);
-	lcdrw <= lcd(8);
+	lcdrs <= lcd(10);
+	lcdrw <= lcd(9);
+	lcden <= lcd(8);
 	lcdd <= lcd(7 downto 0);
 
 	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, done, lcd);

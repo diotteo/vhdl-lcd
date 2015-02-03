@@ -44,49 +44,77 @@ end Power_On_Init;
 
 architecture Power_On_Init of Power_On_Init is
 	type STATE_TYPE is (
-			INIT_STATE,
-			FUNCTION_SET_STATE,
-			DISP_ON_STATE,
-			DISP_CLR_STATE,
-			PRINT_CHAR_STATE,
-			DONE_STATE);
+		READY_STATE,
+		INIT_WAIT_STATE,
+		FUNCTION_SET_STATE,
+		FUNCTION_SET_WAIT_STATE,
+		DISP_ON_STATE,
+		DISP_ON_WAIT_STATE,
+		DISP_CLR_STATE,
+		DISP_CLR_WAIT_STATE,
+		ENTRY_MODE_STATE,
+		ENTRY_MODE_WAIT_STATE,
+		DONE_STATE);
 
-	constant INS_FUNCTION_SET : std_logic_vector(7 downto 0) := "00111000";
-	constant INS_DISP_ON		  : std_logic_vector(7 downto 0) := "00001111";
-	constant INS_DISP_CLR	  : std_logic_vector(7 downto 0) := "00000001";
-
-	signal fsm_state   : STATE_TYPE := INIT_STATE;
+	signal fsm_state   : STATE_TYPE := READY_STATE;
+	
+	signal fs_enable : boolean := false;
+	signal fs_done   : boolean;
+	signal disp_onoff_enable: boolean := false;
+	signal disp_onoff_done  : boolean;
+	signal disp_clr_enable: boolean := false;
+	signal disp_clr_done  : boolean;
+	signal entry_mode_enable: boolean := false;
+	signal entry_mode_done  : boolean;
 begin
 
---	process(clk)
---		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
---		variable enable_counter : integer range 0 to 100 := 0; --Compteur d'horloge pour minuter l'activation du signal enable
---		variable ins_loop_counter : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
---	begin
---
---		if rising_edge(clk) then
---
---			case fsm_state is
---
---				when INIT_STATE =>
---					--led <= x"1";
---					--lcden <= '0';
---					--lcdrs <= '0';
---					--lcdrw <= '0';
---
---					timer_counter := timer_counter + 1;
---
---					--Delais 40ms
---					if timer_counter > 4000000 then
---						fsm_state <= FUNCTION_SET_STATE;
---						timer_counter := 0;
---					end if;
---
---
---
---				when FUNCTION_SET_STATE =>
---					--led <= "01000000";
---
+	COMP_FUNC_SET: Function_Set port map (clk, fs_enable, fs_done, '1', '1', '0', lcd);
+	COMP_DISP_ON_OFF: Display_On_Off_Control port map (clk, disp_onoff_enable, disp_onoff_done, '1', '1', '1', lcd);
+	COMP_DISP_CLEAR: Clear_Display port map (clk, disp_clr_enable, disp_clr_done, lcd);
+	COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', lcd);
+
+	process(clk)
+		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
+		variable func_set_repeat_counter : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
+	begin
+
+		if rising_edge(clk) then
+
+			case fsm_state is
+
+				when READY_STATE =>
+					lcd(LCD_EN_IDX) <= '0';
+					timer_counter := 0;
+					
+					if (enable) then
+					  fsm_state <= INIT_WAIT_STATE;
+					end if;
+				
+				when INIT_WAIT_STATE =>
+					--led <= x"1";
+					--lcden <= '0';
+					--lcdrs <= '0';
+					--lcdrw <= '0';
+
+					timer_counter := timer_counter + 1;
+
+					--Delai 40ms
+					if timer_counter > 4000000 then
+						fsm_state <= FUNCTION_SET_STATE;
+						timer_counter := 0;
+						func_set_repeat_counter := 3;
+					end if;
+
+
+
+				when FUNCTION_SET_STATE =>
+					--led <= "01000000";
+					fs_enable <= true;
+					
+					if (fs_done) then
+						fs_enable <= false;
+						fsm_state <= FUNCTION_SET_WAIT_STATE;
+					end if;
 --					lcdd <= INS_FUNCTION_SET;
 --					lcdrs <= '0';
 --					lcdrw <= '0';
@@ -113,8 +141,27 @@ begin
 --							ins_loop_counter := 0;
 --						end if;
 --					end if;
---
---				when DISP_ON_STATE =>
+
+				when FUNCTION_SET_WAIT_STATE =>
+					timer_counter := timer_counter + 1;
+					if (timer_counter > 3700) then
+						timer_counter := 0;
+						
+						if (func_set_repeat_counter > 1) then
+							func_set_repeat_counter := func_set_repeat_counter - 1;
+						else
+							fsm_state <= DISP_ON_STATE;
+						end if;
+					end if;
+
+
+				when DISP_ON_STATE =>
+					disp_onoff_enable <= true;
+					
+					if (disp_onoff_done) then
+						disp_onoff_enable <= false;
+						fsm_state <= DISP_ON_WAIT_STATE;
+					end if;
 --					led <= "00100000";
 --
 --					lcdd <= INS_DISP_ON;
@@ -137,15 +184,28 @@ begin
 --						fsm_state <= DISP_CLR_STATE;
 --
 --					end if;
---
---				when DISP_CLR_STATE =>
+
+				when DISP_ON_WAIT_STATE =>
+					timer_counter := timer_counter + 1;
+					
+					if (timer_counter > 3700) then
+						timer_counter := 0;
+						fsm_state <= DISP_CLR_STATE;
+					end if;
+
+				when DISP_CLR_STATE =>
 --					led <= "00010000";
 --
 --					lcdd <= INS_DISP_CLR;
 --					lcdrs <= '0';
 --					lcdrw <= '0';
 --					timer_counter := timer_counter + 1;
---
+
+					disp_clr_enable <= true;
+					if (disp_clr_done) then
+						disp_clr_enable <= false;
+					end if;
+
 --					--Delai d'activation enable 80 ns
 --					if enable_counter > 8 then
 --						lcden <= '0';
@@ -161,7 +221,31 @@ begin
 --						fsm_state <= PRINT_CHAR_STATE;
 --
 --					end if;
---
+
+				when DISP_CLR_WAIT_STATE =>
+					timer_counter := timer_counter + 1;
+					
+					if (timer_counter > 152000) then
+						timer_counter := 0;
+						fsm_state <= ENTRY_MODE_STATE;
+					end if;
+
+				when ENTRY_MODE_STATE =>
+					entry_mode_enable <= true;
+					
+					if (entry_mode_done) then
+						entry_mode_enable <= false;
+						fsm_state <= ENTRY_MODE_WAIT_STATE;
+					end if;
+					
+				when ENTRY_MODE_WAIT_STATE =>
+					timer_counter := timer_counter + 1;
+					
+					if (timer_counter > 3700) then
+						timer_counter := 0;
+						fsm_state <= DONE_STATE;
+					end if;
+					
 --				when PRINT_CHAR_STATE =>
 --					led <= "00001000";
 --
@@ -186,15 +270,16 @@ begin
 --
 --					end if;
 --
---				when DONE_STATE =>
---
---
+				when DONE_STATE =>
+					done <= true;
+
+
 --				when others =>
 --					led <= "11110000";
 --
---			end case;
---		end if;
---	end process;
+			end case;
+		end if;
+	end process;
 --
 --	--lcdd <= "00000000";
 --	--lcden <= '0';

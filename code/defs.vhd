@@ -7,6 +7,7 @@ package defs is
 	
 	
 	--- Component declarations ---
+	
 	component write_module is
 		port(
 			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
@@ -34,6 +35,16 @@ package defs is
 			);
 	end component;
 	
+	component Cursor_Or_Display_Shift is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			sh_d_c : in    std_logic; -- shift entire display, !cursor
+			sh_r_l : in    std_logic; -- shift right, !left
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
 	
 end package defs;
 

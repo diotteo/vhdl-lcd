@@ -45,31 +45,19 @@ end Set_Ddram_Address;
 
 
 architecture Set_Ddram_Address of Set_Ddram_Address is
-	component write_module
-		port (
-			clk : in std_logic;
-			enable : in boolean;
-			rs_and_instr : in std_logic_vector(8 downto 0);
-			done : out boolean;
-			lcd_rs : out std_logic;
-			lcd_en : out std_logic;
-			lcd_rw : out std_logic;
-			lcd_data : out std_logic_vector(7 downto 0)
-		);
-	end component;
-
-	signal instr: std_logic_vector(8 downto 0);
+	signal instr: std_logic_vector(7 downto 0);
 begin
-	instr <= '0' & (x"80" or address);
+	instr <= x"80" or address;
 
 	COMP_WRITE: write_module port map (
 			clk,
 			enable,
-			instr,
 			done,
-			lcd(9),  --LCD_rs
-			lcd(10), --LCD_enable
-			lcd(8),  --LCD_rw
-			lcd(7 downto 0) --LCDD
+			'0',
+			instr,
+			lcd(LCD_RS_IDX), --LCD_rs
+			lcd(LCD_RW_IDX), --LCD_rw
+			lcd(LCD_EN_IDX), --LCD_enable
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX) --LCDD
 			);
 end Set_Ddram_Address;

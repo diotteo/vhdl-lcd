@@ -3,8 +3,12 @@ use IEEE.std_logic_1164.all;
 
 package defs is
 	-- length in bits of the lcd vector
-	constant LCD_LEN : integer := 11;
-	
+	constant LCD_LEN : natural := 11;
+	constant LCD_RS_IDX : natural := 10;
+	constant LCD_RW_IDX : natural := 9;
+	constant LCD_EN_IDX : natural := 8;
+	constant LCDD_MAX_IDX : natural := 7;
+	constant LCDD_MIN_IDX : natural := 0;
 	
 	--- Component declarations ---
 	
@@ -96,6 +100,16 @@ package defs is
 			enable : in    boolean;
 			done   : out   boolean;
 			address: in    std_logic_vector(5 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+
+	entity Set_Ddram_Address is
+		port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			address: in    std_logic_vector(6 downto 0);
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;

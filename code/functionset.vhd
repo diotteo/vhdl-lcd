@@ -31,8 +31,6 @@ use IEEE.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-
-
 entity Function_Set is
 	port(
 			clk    : in    std_logic;

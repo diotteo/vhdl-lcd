@@ -1,3 +1,6 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
 package defs is
 	-- length in bits of the lcd vector
 	constant LCD_LEN : integer := 11;

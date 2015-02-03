@@ -47,7 +47,7 @@ end Function_Set;
 architecture Function_Set of Function_Set is
 	signal instr: std_logic_vector(7 downto 0);
 begin
-	instr <= x"20" or ("0000" & data_len & nlines & font & "00");
+	instr <= x"20" or ("000" & data_len & nlines & font & "00");
 
 	COMP_WRITE: write_module port map (
 			clk,

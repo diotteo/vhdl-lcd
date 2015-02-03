@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
+use std.textio.all;
 use IEEE.numeric_std.all;
 
 entity write_tb is
@@ -37,7 +38,7 @@ begin
 		type pattern_type is record
 			enable : boolean;
 			rs_instr : std_logic_vector(8 downto 0);
-			done : boolean;
+			done : std_logic;
 			lcd_rs : std_logic;
 			lcd_en : std_logic;
 			lcd_rw : std_logic;
@@ -47,15 +48,19 @@ begin
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, '0' & x"00", false, 'U', '0', 'U', x"00", 0), -- unknown initial state
-				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00", 0), -- send enable
-				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00", 0), -- 'init' state
-				 (false, '0' & x"01", false, '0', '1', 'U', x"01", 80), -- 'enable' state
-				 (false, '0' & x"01", false, '0', '0', 'U', x"01", 1200), -- 'hold' state
-				 (false, '0' & x"01", true,  'U', '0', 'U', x"00", 0));
+				((false, "UUUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
+				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
+				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
+				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
+				 (false, '0' & x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
+				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
+				 (false, '0' & x"01", '1', 'U', '0', '0', x"00", 0)); -- 'done' state
 
+		variable l: line;
 	begin
 		for i in patterns'range loop
+			write (l, String'("i = " & natural'image(i) & " current time:" & time'IMAGE(now)));
+			writeline (output, l);
 			if (clock /= '0') then
 				wait until clock = '0';
 			end if;
@@ -63,7 +68,19 @@ begin
 
 			enable <= patterns(i).enable;
 			rs_instr <= patterns(i).rs_instr;
+
 			wait for 1 ns;
+
+			assert (patterns(i).done = 'U') or ((patterns(i).done = '1') = done)
+				report "done: " & boolean'image(done) & " /= " & std_logic'image(patterns(i).done) severity error;
+			assert lcd_rs = patterns(i).lcd_rs
+				report "lcd_rs: " & std_logic'image(lcd_rs) & " /= " & std_logic'image(patterns(i).lcd_rs) severity error;
+			assert lcd_en = patterns(i).lcd_en
+				report "lcd_en: " & std_logic'image(lcd_en) & " /= " & std_logic'image(patterns(i).lcd_en) severity error;
+			assert lcd_rw = patterns(i).lcd_rw
+				report "lcd_rw: " & std_logic'image(lcd_rw) & " /= " & std_logic'image(patterns(i).lcd_rw) severity error;
+			assert lcdd = patterns(i).lcdd
+				report "lcdd: wrong value" severity error;
 
 			if (patterns(i).wait_delay = 80) then -- 'enable' state
 				wait for 80 ns;
@@ -71,18 +88,9 @@ begin
 				wait for 1200 ns;
 			end if;
 
-			--assert done = patterns(i).done;
-			--	report "bad 'done' value" severity error;
-			--assert lcd_rs = patterns(i).lcd_rs;
-			--	report "bad 'lcd_rs' value" severity error;
-			--lcd_rs <= patterns(i).lcd_rs;
-			--assert lcd_en = patterns(i).lcd_en;
-			--	report "bad 'lcd_en' value" severity error;
-			--assert lcd_rw = patterns(i).lcd_rw;
-			--	report "bad 'lcd_rw' value" severity error;
-			--assert lcdd = patterns(i).lcdd;
-			--	report "bad 'lcdd' value" severity error;
 		end loop;
+
+		wait for 20 ns;
 		assert false report "end of test" severity failure;
 		wait;
 	end process;

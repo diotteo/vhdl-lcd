@@ -30,12 +30,23 @@ package defs is
 			);
 	end component;
 
+--	component Clear_Display is
+--		port(
+--			clk    : in    std_logic;
+--			enable : in    boolean;
+--			done   : out   boolean;
+--			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+--			);
+--	end component;
+	
 	component Clear_Display is
-		port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	port(
+			--clk    : in    std_logic;
+			--enable : in    boolean;
+			--done   : out   boolean;
+			--lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			rs:		out	std_logic;
+			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
 	
@@ -106,13 +117,25 @@ package defs is
 
 	component Set_Ddram_Address is
 		port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			address: in    std_logic_vector(6 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-			);
+				--clk    : in    std_logic;
+				--enable : in    boolean;
+				--done   : out   boolean;
+				address: in    std_logic_vector(6 downto 0);
+				rs:		out	std_logic;
+				instr:	out	std_logic_vector(7 downto 0)
+				--lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+				);
 	end component;
+
+--	component Set_Ddram_Address is
+--		port(
+--			clk    : in    std_logic;
+--			enable : in    boolean;
+--			done   : out   boolean;
+--			address: in    std_logic_vector(6 downto 0);
+--			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+--			);
+--	end component;
 	
 	component Write_Data_To_Ram is
 	port(

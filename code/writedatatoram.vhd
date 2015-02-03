@@ -45,31 +45,16 @@ end Write_Data_To_Ram;
 
 
 architecture Write_Data_To_Ram of Write_Data_To_Ram is
-	component write_module
-		port (
-			clk : in std_logic;
-			enable : in std_logic;
-			rs_and_instr : in std_logic_vector(8 downto 0);
-			done : out std_logic;
-			lcd_rs : out std_logic;
-			lcd_en : out std_logic;
-			lcd_rw : out std_logic;
-			lcd_data : out std_logic_vector(7 downto 0)
-		);
-	end component;
-
-	signal instr: std_logic_vector(8 downto 0);
 begin
-	instr <= '1' & data;
-
 	COMP_WRITE: write_module port map (
 			clk,
 			enable,
-			instr,
 			done,
-			lcd(9),  --LCD_rs
-			lcd(10), --LCD_enable
-			lcd(8),  --LCD_rw
+			'1',
+			data,
+			lcd(10),--LCD_rs
+			lcd(9), --LCD_rw
+			lcd(8), --LCD_enable
 			lcd(7 downto 0) --LCDD
 			);
 end Write_Data_To_Ram;

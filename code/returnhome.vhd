@@ -44,20 +44,6 @@ end Return_Home;
 
 
 architecture Return_Home of Return_Home is
-	component write_module
-		port (
-			clk : in std_logic;
-			enable: in boolean;
-			done  : out boolean;
-			rs    : in boolean;
-			instr : in std_logic_vector(7 downto 0);
-			lcd_rs: out std_logic;
-			lcd_rw: out std_logic;
-			lcd_en: out std_logic;
-			lcd_data : out std_logic_vector(7 downto 0)
-		);
-	end component;
-
 begin
 	COMP_WRITE: write_module port map (
 			clk,

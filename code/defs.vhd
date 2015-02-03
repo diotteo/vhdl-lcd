@@ -81,6 +81,35 @@ package defs is
 			);
 	end component;
 	
+	component Return_Home is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
+	component Set_Cgram_Address is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			address: in    std_logic_vector(5 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
+	component Write_Data_To_Ram is
+	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data   : in    std_logic_vector(7 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
+	end component;
+	
 end package defs;
 
 --package body defs is

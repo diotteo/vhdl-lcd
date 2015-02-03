@@ -1,0 +1,177 @@
+Release 14.5 - xst P.58f (nt)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Reading design: afficheur.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "afficheur.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "afficheur"
+Output Format                      : NGC
+Target Device                      : xc5vlx50t-1-ff1136
+
+---- Source Options
+Top Module Name                    : afficheur
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Off
+Reduce Control Sets                : Off
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/defs.vhd" in Library work.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/write_module.vhd" in Library work.
+Architecture behavioral of Entity write_module is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/functionset.vhd" in Library work.
+Entity <function_set> compiled.
+Entity <function_set> (Architecture <function_set>) compiled.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/displayonoffcontrol.vhd" in Library work.
+Architecture display_on_off_control of Entity display_on_off_control is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/cleardisplay.vhd" in Library work.
+Architecture clear_display of Entity clear_display is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/entrymodeset.vhd" in Library work.
+Architecture entry_mode_set of Entity entry_mode_set is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/poweroninit.vhd" in Library work.
+Architecture power_on_init of Entity power_on_init is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/setddramaddress.vhd" in Library work.
+Architecture set_ddram_address of Entity set_ddram_address is up to date.
+Compiling vhdl file "C:/Users/AK61450/Documents/ele740/Phase 1/code/main.vhd" in Library work.
+Architecture afficheur_main of Entity afficheur is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <afficheur> in library <work> (architecture <afficheur_main>).
+
+Analyzing hierarchy for entity <Power_On_Init> in library <work> (architecture <power_on_init>).
+
+Analyzing hierarchy for entity <Set_Ddram_Address> in library <work> (architecture <set_ddram_address>).
+
+Analyzing hierarchy for entity <Clear_Display> in library <work> (architecture <clear_display>).
+
+Analyzing hierarchy for entity <Function_Set> in library <work> (architecture <function_set>).
+
+Analyzing hierarchy for entity <Display_On_Off_Control> in library <work> (architecture <display_on_off_control>).
+
+Analyzing hierarchy for entity <Entry_Mode_Set> in library <work> (architecture <entry_mode_set>).
+
+Analyzing hierarchy for entity <write_module> in library <work> (architecture <behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <afficheur> in library <work> (Architecture <afficheur_main>).
+Entity <afficheur> analyzed. Unit <afficheur> generated.
+
+Analyzing Entity <Power_On_Init> in library <work> (Architecture <power_on_init>).
+INFO:Xst:2679 - Register <lcd<8>> in unit <Power_On_Init> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <done> in unit <Power_On_Init> has a constant value of 1 during circuit operation. The register is replaced by logic.
+Entity <Power_On_Init> analyzed. Unit <Power_On_Init> generated.
+
+Analyzing Entity <Function_Set> in library <work> (Architecture <function_set>).
+Entity <Function_Set> analyzed. Unit <Function_Set> generated.
+
+Analyzing Entity <write_module> in library <work> (Architecture <behavioral>).
+INFO:Xst:2679 - Register <LCD_rw> in unit <write_module> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <write_module> analyzed. Unit <write_module> generated.
+
+Analyzing Entity <Display_On_Off_Control> in library <work> (Architecture <display_on_off_control>).
+ERROR:Xst:807 - "C:/Users/AK61450/Documents/ele740/Phase 1/code/displayonoffcontrol.vhd" line 52: arguments of 'or' operator must have same lengths.
+--> 
+
+Total memory usage is 229664 kilobytes
+
+Number of errors   :    1 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+

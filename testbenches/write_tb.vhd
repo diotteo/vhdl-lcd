@@ -42,15 +42,17 @@ begin
 			lcd_en : std_logic;
 			lcd_rw : std_logic;
 			lcdd   : std_logic_vector(7 downto 0);
+			wait_delay: natural;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, '0' & x"00", false, 'U', '0', 'U', x"00"), -- unknown initial state
-				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00"), -- send enable
-				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00"), -- 'init' state
-				 (false, '0' & x"01", false, 'U', '0', 'U', x"00"), -- start driving lcd outputs
-				 (false, '0' & x"01", false, 'U', 'U', 'U', x"00"));
+				((false, '0' & x"00", false, 'U', '0', 'U', x"00", 0), -- unknown initial state
+				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00", 0), -- send enable
+				 (true,  '0' & x"01", false, 'U', '0', 'U', x"00", 0), -- 'init' state
+				 (false, '0' & x"01", false, '0', '1', 'U', x"01", 80), -- 'enable' state
+				 (false, '0' & x"01", false, '0', '0', 'U', x"01", 1200), -- 'hold' state
+				 (false, '0' & x"01", true,  'U', '0', 'U', x"00", 0));
 
 	begin
 		for i in patterns'range loop
@@ -62,6 +64,12 @@ begin
 			enable <= patterns(i).enable;
 			rs_instr <= patterns(i).rs_instr;
 			wait for 1 ns;
+
+			if (patterns(i).wait_delay = 80) then -- 'enable' state
+				wait for 80 ns;
+			elsif (patterns(i).wait_delay = 1200) then -- 'hold' state
+				wait for 1200 ns;
+			end if;
 
 			--assert done = patterns(i).done;
 			--	report "bad 'done' value" severity error;

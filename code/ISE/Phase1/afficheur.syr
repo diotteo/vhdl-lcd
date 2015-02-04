@@ -154,7 +154,6 @@ Analyzing Entity <afficheur> in library <work> (Architecture <afficheur_main>).
 Entity <afficheur> analyzed. Unit <afficheur> generated.
 
 Analyzing Entity <Power_On_Init> in library <work> (Architecture <power_on_init>).
-INFO:Xst:2679 - Register <lcd<10>> in unit <Power_On_Init> has a constant value of 0 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <done> in unit <Power_On_Init> has a constant value of 1 during circuit operation. The register is replaced by logic.
 Entity <Power_On_Init> analyzed. Unit <Power_On_Init> generated.
 
@@ -251,21 +250,22 @@ Synthesizing Unit <Power_On_Init>.
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
+    Found 11-bit register for signal <lcd>.
     Found 1-bit register for signal <disp_clr_enable<0>>.
     Found 1-bit register for signal <disp_onoff_enable<0>>.
     Found 1-bit register for signal <entry_mode_enable<0>>.
     Found 1-bit register for signal <fs_enable<0>>.
-    Found 27-bit adder for signal <fsm_state$add0000> created at line 227.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0000> created at line 102.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0001> created at line 147.
-    Found 4-bit comparator greater for signal <fsm_state$cmp_gt0002> created at line 150.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0003> created at line 229.
+    Found 27-bit adder for signal <fsm_state$add0000> created at line 236.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0000> created at line 107.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0001> created at line 153.
+    Found 4-bit comparator greater for signal <fsm_state$cmp_gt0002> created at line 156.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0003> created at line 238.
     Found 4-bit register for signal <func_set_repeat_counter>.
-    Found 4-bit subtractor for signal <func_set_repeat_counter$addsub0000> created at line 151.
+    Found 4-bit subtractor for signal <func_set_repeat_counter$addsub0000> created at line 157.
     Found 27-bit register for signal <timer_counter>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred  35 D-type flip-flop(s).
+	inferred  46 D-type flip-flop(s).
 	inferred   2 Adder/Subtractor(s).
 	inferred   4 Comparator(s).
 Unit <Power_On_Init> synthesized.
@@ -277,19 +277,18 @@ WARNING:Xst:653 - Signal <write_char_done<0>> is used but never assigned. This s
 WARNING:Xst:653 - Signal <wait_transition_done<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <wait_anim_done<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:1780 - Signal <do_write_char> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-INFO:Xst:1799 - State init_state is never reached in FSM <fsm_state>.
 INFO:Xst:1799 - State wait_anim_delay_state is never reached in FSM <fsm_state>.
 INFO:Xst:1799 - State add_offset_state is never reached in FSM <fsm_state>.
 INFO:Xst:1799 - State incr_expr_state is never reached in FSM <fsm_state>.
 INFO:Xst:1799 - State wait_transition_delay_state is never reached in FSM <fsm_state>.
     Found finite state machine <FSM_2> for signal <fsm_state>.
     -----------------------------------------------------------------------
-    | States             | 8                                              |
-    | Transitions        | 12                                             |
+    | States             | 9                                              |
+    | Transitions        | 13                                             |
     | Inputs             | 10                                             |
-    | Outputs            | 8                                              |
+    | Outputs            | 9                                              |
     | Clock              | clk                       (rising_edge)        |
-    | Power Up State     | power_on_init_state                            |
+    | Power Up State     | init_state                                     |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
@@ -298,15 +297,16 @@ INFO:Xst:1799 - State wait_transition_delay_state is never reached in FSM <fsm_s
     Found 1-bit register for signal <do_power_on_init<0>>.
     Found 1-bit register for signal <do_set_ddram_addr<0>>.
     Found 32-bit up counter for signal <expr_idx>.
-    Found 32-bit comparator less for signal <fsm_state$cmp_lt0000> created at line 180.
+    Found 32-bit comparator less for signal <fsm_state$cmp_lt0000> created at line 189.
     Found 32-bit register for signal <i>.
-    Found 32-bit subtractor for signal <i$addsub0000> created at line 168.
+    Found 32-bit subtractor for signal <i$addsub0000> created at line 177.
     Found 32-bit register for signal <j>.
+    Found 11-bit register for signal <lcd>.
     Found 2-bit register for signal <offset>.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred   1 Counter(s).
-	inferred  69 D-type flip-flop(s).
+	inferred  80 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 	inferred   1 Comparator(s).
 Unit <afficheur> synthesized.
@@ -322,8 +322,8 @@ Macro Statistics
  32-bit subtractor                                     : 1
  4-bit subtractor                                      : 1
  8-bit adder                                           : 6
-# Registers                                            : 42
- 1-bit register                                        : 25
+# Registers                                            : 64
+ 1-bit register                                        : 47
  2-bit register                                        : 1
  27-bit register                                       : 1
  32-bit register                                       : 2
@@ -342,24 +342,24 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_2> for best encoding.
-Optimizing FSM <fsm_state/FSM> on signal <fsm_state[1:8]> with one-hot encoding.
------------------------------------------
+Optimizing FSM <fsm_state/FSM> on signal <fsm_state[1:9]> with one-hot encoding.
+------------------------------------------
  State                       | Encoding
------------------------------------------
- init_state                  | unreached
- power_on_init_state         | 00000001
- clr_disp_state              | 00000010
- write_first_line_state      | 00000100
- rst_cursor_state            | 00001000
- set_j_state                 | 00010000
- set_i_state                 | 00100000
- decr_i_state                | 01000000
- write_expr_state            | 10000000
+------------------------------------------
+ init_state                  | 000000001
+ power_on_init_state         | 000000010
+ clr_disp_state              | 000000100
+ write_first_line_state      | 000001000
+ rst_cursor_state            | 000010000
+ set_j_state                 | 000100000
+ set_i_state                 | 001000000
+ decr_i_state                | 010000000
+ write_expr_state            | 100000000
  wait_anim_delay_state       | unreached
  add_offset_state            | unreached
  incr_expr_state             | unreached
  wait_transition_delay_state | unreached
------------------------------------------
+------------------------------------------
 Analyzing FSM <FSM_1> for best encoding.
 Optimizing FSM <COMP_INIT/fsm_state/FSM> on signal <fsm_state[1:11]> with one-hot encoding.
 ----------------------------------------
@@ -394,38 +394,41 @@ Optimizing FSM <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state/FSM> on signal <w_s
  hold_state          | 010000
  done_state          | 100000
 ---------------------------------
-WARNING:Xst:1426 - The value init of the FF/Latch FFd8 hinder the constant cleaning in the block FSM.
+WARNING:Xst:1426 - The value init of the FF/Latch FFd9 hinder the constant cleaning in the block FSM.
    You should achieve better results by setting this init to 0.
-WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd9> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd10> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd11> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <fs_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_2> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_0> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_1> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_3> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_4> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_6> (without init value) has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_5> (without init value) has a constant value of 1 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_8> (without init value) has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_7> (without init value) has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_9> (without init value) has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
@@ -442,106 +445,115 @@ WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value o
 WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_6> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_5> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_4> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_3> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_2> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_1> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_0> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <do_power_on_init_0> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_8> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_9> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <offset_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:1293 - FF/Latch <FFd9> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_en> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd7> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd8> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <disp_onoff_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <fs_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <disp_clr_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_3> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_2> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_1> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <LCD_en> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd7> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_1> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_2> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <func_set_repeat_counter_3> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <FFd1> of sequential type is unconnected in block <FSM>.
+WARNING:Xst:2677 - Node <done_0> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_en> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <disp_onoff_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1290 - Hierarchical block <COMP_FUNC_SET> is unconnected in block <COMP_INIT>.
+   It will be removed from the design.
+WARNING:Xst:2677 - Node <LCD_en> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <FFd1> of sequential type is unconnected in block <FSM>.
 WARNING:Xst:2677 - Node <done_0> of sequential type is unconnected in block <COMP_WRITE>.
-WARNING:Xst:1293 - FF/Latch <entry_mode_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_en> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <disp_clr_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1290 - Hierarchical block <COMP_DISP_ON_OFF> is unconnected in block <COMP_INIT>.
+   It will be removed from the design.
+WARNING:Xst:2677 - Node <LCD_en> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_10> (without init value) has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <FFd1> of sequential type is unconnected in block <FSM>.
 WARNING:Xst:2677 - Node <done_0> of sequential type is unconnected in block <COMP_WRITE>.
-WARNING:Xst:1293 - FF/Latch <timer_counter_7> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_8> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_9> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_10> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_11> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_12> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_13> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_14> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_15> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_16> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_17> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_18> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_19> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_20> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_21> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_22> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_23> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_24> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <timer_counter_25> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_26> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_2> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_3> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_4> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_25> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_24> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_23> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_22> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_21> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_20> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_19> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_18> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_17> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_16> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_15> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_14> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_13> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_12> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_11> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd3> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <FFd6> has a constant value of 1 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <LCD_en> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <FFd5> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd1> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <entry_mode_enable_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_0> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_1> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_2> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
@@ -549,8 +561,14 @@ WARNING:Xst:1293 - FF/Latch <timer_counter_3> has a constant value of 0 in block
 WARNING:Xst:1293 - FF/Latch <timer_counter_4> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_5> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <timer_counter_6> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <FFd1> of sequential type is unconnected in block <FSM>.
-WARNING:Xst:2677 - Node <done_0> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1293 - FF/Latch <timer_counter_7> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_8> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_9> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <timer_counter_10> has a constant value of 0 in block <COMP_INIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <FFd4> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1290 - Hierarchical block <COMP_DISP_CLEAR> is unconnected in block <COMP_INIT>.
+   It will be removed from the design.
+WARNING:Xst:2677 - Node <LCD_en> of sequential type is unconnected in block <COMP_WRITE>.
 WARNING:Xst:1293 - FF/Latch <FFd2> has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <counter_0> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <counter_1> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
@@ -561,7 +579,10 @@ WARNING:Xst:1293 - FF/Latch <counter_5> has a constant value of 0 in block <COMP
 WARNING:Xst:1293 - FF/Latch <counter_6> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <FFd1> of sequential type is unconnected in block <FSM>.
+WARNING:Xst:2677 - Node <FFd6> of sequential type is unconnected in block <FSM>.
 WARNING:Xst:2677 - Node <done_0> of sequential type is unconnected in block <COMP_WRITE>.
+WARNING:Xst:1290 - Hierarchical block <COMP_INIT> is unconnected in block <afficheur>.
+   It will be removed from the design.
 WARNING:Xst:2677 - Node <offset_1> of sequential type is unconnected in block <afficheur>.
 
 =========================================================================
@@ -574,8 +595,8 @@ Macro Statistics
  32-bit subtractor                                     : 1
  4-bit subtractor                                      : 1
  8-bit adder                                           : 6
-# Registers                                            : 217
- Flip-Flops                                            : 217
+# Registers                                            : 239
+ Flip-Flops                                            : 239
 # Comparators                                          : 17
  27-bit comparator greater                             : 3
  32-bit comparator less                                : 1
@@ -587,6 +608,8 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1426 - The value init of the FF/Latch FSM_FFd9 hinder the constant cleaning in the block FSM_2-parent.
+   You should achieve better results by setting this init to 0.
 WARNING:Xst:1710 - FF/Latch <j_31> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <j_30> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <j_29> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
@@ -619,193 +642,375 @@ WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <j_2> (without init 
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <j_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <j_0> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdrs>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FD instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_en>
-   Signal <COMP_INIT/lcd<10>> in Unit <Power_On_Init> is assigned to GND
-   Output signal of FD instance <COMP_RST_CURSOR/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_CLR_DISP/COMP_WRITE/LCD_en>
+Optimizing unit <afficheur> ...
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdrw>; this signal is connected to multiple drivers.
-Drivers are: 
-   Signal <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_RST_CURSOR/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_CLR_DISP/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
+Optimizing unit <write_module> ...
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <write_module>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <write_module>. This FF/Latch will be trimmed during the optimization process.
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcden>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCD_rs>
+Optimizing unit <Power_On_Init> ...
+WARNING:Xst:1710 - FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_3> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_2> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_0> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_5> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_4> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_3> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_2> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_1> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_0> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_5> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_0> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_1> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_2> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_3> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_4> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_5> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_9> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_8> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd10> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd11> has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_5> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_4> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_4> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_5> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_6> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_7> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_0> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_2> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_3> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_4> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_5> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCDD_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_CLR_DISP/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <do_power_on_init_0> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_9> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_8> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_4> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_3> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_2> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_0> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_7> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_6> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_5> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_4> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_3> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_2> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_0> (without init value) has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_0> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_1> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_2> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_3> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd8> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd7> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd9> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd6> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd4> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/disp_clr_enable_0> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd6> has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd4> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd3> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/lcd_10> (without init value) has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd4> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/entry_mode_enable_0> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_en> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_en> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/done_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/counter_6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/w_state_FSM_FFd4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_en> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/done_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/counter_6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/w_state_FSM_FFd4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/fs_enable_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/func_set_repeat_counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/func_set_repeat_counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/func_set_repeat_counter_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/func_set_repeat_counter_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/disp_onoff_enable_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:1293 - FF/Latch <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd6> has a constant value of 1 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd2> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/fsm_state_FSM_FFd1> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_0> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/done_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/counter_6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_en> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:1293 - FF/Latch <COMP_INIT/timer_counter_1> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_2> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_3> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_4> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_6> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_7> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_8> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_9> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_10> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_11> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_12> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_13> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_14> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_15> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_16> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_17> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_18> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_19> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_20> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_21> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_22> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_23> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_24> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/done_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_0> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_5> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/counter_6> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd1> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_26> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_25> of sequential type is unconnected in block <afficheur>.
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<7>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_7>
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block afficheur, actual ratio is 0.
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<6>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_6>
+Final Macro Processing ...
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<5>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_5>
+=========================================================================
+Final Register Report
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<4>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_4>
+Macro Statistics
+# Registers                                            : 84
+ Flip-Flops                                            : 84
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<3>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_3>
+=========================================================================
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<2>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_2>
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<1>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_1>
+Partition Implementation Status
+-------------------------------
 
-ERROR:Xst:528 - Multi-source in Unit <afficheur> on signal <lcdd<0>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_RST_CURSOR/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_CLR_DISP/COMP_WRITE/LCDD_0>
+  No Partitions were found in this design.
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<10>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FD instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_en>
-   Output signal of FD instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_en>
-   Signal <COMP_INIT/lcd<10>> in Unit <Power_On_Init> is assigned to GND
+-------------------------------
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<9>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Signal <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
-   Signal <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_rw> in Unit <write_module> is assigned to GND
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : afficheur.ngr
+Top Level Output File Name         : afficheur
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<8>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCD_rs>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_rs>
+Design Statistics
+# IOs                              : 12
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<7>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_7>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_7>
+Cell Usage :
+# BELS                             : 245
+#      GND                         : 1
+#      INV                         : 33
+#      LUT1                        : 1
+#      LUT2                        : 26
+#      LUT3                        : 19
+#      LUT4                        : 41
+#      LUT5                        : 34
+#      LUT6                        : 22
+#      MUXCY                       : 31
+#      MUXF7                       : 4
+#      VCC                         : 1
+#      XORCY                       : 32
+# FlipFlops/Latches                : 84
+#      FD                          : 76
+#      FDS                         : 8
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 11
+#      OBUF                        : 11
+=========================================================================
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<6>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_6>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_6>
+Device utilization summary:
+---------------------------
 
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<5>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_5>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_5>
-
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<4>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_4>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_4>
-
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<3>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_3>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_3>
-
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<2>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_2>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_2>
-
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<1>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_1>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_1>
-
-ERROR:Xst:528 - Multi-source in Unit <Power_On_Init> on signal <lcd<0>>; this signal is connected to multiple drivers.
-Drivers are: 
-   Output signal of FDE instance <COMP_INIT/COMP_FUNC_SET/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_ON_OFF/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/LCDD_0>
-   Output signal of FDE instance <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCDD_0>
+Selected Device : 5vlx50tff1136-1 
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.74 secs
+Slice Logic Utilization: 
+ Number of Slice Registers:              84  out of  28800     0%  
+ Number of Slice LUTs:                  176  out of  28800     0%  
+    Number used as Logic:               176  out of  28800     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    181
+   Number with an unused Flip Flop:      97  out of    181    53%  
+   Number with an unused LUT:             5  out of    181     2%  
+   Number of fully used LUT-FF pairs:    79  out of    181    43%  
+   Number of unique control sets:         3
+
+IO Utilization: 
+ Number of IOs:                          12
+ Number of bonded IOBs:                  12  out of    480     2%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 84    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 3.197ns (Maximum Frequency: 312.793MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 3.264ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.197ns (frequency: 312.793MHz)
+  Total number of paths / destination ports: 1176 / 91
+-------------------------------------------------------------------------
+Delay:               3.197ns (Levels of Logic = 8)
+  Source:            i_0 (FF)
+  Destination:       i_4 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: i_0 to i_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.471   0.485  i_0 (i_0)
+     LUT1:I0->O            1   0.094   0.000  Msub_i_addsub0000_cy<0>_rt (Msub_i_addsub0000_cy<0>_rt)
+     MUXCY:S->O            1   0.372   0.000  Msub_i_addsub0000_cy<0> (Msub_i_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<1> (Msub_i_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<2> (Msub_i_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<3> (Msub_i_addsub0000_cy<3>)
+     XORCY:CI->O           1   0.357   0.576  Msub_i_addsub0000_xor<4> (i_addsub0000<4>)
+     LUT4:I2->O            1   0.094   0.576  i_mux0000<4>21 (i_mux0000<4>2)
+     LUT2:I0->O            1   0.094   0.000  i_4_rstpot (i_4_rstpot)
+     FD:D                     -0.018          i_4
+    ----------------------------------------
+    Total                      3.197ns (1.560ns logic, 1.637ns route)
+                                       (48.8% logic, 51.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 9 / 9
+-------------------------------------------------------------------------
+Offset:              3.264ns (Levels of Logic = 1)
+  Source:            lcd_10 (FF)
+  Destination:       lcden (PAD)
+  Source Clock:      clk rising
+
+  Data Path: lcd_10 to lcden
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.471   0.341  lcd_10 (lcd_10)
+     OBUF:I->O                 2.452          lcden_OBUF (lcden)
+    ----------------------------------------
+    Total                      3.264ns (2.923ns logic, 0.341ns route)
+                                       (89.6% logic, 10.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.68 secs
  
 --> 
 
-Total memory usage is 237288 kilobytes
+Total memory usage is 239528 kilobytes
 
-Number of errors   :   22 (   0 filtered)
-Number of warnings :  203 (   0 filtered)
-Number of infos    :    9 (   0 filtered)
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  397 (   0 filtered)
+Number of infos    :    7 (   0 filtered)
 

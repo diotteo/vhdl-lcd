@@ -1,7 +1,7 @@
 -- Company: ETS - ELE740
 -- Programmer: Olivier Diotte & Marc-André Séguin
--- 
--- Create Date:    11:13:42 01/20/2015 
+--
+-- Create Date:
 -- Module Name:    displayonoffcontrol.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
@@ -11,7 +11,7 @@
 -- Dependencies:   Module Write
 --
 -- Revision: 0.01
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 use work.defs.all;

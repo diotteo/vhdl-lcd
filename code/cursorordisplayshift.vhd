@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
 -- Programmer: Olivier Diotte & Marc-André Séguin
--- 
--- Create Date:    11:13:42 01/20/2015 
+--
+-- Create Date:
 -- Module Name:    cursorordisplayshift.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
@@ -12,7 +12,7 @@
 -- Dependencies:   Write Module
 --
 -- Revision: 0.01
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 use work.defs.all;

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This is an ISE project configuration file.-->
+<!--It holds project specific layout data for the projectmgr plugin.-->
+<!--Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved.-->
+<Project version="2" owner="projectmgr" name="Phase1" >
+   <!--This is an ISE project configuration file.-->
+   <ItemView engineview="SynthesisOnly" guiview="Source" compilemode="AutoCompile" >
+      <ClosedNodes>
+         <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/Cursor_Or_Display_Shift - Cursor_Or_Display_Shift J:|ELE740|mygit|Phase 1|code|cursorordisplayshift.vhd</ClosedNode>
+         <ClosedNode>/Return_Home - Return_Home J:|ELE740|mygit|Phase 1|code|returnhome.vhd</ClosedNode>
+         <ClosedNode>/Set_Cgram_Address - Set_Cgram_Address J:|ELE740|mygit|Phase 1|code|setcgramaddress.vhd</ClosedNode>
+         <ClosedNode>/Write_Data_To_Ram - Write_Data_To_Ram J:|ELE740|mygit|Phase 1|code|writedatatoram.vhd</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_CLR_DISP - Clear_Display - Clear_Display</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_INIT - Power_On_Init - Power_On_Init</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_RST_CURSOR - Set_Ddram_Address - Set_Ddram_Address</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>afficheur - afficheur_main (J:/ELE740/mygit/Phase 1/code/main.vhd)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000228000000020000000000000000000000000200000064ffffffff000000810000000300000002000002280000000100000003000000000000000100000003</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>afficheur - afficheur_main (J:/ELE740/mygit/Phase 1/code/main.vhd)</CurrentItem>
+   </ItemView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Configure Target Device</ClosedNode>
+         <ClosedNode>Design Utilities</ClosedNode>
+         <ClosedNode>Implement Design</ClosedNode>
+         <ClosedNode>User Constraints</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>Synthesize - XST</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000e7000000010000000100000000000000000000000064ffffffff000000810000000000000001000000e70000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>Synthesize - XST</CurrentItem>
+   </ItemView>
+   <ItemView guiview="File" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>defs.vhd</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000000000000001000000000000000000000000000000000000032b000000040101000100000000000000000000000064ffffffff0000008100000000000000040000009000000001000000000000009d0000000100000000000000660000000100000000000001980000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>defs.vhd</CurrentItem>
+   </ItemView>
+   <ItemView guiview="Library" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>work</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems/>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000109000000010001000100000000000000000000000064ffffffff000000810000000000000001000001090000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>work</CurrentItem>
+   </ItemView>
+   <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
+      <ClosedNodes>
+         <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/Cursor_Or_Display_Shift - Cursor_Or_Display_Shift J:|ELE740|mygit|Phase 1|code|cursorordisplayshift.vhd</ClosedNode>
+         <ClosedNode>/Return_Home - Return_Home J:|ELE740|mygit|Phase 1|code|returnhome.vhd</ClosedNode>
+         <ClosedNode>/Set_Cgram_Address - Set_Cgram_Address J:|ELE740|mygit|Phase 1|code|setcgramaddress.vhd</ClosedNode>
+         <ClosedNode>/Write_Data_To_Ram - Write_Data_To_Ram J:|ELE740|mygit|Phase 1|code|writedatatoram.vhd</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_CLR_DISP - Clear_Display - Clear_Display</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_INIT - Power_On_Init - Power_On_Init</ClosedNode>
+         <ClosedNode>/afficheur - afficheur_main J:|ELE740|mygit|Phase 1|code|main.vhd/COMP_RST_CURSOR - Set_Ddram_Address - Set_Ddram_Address</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>afficheur - afficheur_main (J:/ELE740/mygit/Phase 1/code/main.vhd)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000228000000020000000000000000000000000200000064ffffffff000000810000000300000002000002280000000100000003000000000000000100000003</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>afficheur - afficheur_main (J:/ELE740/mygit/Phase 1/code/main.vhd)</CurrentItem>
+   </ItemView>
+   <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem></SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f8000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem></CurrentItem>
+   </ItemView>
+   <ItemView engineview="BehavioralSim" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem>Behavioral Check Syntax</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f8000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem>Behavioral Check Syntax</CurrentItem>
+   </ItemView>
+   <SourceProcessView>000000ff00000000000000020000011b0000011b01000000050100000002</SourceProcessView>
+   <CurrentView>Implementation</CurrentView>
+</Project>

@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
 -- Programmer: Olivier Diotte & Marc-André Séguin
--- 
--- Create Date:    11:13:42 01/20/2015 
+--
+-- Create Date:
 -- Module Name:    defs.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
@@ -12,7 +12,7 @@
 -- Dependencies:   None
 --
 -- Revision: 0.01
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 
@@ -27,9 +27,9 @@ package defs is
 	constant LCD_EN_IDX : natural := 10;
 	-- length in bits of the lcd vector
 	constant LCD_LEN : natural := 11;
-	
+
 	--- Component declarations ---
-	
+
 	component write_module is
 		port(
 			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
@@ -63,18 +63,7 @@ package defs is
 			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
-	
-	--component Cursor_Or_Display_Shift is
-	--port(
-	--		clk    : in    std_logic;
-	--		enable : in    boolean;
-	--		done   : out   boolean;
-	--		sh_d_c : in    std_logic; -- shift entire display, !cursor
-	--		sh_r_l : in    std_logic; -- shift right, !left
-	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-	--		);
-	--end component;
-	
+
 	component Cursor_Or_Display_Shift is
 	port(
 			sh_d_c : in    std_logic; -- shift entire display, !cursor
@@ -83,19 +72,7 @@ package defs is
 			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
-	
-	--component Display_On_Off_Control is
-	--port(
-	--		clk         : in    std_logic;
-	--		enable      : in    boolean;
-	--		done        : out   boolean;
-	--		disp_on     : in    std_logic;
-	--		cur_on      : in    std_logic;
-	--		cur_blink_on: in    std_logic;
-	--		lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
-	--		);
-	--end component;
-	
+
 	component Display_On_Off_Control is
 	port(
 			disp_on     : in    std_logic;
@@ -105,19 +82,7 @@ package defs is
 			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
-	
-	
-	--component Entry_Mode_Set is
-	--port(
-	--		clk    : in    std_logic;
-	--		enable : in    boolean;
-	--		done   : out   boolean;
-	--		i_d    : in    std_logic;
-	--		sh     : in    std_logic;
-	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-	--		);
-	--end component;
-	
+
 	component Entry_Mode_Set is
 	port(
 			i_d    : in std_logic; 	-- Paramètre 1: Écriture vers la droite, 0: écriture vers la gauche
@@ -126,20 +91,8 @@ package defs is
 			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
-	
-	--component Function_Set is
-	--port(
-	--		clk    : in    std_logic;
-	--		enable : in    boolean;
-	--		done   : out   boolean;
-	--		data_len: in   std_logic;
-	--		nlines : in    std_logic;
-	--		font   : in    std_logic;
-	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-	--		);
-	--end component;
-	
-	entity component is
+
+	component Function_Set is
 	port(
 			data_len: in   std_logic; -- parametre 1: 8bits, 0: 4bits
 			nlines : in    std_logic; -- parametre 1: 2 lignes, 0: 4 lignes
@@ -149,7 +102,6 @@ package defs is
 			);
 	end component;
 
-	
 	component Return_Home is
 	port(
 			clk    : in    std_logic;
@@ -158,7 +110,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Set_Cgram_Address is
 	port(
 			clk    : in    std_logic;
@@ -181,26 +133,6 @@ package defs is
 				);
 	end component;
 
---	component Set_Ddram_Address is
---		port(
---			clk    : in    std_logic;
---			enable : in    boolean;
---			done   : out   boolean;
---			address: in    std_logic_vector(6 downto 0);
---			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
---			);
---	end component;
-	
-	--component Write_Data_To_Ram is
-	--port(
-	--		clk    : in    std_logic;
-	--		enable : in    boolean;
-	--		done   : out   boolean;
-	--		data   : in    std_logic_vector(7 downto 0);
-	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-	--		);
-	--end component;
-	
 	component Write_Data_To_Ram is
 	port(
 			data   : in std_logic_vector(7 downto 0); -- Caractère ascii à écrire
@@ -208,16 +140,8 @@ package defs is
 			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
-	
-	--component Power_On_Init is
-	--port(
-	--	clk   : in    std_logic;
-	--	enable: in    boolean;
-	--	done  : out   boolean;
-	--	lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
-	--	);
-	--end component;
-	
+
+
 	component Power_On_Init is
 	port(
 		clk   : in    std_logic; -- Horloge venant du main (100 Mhz)
@@ -229,7 +153,7 @@ package defs is
 		done_wr: in   boolean	 -- Signal venant du module write impliquant que la communication est terminée
 		);
 	end component;
-	
+
 end package defs;
 
 --package body defs is

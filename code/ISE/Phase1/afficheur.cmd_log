@@ -16,3 +16,8 @@ xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -
 xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
 xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
 xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
+xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
+xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
+xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
+xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 
+xst -intstyle ise -ifn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.xst" -ofn "J:/ELE740/mygit/Phase 1/code/ISE/Phase1/afficheur.syr" 

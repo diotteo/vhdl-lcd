@@ -1,20 +1,18 @@
 ----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    writedatatoram.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Create Date:
--- Design Name:
--- Module Name:
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Description:    Fonction du LCD permettant de générer l'instruction d'écriture d'un caractère
 --
--- Dependencies:
+-- Dependencies:   Write Module
 --
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision: 0.01
+-- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
 use work.defs.all;
@@ -22,39 +20,23 @@ use work.defs.all;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 
 
 entity Write_Data_To_Ram is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			data   : in    std_logic_vector(7 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			data   : in    std_logic_vector(7 downto 0); -- Caractère ascii à écrire
+			rs:		out	std_logic;	  -- signal instruction/data envoyé au module write
+			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 end Write_Data_To_Ram;
 
 
 architecture Write_Data_To_Ram of Write_Data_To_Ram is
 begin
-	COMP_WRITE: write_module port map (
-			clk,
-			enable,
-			done,
-			'1',
-			data,
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
-			);
+	
+	instr <= data; --Composition du vecteur instruction en fonction des paramètres
+	rs <= '1'; -- Instruction
+	
 end Write_Data_To_Ram;

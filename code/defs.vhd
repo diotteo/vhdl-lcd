@@ -191,16 +191,23 @@ package defs is
 --			);
 --	end component;
 	
+	--component Write_Data_To_Ram is
+	--port(
+	--		clk    : in    std_logic;
+	--		enable : in    boolean;
+	--		done   : out   boolean;
+	--		data   : in    std_logic_vector(7 downto 0);
+	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	--		);
+	--end component;
+	
 	component Write_Data_To_Ram is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			data   : in    std_logic_vector(7 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			data   : in std_logic_vector(7 downto 0); -- Caractère ascii à écrire
+			rs:		out	std_logic;	  -- signal instruction/data envoyé au module write
+			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
-	
 	
 	--component Power_On_Init is
 	--port(

@@ -62,7 +62,7 @@ architecture afficheur_main of afficheur is
 			WAIT_TRANSITION_DELAY_STATE
 			);
 
-	signal fsm_state : state_t := POWER_ON_INIT_STATE;
+	signal fsm_state : state_t := INIT_STATE;
 	
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal poi_lcd : std_logic_vector(LCD_LEN - 1 downto 0);

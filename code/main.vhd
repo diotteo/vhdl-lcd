@@ -63,7 +63,12 @@ architecture afficheur_main of afficheur is
 			);
 
 	signal fsm_state : state_t := POWER_ON_INIT_STATE;
+	
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal poi_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal rc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	
 	signal do_power_on_init: boolean;
 	signal power_on_init_done: boolean;
 	signal do_set_ddram_addr: boolean;
@@ -83,14 +88,14 @@ architecture afficheur_main of afficheur is
 begin
 
 	-- lcd variables are hidden in a vector
-	lcdrs <= lcd(10);
-	lcdrw <= lcd(9);
-	lcden <= lcd(8);
-	lcdd <= lcd(7 downto 0);
-
-	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, lcd);
-	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), lcd);
-	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, lcd);
+	lcdd <= lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX);
+	lcdrs <= lcd(LCD_RS_IDX);
+	lcdrw <= lcd(LCD_RW_IDX);
+	lcden <= lcd(LCD_EN_IDX);
+	
+	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, poi_lcd);
+	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), rc_lcd);
+	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, cd_lcd);
 	
 	process(clk)
 		variable i, j: integer;
@@ -108,12 +113,14 @@ begin
 				when INIT_STATE =>
 					--Init variables and what not here
 
+					lcd(LCD_EN_IDX) <= '0';
 					fsm_state <= POWER_ON_INIT_STATE;
 
 
 				when POWER_ON_INIT_STATE =>
 					-- raise power on init's enable bit
 					do_power_on_init <= true;
+					lcd <= poi_lcd;
 
 					if (power_on_init_done) then
 						do_power_on_init <= false;
@@ -123,6 +130,7 @@ begin
 
 				when CLR_DISP_STATE =>
 					do_clr_disp <= true;
+					lcd <= cd_lcd;
 					
 					if (clr_disp_done) then
 						do_clr_disp <= false;
@@ -147,7 +155,8 @@ begin
 
 				when RST_CURSOR_STATE =>
 					do_set_ddram_addr <= true;
-
+					lcd <= rc_lcd;
+					
 					if (set_ddram_addr_done) then
 						do_set_ddram_addr <= false;
 						fsm_state <= SET_J_STATE;

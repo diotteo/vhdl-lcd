@@ -66,12 +66,17 @@ architecture Power_On_Init of Power_On_Init is
 	signal disp_clr_done  : boolean;
 	signal entry_mode_enable: boolean := false;
 	signal entry_mode_done  : boolean;
+	
+	signal fs_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal dooc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal ems_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 begin
 
-	COMP_FUNC_SET: Function_Set port map (clk, fs_enable, fs_done, '1', '1', '0', lcd);
-	COMP_DISP_ON_OFF: Display_On_Off_Control port map (clk, disp_onoff_enable, disp_onoff_done, '1', '1', '1', lcd);
-	COMP_DISP_CLEAR: Clear_Display port map (clk, disp_clr_enable, disp_clr_done, lcd);
-	COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', lcd);
+	COMP_FUNC_SET: Function_Set port map (clk, fs_enable, fs_done, '1', '1', '0', fs_lcd);
+	COMP_DISP_ON_OFF: Display_On_Off_Control port map (clk, disp_onoff_enable, disp_onoff_done, '1', '1', '1', dooc_lcd);
+	COMP_DISP_CLEAR: Clear_Display port map (clk, disp_clr_enable, disp_clr_done, cd_lcd);
+	COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', ems_lcd);
 
 	process(clk)
 		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
@@ -110,6 +115,7 @@ begin
 				when FUNCTION_SET_STATE =>
 					--led <= "01000000";
 					fs_enable <= true;
+					lcd <= fs_lcd;
 					
 					if (fs_done) then
 						fs_enable <= false;
@@ -157,6 +163,7 @@ begin
 
 				when DISP_ON_STATE =>
 					disp_onoff_enable <= true;
+					lcd <= dooc_lcd;
 					
 					if (disp_onoff_done) then
 						disp_onoff_enable <= false;
@@ -202,6 +209,8 @@ begin
 --					timer_counter := timer_counter + 1;
 
 					disp_clr_enable <= true;
+					lcd <= cd_lcd;
+					
 					if (disp_clr_done) then
 						disp_clr_enable <= false;
 						fsm_state <= DISP_CLR_WAIT_STATE;
@@ -233,6 +242,7 @@ begin
 
 				when ENTRY_MODE_STATE =>
 					entry_mode_enable <= true;
+					lcd <= ems_lcd;
 					
 					if (entry_mode_done) then
 						entry_mode_enable <= false;

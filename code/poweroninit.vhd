@@ -1,20 +1,18 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    11:13:42 01/20/2015 
--- Design Name: 
--- Module Name:    afficheur - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
 --
--- Dependencies: 
+-- Create Date:
+-- Module Name:    Power_On_Init
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
+-- Description:    Module permettant d'envoyer la séquence d'initialisation au LCD.
+--
+-- Dependencies:   Write Module
+--
+-- Revision: 0.01
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 
@@ -22,15 +20,8 @@ use work.defs.all;
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity Power_On_Init is
 	port(
@@ -56,8 +47,8 @@ architecture Power_On_Init of Power_On_Init is
 		ENTRY_MODE_WAIT_STATE,
 		DONE_STATE);
 
-	signal fsm_state   : STATE_TYPE := READY_STATE;
-	
+	signal fsm_state : STATE_TYPE := READY_STATE;
+
 	signal fs_enable : boolean := false;
 	signal fs_done   : boolean;
 	signal disp_onoff_enable: boolean := false;
@@ -66,7 +57,7 @@ architecture Power_On_Init of Power_On_Init is
 	signal disp_clr_done  : boolean;
 	signal entry_mode_enable: boolean := false;
 	signal entry_mode_done  : boolean;
-	
+
 	signal fs_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal dooc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
@@ -87,14 +78,15 @@ begin
 
 			case fsm_state is
 
+				-- Attends après le signal Enable pour commencer le Power On
 				when READY_STATE =>
 					lcd(LCD_EN_IDX) <= '0';
 					timer_counter := 0;
-					
+
 					if (enable) then
-					  fsm_state <= INIT_WAIT_STATE;
+						fsm_state <= INIT_WAIT_STATE;
 					end if;
-				
+
 				when INIT_WAIT_STATE =>
 					--led <= x"1";
 					--lcden <= '0';
@@ -111,48 +103,27 @@ begin
 					end if;
 
 
-
+				-- Transmet l'instruction function set au lcd pour configurer les caractérisitques du LCD (taille, nb ligne)
 				when FUNCTION_SET_STATE =>
 					--led <= "01000000";
 					fs_enable <= true;
 					lcd <= fs_lcd;
-					
+
 					if (fs_done) then
 						fs_enable <= false;
 						fsm_state <= FUNCTION_SET_WAIT_STATE;
 					end if;
---					lcdd <= INS_FUNCTION_SET;
---					lcdrs <= '0';
---					lcdrw <= '0';
---					timer_counter := timer_counter + 1;
---
---					--Delai d'activation enable 80 ns
---					if enable_counter > 8 then
---						lcden <= '0';
---					else
---						lcden <= '1';
---						enable_counter := enable_counter + 1;
---					end if;
---
---					--Délais 37 us
---					if timer_counter > 3700 then
---						enable_counter := 0;
---						timer_counter := 0;
---
---						if ins_loop_counter < 3 then
---							ins_loop_counter := ins_loop_counter + 1;
---							fsm_state <= FUNCTION_SET_STATE;
---						else
---							fsm_state <= DISP_ON_STATE;
---							ins_loop_counter := 0;
---						end if;
---					end if;
 
+
+
+				-- Délai de 40 us pour terminer la transmission de Function Set
 				when FUNCTION_SET_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
-					if (timer_counter > 3700) then
+
+
+					if (timer_counter > 4000) then
 						timer_counter := 0;
-						
+
 						if (func_set_repeat_counter > 1) then
 							func_set_repeat_counter := func_set_repeat_counter - 1;
 						else
@@ -160,142 +131,72 @@ begin
 						end if;
 					end if;
 
-
+				-- Transmet l'instruction display_on au lcd pour allumer celui-ci et activer le curseur.
 				when DISP_ON_STATE =>
 					disp_onoff_enable <= true;
 					lcd <= dooc_lcd;
-					
+
 					if (disp_onoff_done) then
 						disp_onoff_enable <= false;
 						fsm_state <= DISP_ON_WAIT_STATE;
 					end if;
---					led <= "00100000";
---
---					lcdd <= INS_DISP_ON;
---					lcdrs <= '0';
---					lcdrw <= '0';
---					timer_counter := timer_counter + 1;
---
---					--Delai d'activation enable 80 ns
---					if enable_counter > 8 then
---						lcden <= '0';
---					else
---						lcden <= '1';
---						enable_counter := enable_counter + 1;
---					end if;
---
---					--Délais 37 us
---					if timer_counter > 3700 then
---						enable_counter := 0;
---						timer_counter := 0;
---						fsm_state <= DISP_CLR_STATE;
---
---					end if;
 
+				-- Délai de 40 us pour terminer la transmission de Disp_On
 				when DISP_ON_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
-					
-					if (timer_counter > 3700) then
+
+					if (timer_counter > 4000) then
 						timer_counter := 0;
 						fsm_state <= DISP_CLR_STATE;
 					end if;
 
+
+				-- Transmet l'instruction display_clear au lcd pour effacer l'écran.
 				when DISP_CLR_STATE =>
---					led <= "00010000";
---
---					lcdd <= INS_DISP_CLR;
---					lcdrs <= '0';
---					lcdrw <= '0';
---					timer_counter := timer_counter + 1;
 
 					disp_clr_enable <= true;
 					lcd <= cd_lcd;
-					
+
 					if (disp_clr_done) then
 						disp_clr_enable <= false;
 						fsm_state <= DISP_CLR_WAIT_STATE;
 					end if;
 
---					--Delai d'activation enable 80 ns
---					if enable_counter > 8 then
---						lcden <= '0';
---					else
---						lcden <= '1';
---						enable_counter := enable_counter + 1;
---					end if;
---
---					--Délais 1.52ms
---					if timer_counter > 152000 then
---						enable_counter := 0;
---						timer_counter := 0;
---						fsm_state <= PRINT_CHAR_STATE;
---
---					end if;
-
+				-- Délai de 1.52 ms pour terminer la transmission de Disp_Clear
 				when DISP_CLR_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
-					
+
 					if (timer_counter > 152000) then
 						timer_counter := 0;
 						fsm_state <= ENTRY_MODE_STATE;
 					end if;
 
+
+				-- Transmet l'instruction Entry_mode au lcd pour définir le sens d'écriture.
 				when ENTRY_MODE_STATE =>
 					entry_mode_enable <= true;
 					lcd <= ems_lcd;
-					
+
 					if (entry_mode_done) then
 						entry_mode_enable <= false;
 						fsm_state <= ENTRY_MODE_WAIT_STATE;
 					end if;
-					
+
+				-- Délai de 40 us pour terminer la transmission de Entry_mode
 				when ENTRY_MODE_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
-					
-					if (timer_counter > 3700) then
+
+					if (timer_counter > 4000) then
 						timer_counter := 0;
 						fsm_state <= DONE_STATE;
 					end if;
-					
---				when PRINT_CHAR_STATE =>
---					led <= "00001000";
---
---					lcdd <= "01000001";
---					lcdrs <= '1';
---					lcdrw <= '0';
---					timer_counter := timer_counter + 1;
---
---					--Delai d'activation enable 80 ns
---					if enable_counter > 8 then
---						lcden <= '0';
---					else
---						lcden <= '1';
---						enable_counter := enable_counter + 1;
---					end if;
---
---					--Délais 37us
---					if timer_counter >3700 then
---						enable_counter := 0;
---						timer_counter := 0;
---						fsm_state <= DONE_STATE;
---
---					end if;
---
+
+				-- L'initialisation est terminée, le signal Enable doit retourner à zéro pour recommencer
 				when DONE_STATE =>
 					done <= true;
 
-
---				when others =>
---					led <= "11110000";
---
 			end case;
 		end if;
 	end process;
---
---	--lcdd <= "00000000";
---	--lcden <= '0';
---	--lcdrs <= '0';
---	--lcdrw <= '0';
---	--led <= "01010101";
 end Power_On_Init;
 

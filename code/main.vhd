@@ -1,47 +1,36 @@
 ----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    main.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Create Date:
--- Design Name:
--- Module Name:
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Description:    Programme permettant d'afficher 3 expressions sur un LCD 1609 avec une petite animation.
 --
--- Dependencies:
+-- Dependencies:   Module Write, Ensemble des modules fonctions
 --
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision: 0.01
+-- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
-
 use work.defs.all;
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity afficheur is
 	port(
-		clk   : in    std_logic;
-		--led   : out   std_logic_vector(7 downto 0);
-		lcdrs : out   std_logic;
-		lcdrw : out   std_logic;
-		lcden : out   std_logic;
-		lcdd  : out std_logic_vector(7 downto 0)
+		clk   : in    std_logic; --Horloge de 100Mhz venant de l'oscillateur du FPGA
+		led   : out   std_logic_vector(7 downto 0); -- Bus de LED sur la carte de développement
+		lcdrs : out   std_logic; -- Signal RS ( 0:instruction/ 1:data) contrôlant le LCD
+		lcdrw : out   std_logic; -- Signal RW (1:Read / 0:Write) contrôlant le LCD
+		lcden : out   std_logic; -- Signal enable permettant de valider l'instruction au LCD
+		lcdd  : out std_logic_vector(7 downto 0) --Vecteur de Data/Instruction pour le LCD
 		);
-
 end afficheur;
 
 
@@ -78,16 +67,20 @@ architecture afficheur_main of afficheur is
 	signal wait_anim_done: boolean;
 	signal wait_transition_done: boolean;
 	
+	-- Signaux intermédiaires permettant de contrôle le module write
 	signal enable_wr: boolean;
 	signal done_wr: boolean;
 	signal rs_wr:	std_logic;
 	signal instr_wr: std_logic_vector(7 downto 0);
 	
+	
+	-- Signaux contenant les vecteurs d'instruction pour les commandes
 	signal rs_clear_disp: std_logic;
 	signal instr_clear_disp: std_logic_vector(7 downto 0);
 	
 	signal rs_rst_curs: std_logic;
 	signal instr_rst_curs: std_logic_vector(7 downto 0);
+	
 	
 	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
 	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
@@ -98,13 +91,14 @@ begin
 	lcdrw <= lcd(9);
 	lcden <= lcd(8);
 	lcdd <= lcd(7 downto 0);
-
-	--COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, lcd);
+	
+	
+	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, rs_wr, instr_rw, enable_wr, done_wr);
 	--COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), lcd);
 	COMP_RST_CURSOR: Set_Ddram_Address port map (LAST_ADDR (6 downto 0),rs_rst_curs, instr_rst_curs);
-	--COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, lcd);
 	COMP_CLR_DISP: Clear_Display port map (rs_clear_disp, instr_clear_disp);
 	
+	-- Module write permettant de contrôler la séquence d'envois de données.
 	COMP_WRITE: write_module port map (
 		clk,
 		enable_wr,

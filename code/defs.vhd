@@ -59,8 +59,8 @@ package defs is
 	
 	component Clear_Display is
 	port(
-			rs:		out	std_logic;
-			instr:	out	std_logic_vector(7 downto 0)
+			rs:		out	std_logic; -- signal instruction/data envoyé au module write
+			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
 	
@@ -106,28 +106,49 @@ package defs is
 			);
 	end component;
 	
+	
+	--component Entry_Mode_Set is
+	--port(
+	--		clk    : in    std_logic;
+	--		enable : in    boolean;
+	--		done   : out   boolean;
+	--		i_d    : in    std_logic;
+	--		sh     : in    std_logic;
+	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	--		);
+	--end component;
+	
 	component Entry_Mode_Set is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			i_d    : in    std_logic;
-			sh     : in    std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			i_d    : in std_logic; 	-- Paramètre 1: Écriture vers la droite, 0: écriture vers la gauche
+			sh     : in std_logic;	-- Paramètre 1: Décalage de l'écran vers la droite, 0: vers la gauche
+			rs:		out	std_logic;	-- signal instruction/data envoyé au module write
+			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
 	
-	component Function_Set is
+	--component Function_Set is
+	--port(
+	--		clk    : in    std_logic;
+	--		enable : in    boolean;
+	--		done   : out   boolean;
+	--		data_len: in   std_logic;
+	--		nlines : in    std_logic;
+	--		font   : in    std_logic;
+	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	--		);
+	--end component;
+	
+	entity component is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			data_len: in   std_logic;
-			nlines : in    std_logic;
-			font   : in    std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			data_len: in   std_logic; -- parametre 1: 8bits, 0: 4bits
+			nlines : in    std_logic; -- parametre 1: 2 lignes, 0: 4 lignes
+			font   : in    std_logic; -- parametre 0:5*8 dots
+			rs:		out	std_logic;	-- signal instruction/data envoyé au module write
+			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
 			);
 	end component;
+
 	
 	component Return_Home is
 	port(

@@ -69,16 +69,15 @@ architecture Power_On_Init of Power_On_Init is
 	
 begin
 
-	--COMP_FUNC_SET: Function_Set port map (clk, fs_enable, fs_done, '1', '1', '0', lcd);
+	--Définis les vecteurs instructions pour le module Power On
+	COMP_FUNC_SET: Function_Set port map ('1', '1', '0', rs_fct_set, instr_fct_set); -- 5*8 dots, 2 lignes, Bus 8-bits
 	COMP_DISP_ON_OFF: Display_On_Off_Control port map ('1', '1', '1', lcd ,rs_disp_on, instr_disp_on); -- Curseur, écran et clignotement actif
-	--COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', lcd);
+	COMP_ENTRY_MODE: Entry_Mode_Set port map ('0', '0', rs_entry_mode, instr_entry_mode; --l'écran et le curseur se décaleront vers la gauche
 	COMP_CLR_DISP: Clear_Display port map (rs_clear_disp, instr_clear_disp);
-	
-	
 	
 	process(clk)
 		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
-		variable repeat_fct_set : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
+		variable repeat_fct_set : integer range 0 to 10 := 0; --Compteur d'itération pour répéter une instruction
 	begin
 
 		if rising_edge(clk) then

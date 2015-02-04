@@ -1,3 +1,21 @@
+----------------------------------------------------------------------------------
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    defs.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
+--
+-- Description:    Fichier librairie contenant les constantes de notre système et les components de celui-ci
+--
+-- Dependencies:   None
+--
+-- Revision: 0.01
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -41,35 +59,50 @@ package defs is
 	
 	component Clear_Display is
 	port(
-			--clk    : in    std_logic;
-			--enable : in    boolean;
-			--done   : out   boolean;
-			--lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			rs:		out	std_logic;
 			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
 	
+	--component Cursor_Or_Display_Shift is
+	--port(
+	--		clk    : in    std_logic;
+	--		enable : in    boolean;
+	--		done   : out   boolean;
+	--		sh_d_c : in    std_logic; -- shift entire display, !cursor
+	--		sh_r_l : in    std_logic; -- shift right, !left
+	--		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	--		);
+	--end component;
+	
 	component Cursor_Or_Display_Shift is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
 			sh_d_c : in    std_logic; -- shift entire display, !cursor
 			sh_r_l : in    std_logic; -- shift right, !left
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			rs:		out	std_logic;
+			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
 	
+	--component Display_On_Off_Control is
+	--port(
+	--		clk         : in    std_logic;
+	--		enable      : in    boolean;
+	--		done        : out   boolean;
+	--		disp_on     : in    std_logic;
+	--		cur_on      : in    std_logic;
+	--		cur_blink_on: in    std_logic;
+	--		lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
+	--		);
+	--end component;
+	
 	component Display_On_Off_Control is
 	port(
-			clk         : in    std_logic;
-			enable      : in    boolean;
-			done        : out   boolean;
 			disp_on     : in    std_logic;
 			cur_on      : in    std_logic;
 			cur_blink_on: in    std_logic;
-			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			rs:		out	std_logic;
+			instr:	out	std_logic_vector(7 downto 0)
 			);
 	end component;
 	

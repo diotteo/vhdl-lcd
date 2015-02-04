@@ -1,19 +1,16 @@
-----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
 --
--- Create Date:
--- Design Name:
--- Module Name:
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Create Date:    2015/01/29
+-- Module Name:    cleardisplay.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Dependencies:
+-- Description:    Fonction clear display display on/off permettant de générer le vecteur instruction pour effacer l'écran
 --
--- Revision:
--- Revision 0.01 - File Created
+-- Dependencies:   Module Write
+--
+-- Revision: 0.01
 -- Additional Comments:
 --
 ----------------------------------------------------------------------------------
@@ -22,16 +19,7 @@ use work.defs.all;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-
 
 entity Clear_Display is
 	port(

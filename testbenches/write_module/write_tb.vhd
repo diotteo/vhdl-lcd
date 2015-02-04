@@ -1,3 +1,5 @@
+use work.defs.all;
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 use std.textio.all;
@@ -7,54 +9,43 @@ entity write_tb is
 end write_tb;
 
 architecture behav of write_tb is
-	component write_module
-		port(
-				clk : in    std_logic;
-				send   : in  boolean;
-				ins_in : in  std_logic_vector(8 downto 0);
-				done_write   : out boolean;
-				LCD_rs_out_w : out std_logic;
-				LCD_enable_w : out std_logic;
-				LCD_rw_out_w : out std_logic;
-				LCDD_out_w   : out std_logic_vector(7 downto 0)
-				);
-	end component;
-
 	signal clock : std_logic := '0';
 	signal enable: boolean := false;
-	signal rs_instr : std_logic_vector(8 downto 0);
+	signal rs    : std_logic;
+	signal instr : std_logic_vector(7 downto 0);
 	signal done : boolean;
 	signal lcd_rs: std_logic;
-	signal lcd_en: std_logic;
 	signal lcd_rw: std_logic;
+	signal lcd_en: std_logic;
 	signal lcdd  : std_logic_vector(7 downto 0);
 
 begin
-	comp_test: write_module port map (clock, enable, rs_instr, done, lcd_rs, lcd_en, lcd_rw, lcdd);
+	comp_test: write_module port map (clock, enable, done, rs, instr, lcd_rs, lcd_rw, lcd_en, lcdd);
 
 	clock <= not clock after 5 ns; -- 100 MHz clock
 
 	process
 		type pattern_type is record
-			enable : boolean;
-			rs_instr : std_logic_vector(8 downto 0);
-			done : std_logic;
-			lcd_rs : std_logic;
-			lcd_en : std_logic;
-			lcd_rw : std_logic;
-			lcdd   : std_logic_vector(7 downto 0);
+			enable: boolean;
+			rs    : std_logic;
+			instr : std_logic_vector(7 downto 0);
+			done  : std_logic;
+			lcd_rs: std_logic;
+			lcd_en: std_logic;
+			lcd_rw: std_logic;
+			lcdd  : std_logic_vector(7 downto 0);
 			wait_delay: natural;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, "UUUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
-				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
-				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
-				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
-				 (false, '0' & x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
-				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
-				 (false, '0' & x"01", '1', 'U', '0', '0', x"00", 0)); -- 'done' state
+				((false, 'U', "UUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
+				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
+				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
+				 (false, '0', x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
+				 (false, '0', x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
+				 (false, '0', x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
+				 (false, '0', x"01", '1', '0', '0', '0', x"01", 0)); -- 'done' state
 
 		variable l: line;
 	begin
@@ -67,7 +58,8 @@ begin
 			wait until clock = '1';
 
 			enable <= patterns(i).enable;
-			rs_instr <= patterns(i).rs_instr;
+			rs <= patterns(i).rs;
+			instr <= patterns(i).instr;
 
 			wait for 1 ns;
 

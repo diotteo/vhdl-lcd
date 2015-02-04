@@ -1,15 +1,19 @@
+CODE = ../../code/
+SRC = $(CODE)/write_module.vhd $(CODE)/defs.vhd
+TB = write_tb
+
 .PHONY: default analyze elaborate wave run
 
 default: run
 
-analyze: write_tb.vhd ../code/write_module.vhd
+analyze: $(SRC) $(TB).vhd
 	ghdl -a $?
 
-elaborate: analyze write_tb.o
-	ghdl -e write_tb
+elaborate: analyze $(TB).o
+	ghdl -e $(TB)
 
-run: elaborate tb.vcd
-	ghdl -r write_tb
+run: elaborate
+	ghdl -r $(TB)
 
-wave: elaborate tb.vcd
-	ghdl -r write_tb --vcd=tb.vcd; gtkwave tb.vcd
+wave: elaborate
+	ghdl -r $(TB) --vcd=tb.vcd; gtkwave tb.vcd

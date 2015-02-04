@@ -1,36 +1,26 @@
 ----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    main.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Create Date:
--- Design Name:
--- Module Name:
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Description:    Programme permettant d'afficher 3 expressions sur un LCD 1609 avec une petite animation.
 --
--- Dependencies:
+-- Dependencies:   Module Write, Ensemble des modules fonctions
 --
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision: 0.01
+-- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
-
 use work.defs.all;
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity afficheur is
 	port(
@@ -41,7 +31,6 @@ entity afficheur is
 		lcden : out   std_logic;
 		lcdd  : inout std_logic_vector(7 downto 0)
 		);
-
 end afficheur;
 
 

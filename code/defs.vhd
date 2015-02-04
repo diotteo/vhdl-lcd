@@ -1,3 +1,21 @@
+----------------------------------------------------------------------------------
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+--
+-- Create Date:
+-- Module Name:    defs.vhd
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
+--
+-- Description:    Fichier librairie contenant les constantes de notre système et les components de celui-ci
+--
+-- Dependencies:   None
+--
+-- Revision: 0.01
+-- Additional Comments:
+--
+----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -9,9 +27,9 @@ package defs is
 	constant LCD_EN_IDX : natural := 10;
 	-- length in bits of the lcd vector
 	constant LCD_LEN : natural := 11;
-	
+
 	--- Component declarations ---
-	
+
 	component write_module is
 		port(
 			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
@@ -38,7 +56,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Cursor_Or_Display_Shift is
 	port(
 			clk    : in    std_logic;
@@ -49,7 +67,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Display_On_Off_Control is
 	port(
 			clk         : in    std_logic;
@@ -61,7 +79,7 @@ package defs is
 			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Entry_Mode_Set is
 	port(
 			clk    : in    std_logic;
@@ -72,7 +90,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Function_Set is
 	port(
 			clk    : in    std_logic;
@@ -84,7 +102,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Return_Home is
 	port(
 			clk    : in    std_logic;
@@ -93,7 +111,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Set_Cgram_Address is
 	port(
 			clk    : in    std_logic;
@@ -113,7 +131,7 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
+
 	component Write_Data_To_Ram is
 	port(
 			clk    : in    std_logic;
@@ -123,8 +141,8 @@ package defs is
 			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
-	
-	
+
+
 	component Power_On_Init is
 	port(
 		clk   : in    std_logic;
@@ -133,7 +151,7 @@ package defs is
 		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
 		);
 	end component;
-	
+
 end package defs;
 
 --package body defs is

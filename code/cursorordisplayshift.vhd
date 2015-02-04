@@ -25,20 +25,32 @@ use IEEE.numeric_std.all;
 use work.defs.all;
 
 
-entity  Cursor_Or_Display_Shift is
+entity Cursor_Or_Display_Shift is
 	port(
-			sh_d_c : in    std_logic; -- paramètre shift entire display, !cursor
-			sh_r_l : in    std_logic; -- paramètre shift right, !left
-			rs:		out	std_logic;	  -- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			sh_d_c : in    std_logic; -- shift entire display, !cursor
+			sh_r_l : in    std_logic; -- shift right, !left
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
-end entity ;
+end Cursor_Or_Display_Shift;
 
 
 architecture Cursor_Or_Display_Shift of Cursor_Or_Display_Shift is
+	signal instr: std_logic_vector(7 downto 0);
 begin
-	
-	instr <= (x"10" or (sh_d_c & sh_r_l & "00")); --Composition du vecteur instruction en fonction des paramètres
-	rs <= '0'; -- Instruction
-	
+	instr <= (x"10" or (sh_d_c & sh_r_l & "00"));
+
+	COMP_WRITE: write_module port map (
+			clk,
+			enable,
+			done,
+			'0',
+			instr,
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			);
 end Cursor_Or_Display_Shift;

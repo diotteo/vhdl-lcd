@@ -23,8 +23,10 @@ use IEEE.numeric_std.all;
 
 entity Clear_Display is
 	port(
-			rs:		out	std_logic; -- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Clear_Display;
 
@@ -32,10 +34,17 @@ end Clear_Display;
 architecture Clear_Display of Clear_Display is
 
 begin
-
-	rs <= '0'; -- Instruction
-	instr <= x"01"; --Composition du vecteur instruction en fonction des paramètres
-
+	COMP_WRITE: write_module port map (
+			clk,
+			enable,
+			done,
+			'0',
+			x"01",
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			);
 end Clear_Display;
 
 

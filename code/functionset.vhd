@@ -24,19 +24,31 @@ use IEEE.numeric_std.all;
 
 entity Function_Set is
 	port(
-			data_len: in   std_logic; -- parametre 1: 8bits, 0: 4bits
-			nlines : in    std_logic; -- parametre 1: 2 lignes, 0: 4 lignes
-			font   : in    std_logic; -- parametre 0:5*8 dots
-			rs:		out	std_logic;	-- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data_len: in   std_logic;
+			nlines : in    std_logic;
+			font   : in    std_logic;
+			lcd    : out std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Function_Set;
 
 
 architecture Function_Set of Function_Set is
+	signal instr: std_logic_vector(7 downto 0);
 begin
+	instr <= x"20" or ("000" & data_len & nlines & font & "00");
 
-	instr <= x"20" or ("000" & data_len & nlines & font & "00");--Composition du vecteur instruction en fonction des paramètres
-	rs <= '0'; --Instruction
-
+	COMP_WRITE: write_module port map (
+			clk,
+			enable,
+			done,
+			'0',
+			instr,
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			);
 end Function_Set;

@@ -48,57 +48,58 @@ package defs is
 			);
 	end component;
 
---	component Clear_Display is
---		port(
---			clk    : in    std_logic;
---			enable : in    boolean;
---			done   : out   boolean;
---			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
---			);
---	end component;
-	
 	component Clear_Display is
-	port(
-			rs:		out	std_logic; -- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+		port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
 	component Cursor_Or_Display_Shift is
 	port(
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
 			sh_d_c : in    std_logic; -- shift entire display, !cursor
 			sh_r_l : in    std_logic; -- shift right, !left
-			rs:		out	std_logic;
-			instr:	out	std_logic_vector(7 downto 0)
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
 	component Display_On_Off_Control is
 	port(
+			clk         : in    std_logic;
+			enable      : in    boolean;
+			done        : out   boolean;
 			disp_on     : in    std_logic;
 			cur_on      : in    std_logic;
 			cur_blink_on: in    std_logic;
-			rs:		out	std_logic;
-			instr:	out	std_logic_vector(7 downto 0)
+			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
 	component Entry_Mode_Set is
 	port(
-			i_d    : in std_logic; 	-- Paramètre 1: Écriture vers la droite, 0: écriture vers la gauche
-			sh     : in std_logic;	-- Paramètre 1: Décalage de l'écran vers la droite, 0: vers la gauche
-			rs:		out	std_logic;	-- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			i_d    : in    std_logic;
+			sh     : in    std_logic;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
 	component Function_Set is
 	port(
-			data_len: in   std_logic; -- parametre 1: 8bits, 0: 4bits
-			nlines : in    std_logic; -- parametre 1: 2 lignes, 0: 4 lignes
-			font   : in    std_logic; -- parametre 0:5*8 dots
-			rs:		out	std_logic;	-- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data_len: in   std_logic;
+			nlines : in    std_logic;
+			font   : in    std_logic;
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
@@ -123,34 +124,31 @@ package defs is
 
 	component Set_Ddram_Address is
 		port(
-				--clk    : in    std_logic;
-				--enable : in    boolean;
-				--done   : out   boolean;
-				address: in    std_logic_vector(6 downto 0);
-				rs:		out	std_logic;
-				instr:	out	std_logic_vector(7 downto 0)
-				--lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
-				);
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			address: in    std_logic_vector(6 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			);
 	end component;
 
 	component Write_Data_To_Ram is
 	port(
-			data   : in std_logic_vector(7 downto 0); -- Caractère ascii à écrire
-			rs:		out	std_logic;	  -- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data   : in    std_logic_vector(7 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 	end component;
 
 
 	component Power_On_Init is
 	port(
-		clk   : in    std_logic; -- Horloge venant du main (100 Mhz)
-		enable: in    boolean;   -- Signal permettant de démarrer la séquence Power On (Doit être mis à 0 avant un prochain power on)
-		done  : out   boolean;   -- Signal indiquant que la séquence de Power On est terminée
-		rs_wr : out   std_logic; -- Signal instruction/data envoyé au module write
-		instr_wr : out   std_logic_vector( 7 downto 0); --Vecteur d'instruction envoyé au module write
-		enable_wr: out std_logic; --Signal permettant de démarrer le module write
-		done_wr: in   boolean	 -- Signal venant du module write impliquant que la communication est terminée
+		clk   : in    std_logic;
+		enable: in    boolean;
+		done  : out   boolean;
+		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
 		);
 	end component;
 

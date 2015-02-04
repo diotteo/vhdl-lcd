@@ -26,17 +26,26 @@ use IEEE.numeric_std.all;
 
 entity Write_Data_To_Ram is
 	port(
-			data   : in    std_logic_vector(7 downto 0); -- Caractère ascii à écrire
-			rs:		out	std_logic;	  -- signal instruction/data envoyé au module write
-			instr:	out	std_logic_vector(7 downto 0) -- signal vecteur d'instruction envoyé au module write
+			clk    : in    std_logic;
+			enable : in    boolean;
+			done   : out   boolean;
+			data   : in    std_logic_vector(7 downto 0);
+			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
 			);
 end Write_Data_To_Ram;
 
 
 architecture Write_Data_To_Ram of Write_Data_To_Ram is
 begin
-	
-	instr <= data; --Composition du vecteur instruction en fonction des paramètres
-	rs <= '1'; -- Instruction
-	
+	COMP_WRITE: write_module port map (
+			clk,
+			enable,
+			done,
+			'1',
+			data,
+			lcd(LCD_RS_IDX),
+			lcd(LCD_RW_IDX),
+			lcd(LCD_EN_IDX),
+			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			);
 end Write_Data_To_Ram;

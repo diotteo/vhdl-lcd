@@ -92,16 +92,19 @@ begin
 					timer_counter := 0;
 					repeat_fct_set := 0;
 					done <= false;
+					--start_timer := 0;
 					
 					if (enable) then
-					  fsm_state <= WAIT_40ms;
+					  fsm_state <= READ_WAIT_STATE;
 					end if;
 				
 				-- Délai de 40 ms avant de démarrer la séquence d'initialisation
 				when READY_WAIT_STATE =>
 
 					timer_counter := timer_counter + 1;
-
+					--start_timer := 1;
+					--timer_ns := 4000000;
+					
 					--Delai 40ms
 					if timer_counter > 4000000 then
 						fsm_state <= FUNCTION_SET_STATE;

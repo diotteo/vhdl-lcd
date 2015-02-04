@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
 -- Programmer: Olivier Diotte & Marc-André Séguin
--- 
--- Create Date:    11:13:42 01/20/2015 
+--
+-- Create Date:
 -- Module Name:    main.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
@@ -12,7 +12,7 @@
 -- Dependencies:   Module Write, Ensemble des modules fonctions
 --
 -- Revision: 0.01
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 use work.defs.all;
@@ -24,12 +24,12 @@ use IEEE.numeric_std.all;
 
 entity afficheur is
 	port(
-		clk   : in    std_logic;
-		--led   : out   std_logic_vector(7 downto 0);
-		lcdrs : out   std_logic;
-		lcdrw : out   std_logic;
-		lcden : out   std_logic;
-		lcdd  : inout std_logic_vector(7 downto 0)
+		clk   : in    std_logic; --Horloge de 100Mhz venant de l'oscillateur du FPGA
+		led   : out   std_logic_vector(7 downto 0); -- Bus de LED sur la carte de développement
+		lcdrs : out   std_logic; -- Signal RS ( 0:instruction/ 1:data) contrôlant le LCD
+		lcdrw : out   std_logic; -- Signal RW (1:Read / 0:Write) contrôlant le LCD
+		lcden : out   std_logic; -- Signal enable permettant de valider l'instruction au LCD
+		lcdd  : out std_logic_vector(7 downto 0) --Vecteur de Data/Instruction pour le LCD
 		);
 end afficheur;
 
@@ -52,26 +52,26 @@ architecture afficheur_main of afficheur is
 			);
 
 	signal fsm_state : state_t := INIT_STATE;
-	
+
 	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal poi_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal rc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
 	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	
+
 	signal do_power_on_init: boolean;
 	signal power_on_init_done: boolean;
 	signal do_set_ddram_addr: boolean;
 	signal set_ddram_addr_done: boolean;
 	signal do_clr_disp: boolean;
 	signal clr_disp_done: boolean;
-	
-	
+
+
 	signal do_write_char: boolean;
 	signal write_char_done: boolean;
 
 	signal wait_anim_done: boolean;
 	signal wait_transition_done: boolean;
-	
+
 	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
 	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
 begin
@@ -81,11 +81,11 @@ begin
 	lcdrs <= lcd(LCD_RS_IDX);
 	lcdrw <= lcd(LCD_RW_IDX);
 	lcden <= lcd(LCD_EN_IDX);
-	
+
 	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, poi_lcd);
 	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), rc_lcd);
 	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, cd_lcd);
-	
+
 	process(clk)
 		variable i, j: integer;
 		variable offset: integer := 0;
@@ -120,7 +120,7 @@ begin
 				when CLR_DISP_STATE =>
 					do_clr_disp <= true;
 					lcd <= cd_lcd;
-					
+
 					if (clr_disp_done) then
 						do_clr_disp <= false;
 
@@ -145,7 +145,7 @@ begin
 				when RST_CURSOR_STATE =>
 					do_set_ddram_addr <= true;
 					lcd <= rc_lcd;
-					
+
 					if (set_ddram_addr_done) then
 						do_set_ddram_addr <= false;
 						fsm_state <= SET_J_STATE;

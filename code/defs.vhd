@@ -148,12 +148,24 @@ package defs is
 	end component;
 	
 	
+	--component Power_On_Init is
+	--port(
+	--	clk   : in    std_logic;
+	--	enable: in    boolean;
+	--	done  : out   boolean;
+	--	lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
+	--	);
+	--end component;
+	
 	component Power_On_Init is
 	port(
-		clk   : in    std_logic;
-		enable: in    boolean;
-		done  : out   boolean;
-		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
+		clk   : in    std_logic; -- Horloge venant du main (100 Mhz)
+		enable: in    boolean;   -- Signal permettant de démarrer la séquence Power On (Doit être mis à 0 avant un prochain power on)
+		done  : out   boolean;   -- Signal indiquant que la séquence de Power On est terminée
+		rs_wr : out   std_logic; -- Signal instruction/data envoyé au module write
+		instr_wr : out   std_logic_vector( 7 downto 0); --Vecteur d'instruction envoyé au module write
+		enable_wr: out std_logic; --Signal permettant de démarrer le module write
+		done_wr: in   boolean	 -- Signal venant du module write impliquant que la communication est terminée
 		);
 	end component;
 	

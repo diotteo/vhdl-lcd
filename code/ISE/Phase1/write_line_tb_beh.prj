@@ -1,0 +1,7 @@
+vhdl work "../../defs.vhd"
+vhdl work "../../write_module.vhd"
+vhdl work "../../writedatatoram.vhd"
+vhdl work "../../timer.vhd"
+vhdl work "../../setddramaddress.vhd"
+vhdl work "../../write_line.vhd"
+vhdl work "../../../testbenches/write_line/write_line_tb.vhd"

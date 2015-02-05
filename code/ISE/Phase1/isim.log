@@ -1,5 +1,5 @@
 ISim log file
-Running: J:\ELE740\phase1\Phase 1\code\ISE\Phase1\timer_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb J:/ELE740/phase1/Phase 1/code/ISE/Phase1/timer_tb_isim_beh.wdb 
+Running: J:\ELE740\phase1\Phase 1\code\ISE\Phase1\write_line_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb J:/ELE740/phase1/Phase 1/code/ISE/Phase1/write_line_tb_isim_beh.wdb 
 ISim P.58f (signature 0x8ef4fb42)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -9,10 +9,6 @@ Time resolution is 1 ps
 # onerror resume
 # wave add /
 # run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-# restart
-# run 1.00us
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # restart

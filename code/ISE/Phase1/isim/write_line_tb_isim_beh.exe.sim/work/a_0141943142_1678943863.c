@@ -131,6 +131,6 @@ LAB11:    xsi_set_current_line(58, ng0);
 extern void work_a_0141943142_1678943863_init()
 {
 	static char *pe[] = {(void *)work_a_0141943142_1678943863_p_0};
-	xsi_register_didat("work_a_0141943142_1678943863", "isim/timer_tb_isim_beh.exe.sim/work/a_0141943142_1678943863.didat");
+	xsi_register_didat("work_a_0141943142_1678943863", "isim/write_line_tb_isim_beh.exe.sim/work/a_0141943142_1678943863.didat");
 	xsi_register_executes(pe);
 }

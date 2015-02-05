@@ -39,18 +39,18 @@ begin
 	process
 	begin
 		rst <= '0';
-		start_timer <= false;
+		enable <= false;
 		
 		wait for 20 ns;
 		
 		rst <= '0';
-		start_timer <= true;
+		enable <= true;
 		line_1 <= "ABCDEFGHIJKLMNOP";
-		position <= 0xFF;
+		position <= "1111111";
 		
-		wait until timer_done <= true;
+		wait until done <= true;
 		
-		start_timer <= false;
+		enable <= false;
 		
 		wait for 60 ns;
 		

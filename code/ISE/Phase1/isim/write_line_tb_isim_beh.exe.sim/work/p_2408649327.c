@@ -27,5 +27,5 @@
 
 extern void work_p_2408649327_init()
 {
-	xsi_register_didat("work_p_2408649327", "isim/timer_tb_isim_beh.exe.sim/work/p_2408649327.didat");
+	xsi_register_didat("work_p_2408649327", "isim/write_line_tb_isim_beh.exe.sim/work/p_2408649327.didat");
 }

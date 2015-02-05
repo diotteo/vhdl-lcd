@@ -31,11 +31,15 @@ int main(int argc, char **argv)
     work_p_2408649327_init();
     std_textio_init();
     ieee_p_1242562249_init();
+    work_a_2218005294_3212880686_init();
+    work_a_1648352651_3573744473_init();
+    work_a_3714436270_2889866826_init();
     work_a_0141943142_1678943863_init();
-    work_a_1313920076_2762913819_init();
+    work_a_1528085307_2894014970_init();
+    work_a_3221999106_2762913819_init();
 
 
-    xsi_register_tops("work_a_1313920076_2762913819");
+    xsi_register_tops("work_a_3221999106_2762913819");
 
     IEEE_P_2592010699 = xsi_get_engine_memory("ieee_p_2592010699");
     xsi_register_ieee_std_logic_1164(IEEE_P_2592010699);

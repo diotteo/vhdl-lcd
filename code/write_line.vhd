@@ -74,7 +74,7 @@ begin
 	--Définis les vecteurs instructions pour le module Write First Line
 	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, position, sda_lcd); -- Génère l'instruction pour placer le curseur à la 1ere ligne à droite
 	COMP_WR_CHAR: Write_Data_To_Ram port map (clk, do_write_data_to_ram, write_data_to_ram_done, character_string, wr_lcd); -- Génère l'instruction pour écrire le charactère à l'index i de line_1
-	character_string <= std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
+	character_string <=  std_logic_vector(to_unsigned(character'pos(line_1(i)),8)); -- std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
 	
 	TIMER_WAIT: Timer port map (clk, rst, start_timer, timer_ns, timer_done);
 	
@@ -114,9 +114,8 @@ begin
 					-- Permet de placer le curseur à droite de la première ligne
 					when SET_CURSOR_STATE =>
 						
-						do_set_ddram_addr <= true;
 						lcd <= sda_lcd;
-						
+						do_set_ddram_addr <= true;
 						if (set_ddram_addr_done) then
 							do_set_ddram_addr <= false;
 							fsm_state <= SET_CURSOR_WAIT_STATE;
@@ -126,8 +125,9 @@ begin
 					-- Délai de 40 us avant pour terminer la configuration du curseur
 					when SET_CURSOR_WAIT_STATE =>
 
-						start_timer <= true;
+						
 						timer_ns <= 4000;
+						start_timer <= true;
 						
 						--Delai 40ms
 						if timer_done then
@@ -153,9 +153,9 @@ begin
 					-- Délai de 40 us pour terminer l'écriture
 					when WRITE_CHAR_WAIT_STATE =>
 												
-						start_timer <= true;
-						timer_ns <= 4000;
 						
+						timer_ns <= 4000;
+						start_timer <= true;
 						--Delai 40ms
 						if timer_done then
 							start_timer <= false;
@@ -166,9 +166,8 @@ begin
 							else
 								fsm_state <= DONE_STATE;
 							end if;
-							
 						end if;
-								
+						
 					-- L'écriture est terminée, le signal Enable doit retourner à zéro pour recommencer
 					when DONE_STATE =>
 						done <= true;

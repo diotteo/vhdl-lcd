@@ -5,24 +5,19 @@ use IEEE.std_logic_1164.all;
 use std.textio.all;
 use IEEE.numeric_std.all;
 
-entity write_tb is
-end write_tb;
+entity poi_tb is
+end poi_tb;
 
-architecture behav of write_tb is
+architecture behav of poi_tb is
 	signal clock : std_logic;
 	signal enable: boolean := false;
-	signal rs    : std_logic;
-	signal instr : std_logic_vector(7 downto 0);
-	signal done : boolean;
-	signal lcd_rs: std_logic;
-	signal lcd_rw: std_logic;
-	signal lcd_en: std_logic;
-	signal lcdd  : std_logic_vector(7 downto 0);
+	signal done  : boolean;
+	signal lcd   : std_logic_vector(LCD_LEN - 1 downto 0);
 
 	signal runsim: boolean := true;
 
 begin
-	comp_test: write_module port map (clock, enable, done, rs, instr, lcd_rs, lcd_rw, lcd_en, lcdd);
+	comp_test: Power_On_Init port map (clock, enable, done, lcd);
 
 	process
 	begin
@@ -39,25 +34,22 @@ begin
 	process
 		type pattern_type is record
 			enable: boolean;
-			rs    : std_logic;
-			instr : std_logic_vector(7 downto 0);
 			done  : std_logic;
-			lcd_rs: std_logic;
-			lcd_en: std_logic;
-			lcd_rw: std_logic;
-			lcdd  : std_logic_vector(7 downto 0);
+			lcd   : std_logic_vector(LCD_LEN - 1 downto 0);
 			wait_delay: natural;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, 'U', "UUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
-				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
-				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
-				 (false, '0', x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
-				 (false, '0', x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
-				 (false, '0', x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
-				 (false, '0', x"01", '1', '0', '0', '0', x"01", 0)); -- 'done' state
+				(('0', 'U', "UUUU" & "UUUU" & "UUU", 0), -- unknown initial state
+				 (), -- 'ready' state
+				 (), -- 'init wait' state
+				 (), -- 'function set (1/3)' state
+				 (), -- 'function set (2/3)' state
+				 (), -- 'function set (3/3)' state
+				 (), -- 'display on' state
+				 (), -- 'display clear' state
+				 ()); -- 'entry mode' state
 
 		variable l: line;
 	begin
@@ -86,10 +78,8 @@ begin
 			assert lcdd = patterns(i).lcdd
 				report "lcdd: wrong value" severity error;
 
-			if (patterns(i).wait_delay = 80) then -- 'enable' state
-				wait for 80 ns;
-			elsif (patterns(i).wait_delay = 1200) then -- 'hold' state
-				wait for 1200 ns;
+			if (patterns(i).wait_delay /= 0) then
+				wait for patterns(i).wait_delay * 1 ns;
 			end if;
 
 		end loop;

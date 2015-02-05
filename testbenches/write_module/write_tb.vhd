@@ -17,7 +17,7 @@ architecture behav of write_tb is
 	signal lcd   : lcd_type;
 
 	-- These are set to track lcd, used only because GHDL doesn't support records well
-	signal lcd_data: std_logic_vector(LCDD_MAX_IDX downto LCDD_MIN_IDX);
+	signal lcd_data: std_logic_vector(LCDD_LEN - 1 downto 0);
 	signal lcd_en  : std_logic;
 	signal lcd_rs  : std_logic;
 	signal lcd_rw  : std_logic;

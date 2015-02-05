@@ -5,45 +5,59 @@ use IEEE.std_logic_1164.all;
 use std.textio.all;
 use IEEE.numeric_std.all;
 
-entity poi_tb is
-end poi_tb;
+entity write_tb is
+end write_tb;
 
-architecture behav of poi_tb is
-	signal clock : std_logic := '0';
+architecture behav of write_tb is
+	signal clock : std_logic;
 	signal enable: boolean := false;
-	signal rs_instr : std_logic_vector(8 downto 0);
+	signal rs    : std_logic;
+	signal instr : std_logic_vector(7 downto 0);
 	signal done : boolean;
 	signal lcd_rs: std_logic;
-	signal lcd_en: std_logic;
 	signal lcd_rw: std_logic;
+	signal lcd_en: std_logic;
 	signal lcdd  : std_logic_vector(7 downto 0);
 
-begin
-	comp_test: write_module port map (clock, enable, rs_instr, done, lcd_rs, lcd_en, lcd_rw, lcdd);
+	signal runsim: boolean := true;
 
-	clock <= not clock after 5 ns; -- 100 MHz clock
+begin
+	comp_test: write_module port map (clock, enable, done, rs, instr, lcd_rs, lcd_rw, lcd_en, lcdd);
+
+	process
+	begin
+		if (not runsim) then
+			wait;
+		else
+			clock <= '0';
+			wait for 5 ns;
+			clock <= '1';
+			wait for 5 ns;
+		end if;
+	end process;
 
 	process
 		type pattern_type is record
-			enable : boolean;
-			rs_instr : std_logic_vector(8 downto 0);
-			done : std_logic;
-			lcd_rs : std_logic;
-			lcd_en : std_logic;
-			lcd_rw : std_logic;
-			lcdd   : std_logic_vector(7 downto 0);
+			enable: boolean;
+			rs    : std_logic;
+			instr : std_logic_vector(7 downto 0);
+			done  : std_logic;
+			lcd_rs: std_logic;
+			lcd_en: std_logic;
+			lcd_rw: std_logic;
+			lcdd  : std_logic_vector(7 downto 0);
 			wait_delay: natural;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, "UUUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
-				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
-				 (true,  '0' & x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
-				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
-				 (false, '0' & x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
-				 (false, '0' & x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
-				 (false, '0' & x"01", '1', 'U', '0', '0', x"00", 0)); -- 'done' state
+				((false, 'U', "UUUUUUUU", 'U', 'U', 'U', 'U', "UUUUUUUU", 0), -- unknown initial state
+				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'ready' state
+				 (true,  '0', x"01", '0', 'U', 'U', 'U', "UUUUUUUU", 0), -- 'init' state
+				 (false, '0', x"01", '0', '0', '0', '0', x"01", 0), -- 'signal settle' state
+				 (false, '0', x"01", '0', '0', '1', '0', x"01", 80), -- 'enable' state
+				 (false, '0', x"01", '0', '0', '0', '0', x"01", 1200), -- 'hold' state
+				 (false, '0', x"01", '1', '0', '0', '0', x"01", 0)); -- 'done' state
 
 		variable l: line;
 	begin
@@ -56,7 +70,8 @@ begin
 			wait until clock = '1';
 
 			enable <= patterns(i).enable;
-			rs_instr <= patterns(i).rs_instr;
+			rs <= patterns(i).rs;
+			instr <= patterns(i).instr;
 
 			wait for 1 ns;
 
@@ -79,8 +94,7 @@ begin
 
 		end loop;
 
-		wait for 20 ns;
-		assert false report "end of test" severity failure;
+		runsim <= false;
 		wait;
 	end process;
 end behav;

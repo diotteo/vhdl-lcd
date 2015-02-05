@@ -149,6 +149,11 @@ package defs is
 	end component;
 
 
+	constant POI_INIT_WAIT_COUNT : natural := 40 ms / CLK_PERIOD;
+	constant POI_FS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
+	constant POI_DO_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
+	constant POI_DC_WAIT_COUNT : natural := 1.52 ms / CLK_PERIOD;
+	constant POI_EMS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
 	component Power_On_Init is
 	port(
 		clk   : in    std_logic;

@@ -95,7 +95,7 @@ begin
 					timer_counter := timer_counter + 1;
 
 					--Delai 40ms
-					if timer_counter > 4000000 then
+					if timer_counter > POI_INIT_WAIT_COUNT then
 						fsm_state <= FUNCTION_SET_STATE;
 						timer_counter := 0;
 						func_set_repeat_counter := 3;
@@ -120,7 +120,7 @@ begin
 					timer_counter := timer_counter + 1;
 
 
-					if (timer_counter > 4000) then
+					if (timer_counter > POI_FS_WAIT_COUNT) then
 						timer_counter := 0;
 
 						if (func_set_repeat_counter > 1) then
@@ -144,7 +144,7 @@ begin
 				when DISP_ON_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
-					if (timer_counter > 4000) then
+					if (timer_counter > POI_DO_WAIT_COUNT) then
 						timer_counter := 0;
 						fsm_state <= DISP_CLR_STATE;
 					end if;
@@ -165,7 +165,7 @@ begin
 				when DISP_CLR_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
-					if (timer_counter > 152000) then
+					if (timer_counter > POI_DC_WAIT_COUNT) then
 						timer_counter := 0;
 						fsm_state <= ENTRY_MODE_STATE;
 					end if;
@@ -185,7 +185,7 @@ begin
 				when ENTRY_MODE_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
-					if (timer_counter > 4000) then
+					if (timer_counter > POI_EMS_WAIT_COUNT) then
 						timer_counter := 0;
 						fsm_state <= DONE_STATE;
 					end if;

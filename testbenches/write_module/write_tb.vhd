@@ -37,9 +37,9 @@ begin
 			wait;
 		else
 			clock <= '0';
-			wait for 5 ns;
+			wait for CLK_PERIOD / 2;
 			clock <= '1';
-			wait for 5 ns;
+			wait for CLK_PERIOD / 2;
 		end if;
 	end process;
 

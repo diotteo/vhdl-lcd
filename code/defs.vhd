@@ -20,6 +20,9 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 package defs is
+	constant CLK_PERIOD : time := 10 ns;
+
+
 	constant LCDD_LEN : natural := 8;
 
 	type lcd_type is record

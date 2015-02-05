@@ -152,6 +152,19 @@ package defs is
 		);
 	end component;
 
+	component Write_First_line is
+	port(
+		clk   : in    std_logic; --Horloge du compteur 
+		rst	: in	  std_logic; --Signal synchrone pour remettre à zéro le compteur  
+		enable: in    boolean;   -- Signal permettant de démarrer la séquence d'écriture (Doit être mis à 0 avant la prochaie écriture)
+		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
+		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
+		pos	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
+		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0) --Vecteur contenant les signaux a envoyer au LCD
+		);
+	end component;
+
+
 end package defs;
 
 --package body defs is

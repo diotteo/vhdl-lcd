@@ -30,7 +30,7 @@ entity Write_Data_To_Ram is
 			enable : in    boolean;
 			done   : out   boolean;
 			data   : in    std_logic_vector(7 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 end Write_Data_To_Ram;
 
@@ -43,9 +43,9 @@ begin
 			done,
 			'1',
 			data,
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd.rs,
+			lcd.rw,
+			lcd.en,
+			lcd.data
 			);
 end Write_Data_To_Ram;

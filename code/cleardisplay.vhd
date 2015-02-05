@@ -40,10 +40,7 @@ begin
 			done,
 			'0',
 			x"01",
-			lcd.rs,
-			lcd.rw,
-			lcd.en,
-			lcd.data
+			lcd
 			);
 end Clear_Display;
 

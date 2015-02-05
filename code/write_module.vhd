@@ -17,6 +17,8 @@
 -- Additional Comments:
 --
 ----------------------------------------------------------------------------------
+use work.defs.all;
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -42,10 +44,7 @@ entity write_module is
 			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnée à envoyer(7 downto 0)
 
 			-- Signaux qui seront liés au LCD
-			LCD_rs : out std_logic; -- Signal permettant de choisir entre DATA/INSTRUCTION
-			LCD_rw : out std_logic; -- Signal permettant de sélectionner le mode write ou read
-			LCD_en : out std_logic; -- Signal permettant de valider la commande
-			LCDD   : out std_logic_vector(7 downto 0) -- Bus d'instruction vers le LDC
+			lcd : out lcd_type
 			);
 end write_module;
 
@@ -80,22 +79,22 @@ begin
 				when INIT_STATE =>
 
 					-- Prépare les signaux qui seront envoyés au LCD
-					LCD_rs <= rs;
-					LCD_rw <= '0'; --Mode write
-					LCD_en <= '0';
-					LCDD <= instr;
+					lcd.rs <= rs;
+					lcd.rw <= '0'; --Mode write
+					lcd.en <= '0';
+					lcd.data <= instr;
 
 					counter <= 0;
 
 					w_state <= SIGNAL_SETTLE_STATE;
 
 				when SIGNAL_SETTLE_STATE =>
-					LCD_en <= '1';
+					lcd.en <= '1';
 					w_state <= ENABLE_STATE;
 
 				when ENABLE_STATE =>
 
-					LCD_en <= '1';
+					lcd.en <= '1';
 
 					--Delai d'activation enable 80 ns
 					if counter >= 7 then
@@ -107,7 +106,7 @@ begin
 
 				when HOLD_STATE =>
 
-					LCD_en <= '0';
+					lcd.en <= '0';
 
 					--Delai avant le prochain write 1200 ns
 					if counter >= 119 then

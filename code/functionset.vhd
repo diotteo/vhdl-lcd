@@ -46,9 +46,6 @@ begin
 			done,
 			'0',
 			instr,
-			lcd.rs,
-			lcd.rw,
-			lcd.en,
-			lcd.data
+			lcd
 			);
 end Function_Set;

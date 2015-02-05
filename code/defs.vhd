@@ -30,9 +30,13 @@ package defs is
 	constant LCDD_LEN : natural := 8;
 
 	type lcd_type is record
+		-- Signal permettant de choisir entre DATA/INSTRUCTION
 		rs : std_logic;
+		-- Signal permettant de sélectionner le mode write ou read
 		rw : std_logic;
+		-- Signal permettant de valider la commande
 		en : std_logic;
+		-- Bus d'instruction vers le LCD
 		data : std_logic_vector(LCDD_LEN - 1 downto 0);
 	end record;
 
@@ -50,10 +54,7 @@ package defs is
 			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnée à envoyer(7 downto 0)
 
 			-- Signaux qui seront liés au LCD
-			LCD_rs : out std_logic; -- Signal permettant de choisir entre DATA/INSTRUCTION
-			LCD_rw : out std_logic; -- Signal permettant de sélectionner le mode write ou read
-			LCD_en : out std_logic; -- Signal permettant de valider la commande
-			LCDD   : out std_logic_vector(7 downto 0) -- Bus d'instruction vers le LDC
+			lcd   : out lcd_type
 			);
 	end component;
 

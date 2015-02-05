@@ -125,6 +125,7 @@ begin
 
 						if (func_set_repeat_counter > 1) then
 							func_set_repeat_counter := func_set_repeat_counter - 1;
+							fsm_state <= FUNCTION_SET_STATE;
 						else
 							fsm_state <= DISP_ON_STATE;
 						end if;

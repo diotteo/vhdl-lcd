@@ -1,0 +1,37 @@
+#:C9     
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   NT M2.1 P.58f
+#Current Working Directory:
+#:D   J:\ELE740\phase1\Phase 1\code\ISE\Phase1
+#Date/Time:
+#:T   Wed Feb 04 22:29:16 2015
+#------------------------------
+	#Reading Write_First_line_map.ncd...
+	#Loading device for application Rf_Device from file '5vlx50t.nph' in environment C:\Xilinx\14.5\ISE_DS\ISE\.
+	#   "Write_First_line" is an NCD, version 3.2, device xc5vlx50t, package ff1136, speed -1
+	#Design creation date: 2015.02.05.03.28.45
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+setattr main edit-mode no-logic-changes
+	#2
+unselect -all
+	#3
+unselect -all
+	#4
+unselect -all
+	#5
+select site 'SLICE_X44Y72'
+	#site "SLICE_X44Y72",  type = SLICEM  (RPM grid X117Y144)
+	#6
+unselect -all
+	#7
+select site 'SLICE_X33Y70'
+	#site "SLICE_X33Y70",  type = SLICEL  (RPM grid X91Y140)
+	#8
+unselect -all
+	#9
+select -k comp 'line_1<10><5>'
+	#10
+unselect -all

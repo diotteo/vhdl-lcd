@@ -169,7 +169,7 @@ package defs is
 		enable: in    boolean;   -- Signal permettant de démarrer la séquence d'écriture (Doit être mis à 0 avant la prochaie écriture)
 		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
 		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
-		pos	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
+		position	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
 		lcd    : out   lcd_type --Vecteur contenant les signaux a envoyer au LCD
 		);
 	end component;

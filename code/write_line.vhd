@@ -29,7 +29,7 @@ entity Write_First_line is
 		enable: in    boolean;   -- Signal permettant de démarrer la séquence d'écriture (Doit être mis à 0 avant la prochaie écriture)
 		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
 		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
-		pos	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
+		position	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
 		lcd   : out   lcd_type
 		);
 end Write_First_line;
@@ -72,7 +72,7 @@ architecture Write_First_line of Write_First_line is
 begin
 
 	--Définis les vecteurs instructions pour le module Write First Line
-	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, pos, sda_lcd); -- Génère l'instruction pour placer le curseur à la 1ere ligne à droite
+	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, position, sda_lcd); -- Génère l'instruction pour placer le curseur à la 1ere ligne à droite
 	COMP_WR_CHAR: Write_Data_To_Ram port map (clk, do_write_data_to_ram, write_data_to_ram_done, character_string, wr_lcd); -- Génère l'instruction pour écrire le charactère à l'index i de line_1
 	character_string <= std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
 	

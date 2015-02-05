@@ -68,17 +68,16 @@ architecture Write_First_line of Write_First_line is
 	signal start_timer : boolean := false;
 	signal timer_ns :		integer;
 	signal timer_done:	boolean;
-	
+
 begin
 
 	--Définis les vecteurs instructions pour le module Write First Line
 	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, position, sda_lcd); -- Génère l'instruction pour placer le curseur à la 1ere ligne à droite
 	COMP_WR_CHAR: Write_Data_To_Ram port map (clk, do_write_data_to_ram, write_data_to_ram_done, character_string, wr_lcd); -- Génère l'instruction pour écrire le charactère à l'index i de line_1
-	character_string <=  std_logic_vector(to_unsigned(character'pos(line_1(i)),8)); -- std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
-	
+
 	TIMER_WAIT: Timer port map (clk, rst, start_timer, timer_ns, timer_done);
 	
-	process(clk)
+	process(clk)	
 	begin
 
 		if rising_edge(clk) then
@@ -139,6 +138,8 @@ begin
 					-- Permet d'écrire le caractère à l'index i sur l'écran
 					when WRITE_CHAR_STATE =>
 						
+						character_string <=  std_logic_vector(to_unsigned(character'pos(line_1(i)),8)); -- std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
+	
 						do_write_data_to_ram <= true;
 						lcd <= wr_lcd;
 						

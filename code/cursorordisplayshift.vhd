@@ -48,6 +48,6 @@ begin
 			done,
 			'0',
 			instr,
-			lcd,
+			lcd
 			);
 end Cursor_Or_Display_Shift;

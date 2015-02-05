@@ -180,7 +180,8 @@ package defs is
 		rst	  : in	  std_logic; --Signal synchrone pour remettre à zéro le compteur
 		start_timer: in    boolean; --Signal permettant de démarrer le compteur. Doit être remis à 0 pour commencer à compter de nouveau
 		clk_count: in integer; -- Nombre de coup d'horloge à compter
-		timer_done  : out   boolean -- Signal avertissant la fin du compte
+		timer_done  : out   boolean; -- Signal avertissant la fin du compte
+		lcd    : out   lcd_type --Vecteur contenant les signaux a envoyer au LCD
 		);
 	end component;
 

@@ -46,13 +46,13 @@ begin
 			enable: boolean;
 			done  : std_logic;
 			lcd   : lcd_type;
-			wait_delay: natural;
+			wait_delay: time;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0), -- unknown initial state
-				 (true,  '0', ('U', 'U', 'U', "UUUUUUUU"), 0), -- 'ready' state
+				((false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0 fs), -- unknown initial state
+				 (true,  '0', ('U', 'U', 'U', "UUUUUUUU"), 0 fs), -- 'ready' state
 				 --(), -- 'init wait' state
 				 --(), -- 'function set (1/3)' state
 				 --(), -- 'function set (2/3)' state
@@ -60,7 +60,7 @@ begin
 				 --(), -- 'display on' state
 				 --(), -- 'display clear' state
 				 --()); -- 'entry mode' state
-				 (false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0));
+				 (false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0 fs));
 
 		variable l: line;
 	begin
@@ -90,7 +90,7 @@ begin
 			assert lcd.data = patterns(i).lcd.data
 				report "lcd.data: wrong value" severity error;
 
-			if (patterns(i).wait_delay /= 0) then
+			if (patterns(i).wait_delay /= 0 fs) then
 				wait for patterns(i).wait_delay;
 			end if;
 

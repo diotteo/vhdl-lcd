@@ -41,8 +41,8 @@ begin
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				(('0', 'U', "UUUU" & "UUUU" & "UUU", 0), -- unknown initial state
-				 (), -- 'ready' state
+				((false, 'U', "UUU" & "UUUU" & "UUUU", 0), -- unknown initial state
+				 (true,  '0', "UUU" & "UUUU" & "UUUU", 0), -- 'ready' state
 				 (), -- 'init wait' state
 				 (), -- 'function set (1/3)' state
 				 (), -- 'function set (2/3)' state
@@ -62,19 +62,20 @@ begin
 			wait until clock = '1';
 
 			enable <= patterns(i).enable;
-			rs <= patterns(i).rs;
-			instr <= patterns(i).instr;
 
 			wait for 1 ns;
 
-			assert (patterns(i).done = 'U') or ((patterns(i).done = '1') = done)
-				report "done: " & boolean'image(done) & " /= " & std_logic'image(patterns(i).done) severity error;
+			if (patterns(i).done /= 'U') then
+				assert patterns(i).done = done
+						report "done: " & boolean'image(done) & " /= " & std_logic'image(patterns(i).done) severity error;
+			end if;
+
 			assert lcd_rs = patterns(i).lcd_rs
 				report "lcd_rs: " & std_logic'image(lcd_rs) & " /= " & std_logic'image(patterns(i).lcd_rs) severity error;
-			assert lcd_en = patterns(i).lcd_en
-				report "lcd_en: " & std_logic'image(lcd_en) & " /= " & std_logic'image(patterns(i).lcd_en) severity error;
 			assert lcd_rw = patterns(i).lcd_rw
 				report "lcd_rw: " & std_logic'image(lcd_rw) & " /= " & std_logic'image(patterns(i).lcd_rw) severity error;
+			assert lcd_en = patterns(i).lcd_en
+				report "lcd_en: " & std_logic'image(lcd_en) & " /= " & std_logic'image(patterns(i).lcd_en) severity error;
 			assert lcdd = patterns(i).lcdd
 				report "lcdd: wrong value" severity error;
 

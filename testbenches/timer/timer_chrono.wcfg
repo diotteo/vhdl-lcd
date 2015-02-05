@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="J:/ELE740/phase1/Phase 1/code/ISE/Phase1/timer_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="defs" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="textio" />
+            <top_module name="timer_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="5" />
+   <wave_markers>
+      <marker time="425000000" label="" />
+      <marker time="25000000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/timer_tb/clock" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/timer_tb/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/timer_tb/start_timer" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">start_timer</obj_property>
+      <obj_property name="ObjectShortName">start_timer</obj_property>
+   </wvobject>
+   <wvobject fp_name="/timer_tb/clk_count" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_count</obj_property>
+      <obj_property name="ObjectShortName">clk_count</obj_property>
+   </wvobject>
+   <wvobject fp_name="/timer_tb/timer_done" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">timer_done</obj_property>
+      <obj_property name="ObjectShortName">timer_done</obj_property>
+   </wvobject>
+</wave_config>

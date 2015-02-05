@@ -1,0 +1,3 @@
+vhdl isim_temp "../../defs.vhd"
+vhdl isim_temp "../../timer.vhd"
+vhdl isim_temp "../../../testbenches/timer/timer_tb.vhd"

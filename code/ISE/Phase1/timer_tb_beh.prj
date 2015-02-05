@@ -1,0 +1,3 @@
+vhdl work "../../defs.vhd"
+vhdl work "../../timer.vhd"
+vhdl work "../../../testbenches/timer/timer_tb.vhd"

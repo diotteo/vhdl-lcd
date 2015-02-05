@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "J:/ELE740/phase1/Phase 1/code/ISE/Phase1/timer_tb_isim_beh.exe" -prj "J:/ELE740/phase1/Phase 1/code/ISE/Phase1/timer_tb_beh.prj" "work.timer_tb" 

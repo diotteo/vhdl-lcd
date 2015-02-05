@@ -30,6 +30,8 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Power_On_Init_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Return_Home_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Set_Cgram_Address_stx_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="Timer_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Timer_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Write_Data_To_Ram_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="Write_First_line.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="Write_First_line.lso"/>
@@ -84,9 +86,16 @@
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="afficheur_usage.xml"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="afficheur_vhdl.prj"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="afficheur_xst.xrpt"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="timer_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="timer_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="timer_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="timer_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
-    <file xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
@@ -96,13 +105,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1423094139" xil_pn:in_ck="-3844483522928825027" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1423094139">
+    <transform xil_pn:end_ts="1423103401" xil_pn:in_ck="4981355360343365842" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1423103401">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="../../../testbenches/timer/timer_tb.vhd"/>
+      <outfile xil_pn:name="../../../testbenches/write_module/write_tb.vhd"/>
       <outfile xil_pn:name="../../cleardisplay.vhd"/>
       <outfile xil_pn:name="../../cursorordisplayshift.vhd"/>
       <outfile xil_pn:name="../../defs.vhd"/>
@@ -118,6 +125,58 @@
       <outfile xil_pn:name="../../write_line.vhd"/>
       <outfile xil_pn:name="../../write_module.vhd"/>
       <outfile xil_pn:name="../../writedatatoram.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1423100489" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-3170410045270624126" xil_pn:start_ts="1423100488">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1423100489" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-5338329255050031120" xil_pn:start_ts="1423100489">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1423099900" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="6224514103031439712" xil_pn:start_ts="1423099900">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1423103401" xil_pn:in_ck="4981355360343365842" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1423103401">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../../../testbenches/timer/timer_tb.vhd"/>
+      <outfile xil_pn:name="../../../testbenches/write_module/write_tb.vhd"/>
+      <outfile xil_pn:name="../../cleardisplay.vhd"/>
+      <outfile xil_pn:name="../../cursorordisplayshift.vhd"/>
+      <outfile xil_pn:name="../../defs.vhd"/>
+      <outfile xil_pn:name="../../displayonoffcontrol.vhd"/>
+      <outfile xil_pn:name="../../entrymodeset.vhd"/>
+      <outfile xil_pn:name="../../functionset.vhd"/>
+      <outfile xil_pn:name="../../main.vhd"/>
+      <outfile xil_pn:name="../../poweroninit.vhd"/>
+      <outfile xil_pn:name="../../returnhome.vhd"/>
+      <outfile xil_pn:name="../../setcgramaddress.vhd"/>
+      <outfile xil_pn:name="../../setddramaddress.vhd"/>
+      <outfile xil_pn:name="../../timer.vhd"/>
+      <outfile xil_pn:name="../../write_line.vhd"/>
+      <outfile xil_pn:name="../../write_module.vhd"/>
+      <outfile xil_pn:name="../../writedatatoram.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1423103405" xil_pn:in_ck="4981355360343365842" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3731200746561188906" xil_pn:start_ts="1423103401">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="timer_tb_beh.prj"/>
+      <outfile xil_pn:name="timer_tb_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
+    </transform>
+    <transform xil_pn:end_ts="1423103405" xil_pn:in_ck="-2825694060681057803" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5122969772343155427" xil_pn:start_ts="1423103405">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="timer_tb_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1423073838" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1423073838">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -151,19 +210,12 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="Write_First_line.lso"/>
-      <outfile xil_pn:name="Write_First_line.ngc"/>
-      <outfile xil_pn:name="Write_First_line.ngr"/>
-      <outfile xil_pn:name="Write_First_line.prj"/>
-      <outfile xil_pn:name="Write_First_line.stx"/>
-      <outfile xil_pn:name="Write_First_line.syr"/>
-      <outfile xil_pn:name="Write_First_line.xst"/>
-      <outfile xil_pn:name="Write_First_line_stx_beh.prj"/>
-      <outfile xil_pn:name="Write_First_line_vhdl.prj"/>
-      <outfile xil_pn:name="Write_First_line_xst.xrpt"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1423092626" xil_pn:in_ck="1940777621133087326" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="3866726537007827737" xil_pn:start_ts="1423092626">
       <status xil_pn:value="SuccessfullyRun"/>

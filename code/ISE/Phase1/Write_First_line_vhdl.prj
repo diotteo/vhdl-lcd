@@ -1,0 +1,5 @@
+vhdl work "\\sole.ens.ad.etsmtl.ca\ens2\home\ak67270\ELE740\phase1\Phase 1\code\write_module.vhd"
+vhdl work "\\sole.ens.ad.etsmtl.ca\ens2\home\ak67270\ELE740\phase1\Phase 1\code\defs.vhd"
+vhdl work "\\sole.ens.ad.etsmtl.ca\ens2\home\ak67270\ELE740\phase1\Phase 1\code\writedatatoram.vhd"
+vhdl work "\\sole.ens.ad.etsmtl.ca\ens2\home\ak67270\ELE740\phase1\Phase 1\code\setddramaddress.vhd"
+vhdl work "\\sole.ens.ad.etsmtl.ca\ens2\home\ak67270\ELE740\phase1\Phase 1\code\write_line.vhd"

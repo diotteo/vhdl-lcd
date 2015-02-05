@@ -1,76 +1,102 @@
-V3 53
+V3 69
 FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd" 2015/02/04.12:52:30 P.58f
-EN work/Clear_Display 1423074079 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
-      PB ieee/NUMERIC_STD 1364358223
-AR work/Clear_Display/Clear_Display 1423074080 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd" \
-      EN work/Clear_Display 1423074079 CP write_module
 FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/defs.vhd" 2015/02/04.12:52:30 P.58f
-PH work/defs 1423074072 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/defs.vhd" \
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd" 2015/02/04.12:52:30 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd" 2015/02/04.12:52:30 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd" 2015/02/04.12:52:30 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd" 2015/02/04.13:21:07 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd" 2015/02/04.13:06:48 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd" 2015/02/04.12:52:30 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd" 2015/02/03.13:40:46 P.58f
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Clear_Display 1423092626 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
+      PB ieee/NUMERIC_STD 1364358223
+AR work/Clear_Display/Clear_Display 1423092627 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd" \
+      EN work/Clear_Display 1423092626 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/defs.vhd" 2015/02/04.18:29:03 P.58f
+PH work/defs 1423095541 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/defs.vhd" \
       PB ieee/std_logic_1164 1364358218 CD write_module CD Clear_Display \
       CD Cursor_Or_Display_Shift CD Display_On_Off_Control CD Entry_Mode_Set \
       CD Function_Set CD Return_Home CD Set_Cgram_Address CD Set_Ddram_Address \
       CD Write_Data_To_Ram CD Power_On_Init
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd" 2015/02/04.12:52:30 P.58f
-EN work/Display_On_Off_Control 1423074077 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Display_On_Off_Control 1423092624 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/Display_On_Off_Control/Display_On_Off_Control 1423074078 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd" \
-      EN work/Display_On_Off_Control 1423074077 CP write_module
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd" 2015/02/04.12:52:30 P.58f
-EN work/Entry_Mode_Set 1423074081 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+AR work/Display_On_Off_Control/Display_On_Off_Control 1423092625 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd" \
+      EN work/Display_On_Off_Control 1423092624 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Entry_Mode_Set 1423092628 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/Entry_Mode_Set/Entry_Mode_Set 1423074082 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd" \
-      EN work/Entry_Mode_Set 1423074081 CP write_module
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd" 2015/02/04.12:52:30 P.58f
-EN work/Function_Set 1423074075 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+AR work/Entry_Mode_Set/Entry_Mode_Set 1423092629 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd" \
+      EN work/Entry_Mode_Set 1423092628 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Function_Set 1423092622 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/Function_Set/Function_Set 1423074076 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd" \
-      EN work/Function_Set 1423074075 CP write_module
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd" 2015/02/04.13:21:07 P.58f
-EN work/afficheur 1423074087 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+AR work/Function_Set/Function_Set 1423092623 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd" \
+      EN work/Function_Set 1423092622 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd" 2015/02/04.18:29:03 P.58f
+EN work/afficheur 1423092634 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/afficheur/afficheur_main 1423074088 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd" \
-      EN work/afficheur 1423074087 CP Power_On_Init CP Set_Ddram_Address \
+AR work/afficheur/afficheur_main 1423092635 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd" \
+      EN work/afficheur 1423092634 CP Power_On_Init CP Set_Ddram_Address \
       CP Clear_Display
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd" 2015/02/04.13:06:48 P.58f
-EN work/Power_On_Init 1423074083 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Power_On_Init 1423092630 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/Power_On_Init/Power_On_Init 1423074084 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd" \
-      EN work/Power_On_Init 1423074083 CP Function_Set CP Display_On_Off_Control \
+AR work/Power_On_Init/Power_On_Init 1423092631 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd" \
+      EN work/Power_On_Init 1423092630 CP Function_Set CP Display_On_Off_Control \
       CP Clear_Display CP Entry_Mode_Set
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd" 2015/02/04.12:52:30 P.58f
-EN work/Set_Ddram_Address 1423074085 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd" \
-      PH work/defs 1423074072 PB ieee/std_logic_1164 1364358218 \
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Set_Ddram_Address 1423095544 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
       PB ieee/NUMERIC_STD 1364358223
-AR work/Set_Ddram_Address/Set_Ddram_Address 1423074086 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd" \
-      EN work/Set_Ddram_Address 1423074085 CP write_module
-FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd" 2015/02/03.13:40:46 P.58f
-EN work/write_module 1423074073 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd" \
+AR work/Set_Ddram_Address/Set_Ddram_Address 1423095545 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd" \
+      EN work/Set_Ddram_Address 1423095544 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/writedatatoram.vhd" 2015/02/04.18:29:03 P.58f
+EN work/Write_Data_To_Ram 1423095546 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/writedatatoram.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
+      PB ieee/NUMERIC_STD 1364358223
+AR work/Write_Data_To_Ram/Write_Data_To_Ram 1423095547 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/writedatatoram.vhd" \
+      EN work/Write_Data_To_Ram 1423095546 CP write_module
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_line.vhd" 2015/02/04.19:18:55 P.58f
+EN work/Write_First_line 1423095548 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_line.vhd" \
+      PH work/defs 1423095541 PB ieee/std_logic_1164 1364358218 \
+      PB ieee/NUMERIC_STD 1364358223
+AR work/Write_First_line/Write_First_line 1423095549 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_line.vhd" \
+      EN work/Write_First_line 1423095548 CP Set_Ddram_Address \
+      CP Write_Data_To_Ram
+FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd" 2015/02/04.18:29:03 P.58f
+EN work/write_module 1423095542 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd" \
       PB ieee/std_logic_1164 1364358218 PB ieee/NUMERIC_STD 1364358223
-AR work/write_module/Behavioral 1423074074 \
-      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd" \
-      EN work/write_module 1423074073
+AR work/write_module/Behavioral 1423095543 \
+      FL "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd" \
+      EN work/write_module 1423095542
 FL "C:/Users/AK61450/Documents/ele740/Phase 1/code/cleardisplay.vhd" 2015/02/03.11:55:08 P.58f
 FL "C:/Users/AK61450/Documents/ele740/Phase 1/code/defs.vhd" 2015/02/03.13:18:21 P.58f
 FL "C:/Users/AK61450/Documents/ele740/Phase 1/code/displayonoffcontrol.vhd" 2015/02/03.11:56:21 P.58f

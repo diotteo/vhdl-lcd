@@ -1,0 +1,570 @@
+Release 14.5 Map P.58f (nt)
+Xilinx Mapping Report File for Design 'afficheur'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc5vlx50t-ff1136-1 -w -logic_opt off -ol
+high -t 1 -register_duplication off -global_opt off -mt off -cm area -ir off -pr
+off -lc off -power off -o afficheur_map.ncd afficheur.ngd afficheur.pcf 
+Target Device  : xc5vlx50t
+Target Package : ff1136
+Target Speed   : -1
+Mapper Version : virtex5 -- $Revision: 1.55 $
+Mapped Date    : Wed Feb 04 18:30:34 2015
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    8
+Slice Logic Utilization:
+  Number of Slice Registers:                    51 out of  28,800    1%
+    Number used as Flip Flops:                  51
+  Number of Slice LUTs:                         66 out of  28,800    1%
+    Number used as logic:                       66 out of  28,800    1%
+      Number using O6 output only:              66
+
+Slice Logic Distribution:
+  Number of occupied Slices:                    26 out of   7,200    1%
+  Number of LUT Flip Flop pairs used:           70
+    Number with an unused Flip Flop:            19 out of      70   27%
+    Number with an unused LUT:                   4 out of      70    5%
+    Number of fully used LUT-FF pairs:          47 out of      70   67%
+    Number of unique control sets:               3
+    Number of slice register sites lost
+      to control set restrictions:               5 out of  28,800    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        20 out of     480    4%
+    Number of LOCed IOBs:                       20 out of      20  100%
+
+Specific Feature Utilization:
+  Number of BUFG/BUFGCTRLs:                      1 out of      32    3%
+    Number used as BUFGs:                        1
+
+Average Fanout of Non-Clock Nets:                4.30
+
+Peak Memory Usage:  379 MB
+Total REAL time to MAP completion:  13 secs 
+Total CPU time to MAP completion:   10 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:PhysDesignRules:368 - The signal <led<0>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<1>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<2>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<3>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<4>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<5>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<6>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+WARNING:PhysDesignRules:368 - The signal <led<7>_OBUF> is incomplete. The signal
+   is not driven by any source pin in the design.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 195 block(s) removed
+   1 block(s) optimized away
+ 165 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<1>" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<1>1" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<1>2" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<2>" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<2>1" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<2>2" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<3>" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<3>2" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lut<4>2" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi1" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi2" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi3" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi4" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi5" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi6" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi7" (ROM) removed.
+Loadless block "COMP_INIT/Mcompar_fsm_state_cmp_gt0003_lutdi8" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<0>" (ROM) removed.
+ The signal "i<4>" is loadless and has been removed.
+  Loadless block "i_4" (FF) removed.
+   The signal "i_4_rstpot" is loadless and has been removed.
+    Loadless block "i_4_rstpot" (ROM) removed.
+     The signal "i_addsub0000<4>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<4>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<3>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<3>" (MUX) removed.
+         The signal "Msub_i_addsub0000_cy<2>" is loadless and has been removed.
+          Loadless block "Msub_i_addsub0000_cy<2>" (MUX) removed.
+           The signal "Msub_i_addsub0000_cy<1>" is loadless and has been removed.
+            Loadless block "Msub_i_addsub0000_cy<1>" (MUX) removed.
+             The signal "Msub_i_addsub0000_cy<0>" is loadless and has been removed.
+              Loadless block "Msub_i_addsub0000_cy<0>" (MUX) removed.
+               The signal "COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_cmp_eq0004" is loadless
+and has been removed.
+                Loadless block "XST_VCC" (ONE) removed.
+               The signal "Msub_i_addsub0000_cy<0>_rt" is loadless and has been removed.
+                Loadless block "Msub_i_addsub0000_cy<0>_rt" (ROM) removed.
+                 The signal "i<0>" is loadless and has been removed.
+                  Loadless block "i_0" (FF) removed.
+                   The signal "i_mux0000<0>" is loadless and has been removed.
+                    Loadless block "i_mux0000<0>1" (ROM) removed.
+                     The signal "i_addsub0000<0>" is loadless and has been removed.
+                      Loadless block "Msub_i_addsub0000_xor<0>" (XOR) removed.
+                     The signal "N01" is loadless and has been removed.
+                      Loadless block "i_mux0000<4>1" (ROM) removed.
+                       The signal "N8" is loadless and has been removed.
+                        Loadless block "i_mux0000<4>1_SW0" (ROM) removed.
+             The signal "Msub_i_addsub0000_lut<1>" is loadless and has been removed.
+              Loadless block "Msub_i_addsub0000_lut<1>_INV_0" (BUF) removed.
+               The signal "i<1>" is loadless and has been removed.
+                Loadless block "i_1" (FF) removed.
+                 The signal "i_mux0000<1>" is loadless and has been removed.
+                  Loadless block "i_mux0000<1>1" (ROM) removed.
+                   The signal "i_addsub0000<1>" is loadless and has been removed.
+                    Loadless block "Msub_i_addsub0000_xor<1>" (XOR) removed.
+           The signal "Msub_i_addsub0000_lut<2>" is loadless and has been removed.
+            Loadless block "Msub_i_addsub0000_lut<2>_INV_0" (BUF) removed.
+             The signal "i<2>" is loadless and has been removed.
+              Loadless block "i_2" (FF) removed.
+               The signal "i_mux0000<2>" is loadless and has been removed.
+                Loadless block "i_mux0000<2>1" (ROM) removed.
+                 The signal "i_addsub0000<2>" is loadless and has been removed.
+                  Loadless block "Msub_i_addsub0000_xor<2>" (XOR) removed.
+         The signal "Msub_i_addsub0000_lut<3>" is loadless and has been removed.
+          Loadless block "Msub_i_addsub0000_lut<3>_INV_0" (BUF) removed.
+           The signal "i<3>" is loadless and has been removed.
+            Loadless block "i_3" (FF) removed.
+             The signal "i_mux0000<3>" is loadless and has been removed.
+              Loadless block "i_mux0000<3>1" (ROM) removed.
+               The signal "i_addsub0000<3>" is loadless and has been removed.
+                Loadless block "Msub_i_addsub0000_xor<3>" (XOR) removed.
+       The signal "Msub_i_addsub0000_lut<4>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<4>_INV_0" (BUF) removed.
+ The signal "j<4>" is loadless and has been removed.
+  Loadless block "j_4" (FF) removed.
+   The signal "j_4_rstpot" is loadless and has been removed.
+    Loadless block "j_4_rstpot" (ROM) removed.
+     The signal "N16" is loadless and has been removed.
+      Loadless block "j_mux0000<4>_SW0" (ROM) removed.
+ The signal "i<5>" is loadless and has been removed.
+  Loadless block "i_5" (FF) removed.
+   The signal "i_mux0000<5>" is loadless and has been removed.
+    Loadless block "i_mux0000<5>1" (ROM) removed.
+     The signal "i_addsub0000<5>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<5>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<4>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<4>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<5>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<5>_INV_0" (BUF) removed.
+ The signal "i<6>" is loadless and has been removed.
+  Loadless block "i_6" (FF) removed.
+   The signal "i_mux0000<6>" is loadless and has been removed.
+    Loadless block "i_mux0000<6>1" (ROM) removed.
+     The signal "i_addsub0000<6>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<6>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<5>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<5>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<6>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<6>_INV_0" (BUF) removed.
+ The signal "i<7>" is loadless and has been removed.
+  Loadless block "i_7" (FF) removed.
+   The signal "i_mux0000<7>" is loadless and has been removed.
+    Loadless block "i_mux0000<7>1" (ROM) removed.
+     The signal "i_addsub0000<7>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<7>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<6>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<6>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<7>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<7>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<1>" (ROM) removed.
+ The signal "i<8>" is loadless and has been removed.
+  Loadless block "i_8" (FF) removed.
+   The signal "i_mux0000<8>" is loadless and has been removed.
+    Loadless block "i_mux0000<8>1" (ROM) removed.
+     The signal "i_addsub0000<8>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<8>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<7>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<7>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<8>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<8>_INV_0" (BUF) removed.
+ The signal "i<9>" is loadless and has been removed.
+  Loadless block "i_9" (FF) removed.
+   The signal "i_mux0000<9>" is loadless and has been removed.
+    Loadless block "i_mux0000<9>1" (ROM) removed.
+     The signal "i_addsub0000<9>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<9>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<8>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<8>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<9>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<9>_INV_0" (BUF) removed.
+ The signal "i<10>" is loadless and has been removed.
+  Loadless block "i_10" (FF) removed.
+   The signal "i_mux0000<10>" is loadless and has been removed.
+    Loadless block "i_mux0000<10>1" (ROM) removed.
+     The signal "i_addsub0000<10>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<10>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<9>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<9>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<10>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<10>_INV_0" (BUF) removed.
+ The signal "i<11>" is loadless and has been removed.
+  Loadless block "i_11" (FF) removed.
+   The signal "i_mux0000<11>" is loadless and has been removed.
+    Loadless block "i_mux0000<11>1" (ROM) removed.
+     The signal "i_addsub0000<11>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<11>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<10>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<10>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<11>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<11>_INV_0" (BUF) removed.
+ The signal "i<12>" is loadless and has been removed.
+  Loadless block "i_12" (FF) removed.
+   The signal "i_mux0000<12>" is loadless and has been removed.
+    Loadless block "i_mux0000<12>1" (ROM) removed.
+     The signal "i_addsub0000<12>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<12>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<11>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<11>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<12>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<12>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<2>" (ROM) removed.
+ The signal "i<13>" is loadless and has been removed.
+  Loadless block "i_13" (FF) removed.
+   The signal "i_mux0000<13>" is loadless and has been removed.
+    Loadless block "i_mux0000<13>1" (ROM) removed.
+     The signal "i_addsub0000<13>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<13>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<12>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<12>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<13>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<13>_INV_0" (BUF) removed.
+ The signal "i<14>" is loadless and has been removed.
+  Loadless block "i_14" (FF) removed.
+   The signal "i_mux0000<14>" is loadless and has been removed.
+    Loadless block "i_mux0000<14>1" (ROM) removed.
+     The signal "i_addsub0000<14>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<14>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<13>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<13>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<14>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<14>_INV_0" (BUF) removed.
+ The signal "i<15>" is loadless and has been removed.
+  Loadless block "i_15" (FF) removed.
+   The signal "i_mux0000<15>" is loadless and has been removed.
+    Loadless block "i_mux0000<15>1" (ROM) removed.
+     The signal "i_addsub0000<15>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<15>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<14>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<14>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<15>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<15>_INV_0" (BUF) removed.
+ The signal "i<16>" is loadless and has been removed.
+  Loadless block "i_16" (FF) removed.
+   The signal "i_mux0000<16>" is loadless and has been removed.
+    Loadless block "i_mux0000<16>1" (ROM) removed.
+     The signal "i_addsub0000<16>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<16>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<15>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<15>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<16>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<16>_INV_0" (BUF) removed.
+ The signal "i<17>" is loadless and has been removed.
+  Loadless block "i_17" (FF) removed.
+   The signal "i_mux0000<17>" is loadless and has been removed.
+    Loadless block "i_mux0000<17>1" (ROM) removed.
+     The signal "i_addsub0000<17>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<17>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<16>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<16>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<17>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<17>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<3>" (ROM) removed.
+ The signal "i<18>" is loadless and has been removed.
+  Loadless block "i_18" (FF) removed.
+   The signal "i_mux0000<18>" is loadless and has been removed.
+    Loadless block "i_mux0000<18>1" (ROM) removed.
+     The signal "i_addsub0000<18>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<18>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<17>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<17>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<18>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<18>_INV_0" (BUF) removed.
+ The signal "i<19>" is loadless and has been removed.
+  Loadless block "i_19" (FF) removed.
+   The signal "i_mux0000<19>" is loadless and has been removed.
+    Loadless block "i_mux0000<19>1" (ROM) removed.
+     The signal "i_addsub0000<19>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<19>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<18>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<18>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<19>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<19>_INV_0" (BUF) removed.
+ The signal "i<20>" is loadless and has been removed.
+  Loadless block "i_20" (FF) removed.
+   The signal "i_mux0000<20>" is loadless and has been removed.
+    Loadless block "i_mux0000<20>1" (ROM) removed.
+     The signal "i_addsub0000<20>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<20>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<19>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<19>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<20>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<20>_INV_0" (BUF) removed.
+ The signal "i<21>" is loadless and has been removed.
+  Loadless block "i_21" (FF) removed.
+   The signal "i_mux0000<21>" is loadless and has been removed.
+    Loadless block "i_mux0000<21>1" (ROM) removed.
+     The signal "i_addsub0000<21>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<21>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<20>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<20>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<21>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<21>_INV_0" (BUF) removed.
+ The signal "i<22>" is loadless and has been removed.
+  Loadless block "i_22" (FF) removed.
+   The signal "i_mux0000<22>" is loadless and has been removed.
+    Loadless block "i_mux0000<22>1" (ROM) removed.
+     The signal "i_addsub0000<22>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<22>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<21>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<21>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<22>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<22>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<4>" (ROM) removed.
+ The signal "i<23>" is loadless and has been removed.
+  Loadless block "i_23" (FF) removed.
+   The signal "i_mux0000<23>" is loadless and has been removed.
+    Loadless block "i_mux0000<23>1" (ROM) removed.
+     The signal "i_addsub0000<23>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<23>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<22>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<22>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<23>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<23>_INV_0" (BUF) removed.
+ The signal "i<24>" is loadless and has been removed.
+  Loadless block "i_24" (FF) removed.
+   The signal "i_mux0000<24>" is loadless and has been removed.
+    Loadless block "i_mux0000<24>1" (ROM) removed.
+     The signal "i_addsub0000<24>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<24>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<23>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<23>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<24>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<24>_INV_0" (BUF) removed.
+ The signal "i<25>" is loadless and has been removed.
+  Loadless block "i_25" (FF) removed.
+   The signal "i_mux0000<25>" is loadless and has been removed.
+    Loadless block "i_mux0000<25>1" (ROM) removed.
+     The signal "i_addsub0000<25>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<25>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<24>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<24>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<25>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<25>_INV_0" (BUF) removed.
+ The signal "i<26>" is loadless and has been removed.
+  Loadless block "i_26" (FF) removed.
+   The signal "i_mux0000<26>" is loadless and has been removed.
+    Loadless block "i_mux0000<26>1" (ROM) removed.
+     The signal "i_addsub0000<26>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<26>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<25>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<25>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<26>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<26>_INV_0" (BUF) removed.
+ The signal "i<27>" is loadless and has been removed.
+  Loadless block "i_27" (FF) removed.
+   The signal "i_mux0000<27>" is loadless and has been removed.
+    Loadless block "i_mux0000<27>1" (ROM) removed.
+     The signal "i_addsub0000<27>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<27>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<26>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<26>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<27>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<27>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lut<5>" (ROM) removed.
+ The signal "i<28>" is loadless and has been removed.
+  Loadless block "i_28" (FF) removed.
+   The signal "i_mux0000<28>" is loadless and has been removed.
+    Loadless block "i_mux0000<28>1" (ROM) removed.
+     The signal "i_addsub0000<28>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<28>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<27>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<27>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<28>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<28>_INV_0" (BUF) removed.
+ The signal "i<29>" is loadless and has been removed.
+  Loadless block "i_29" (FF) removed.
+   The signal "i_mux0000<29>" is loadless and has been removed.
+    Loadless block "i_mux0000<29>1" (ROM) removed.
+     The signal "i_addsub0000<29>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<29>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<28>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<28>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<29>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<29>_INV_0" (BUF) removed.
+ The signal "i<30>" is loadless and has been removed.
+  Loadless block "i_30" (FF) removed.
+   The signal "i_mux0000<30>" is loadless and has been removed.
+    Loadless block "i_mux0000<30>1" (ROM) removed.
+     The signal "i_addsub0000<30>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<30>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<29>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<29>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<30>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<30>_INV_0" (BUF) removed.
+ The signal "i<31>" is loadless and has been removed.
+  Loadless block "i_31" (FF) removed.
+   The signal "i_mux0000<31>" is loadless and has been removed.
+    Loadless block "i_mux0000<31>1" (ROM) removed.
+     The signal "i_addsub0000<31>" is loadless and has been removed.
+      Loadless block "Msub_i_addsub0000_xor<31>" (XOR) removed.
+       The signal "Msub_i_addsub0000_cy<30>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_cy<30>" (MUX) removed.
+       The signal "Msub_i_addsub0000_lut<31>" is loadless and has been removed.
+        Loadless block "Msub_i_addsub0000_lut<31>_INV_0" (BUF) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi1" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi2" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi3" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi4" (ROM) removed.
+Loadless block "Mcompar_fsm_state_cmp_lt0000_lutdi5" (ROM) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk                                | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| lcdd<0>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<1>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<2>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<3>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<4>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<5>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<6>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdd<7>                            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcden                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdrs                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| lcdrw                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<0>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<1>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<2>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<3>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<4>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<5>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<6>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| led<7>                             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

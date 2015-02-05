@@ -4,13 +4,13 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.30 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.31 secs
  
 --> Reading design: afficheur.prj
 
@@ -108,24 +108,48 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/defs.vhd" in Library work.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd" in Library work.
-Architecture behavioral of Entity write_module is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd" in Library work.
-Architecture function_set of Entity function_set is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd" in Library work.
-Architecture display_on_off_control of Entity display_on_off_control is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd" in Library work.
-Architecture clear_display of Entity clear_display is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd" in Library work.
-Architecture entry_mode_set of Entity entry_mode_set is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd" in Library work.
-Architecture power_on_init of Entity power_on_init is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd" in Library work.
-Architecture set_ddram_address of Entity set_ddram_address is up to date.
-Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd" in Library work.
-Entity <afficheur> compiled.
-Entity <afficheur> (Architecture <afficheur_main>) compiled.
+WARNING:HDLParsers:3607 - Unit work/afficheur is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd".
+WARNING:HDLParsers:3607 - Unit work/afficheur/afficheur_main is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd".
+WARNING:HDLParsers:3607 - Unit work/Power_On_Init is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd".
+WARNING:HDLParsers:3607 - Unit work/Power_On_Init/Power_On_Init is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd".
+WARNING:HDLParsers:3607 - Unit work/Set_Ddram_Address is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd".
+WARNING:HDLParsers:3607 - Unit work/Set_Ddram_Address/Set_Ddram_Address is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd".
+WARNING:HDLParsers:3607 - Unit work/Clear_Display is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd".
+WARNING:HDLParsers:3607 - Unit work/Clear_Display/Clear_Display is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd".
+WARNING:HDLParsers:3607 - Unit work/Display_On_Off_Control is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd".
+WARNING:HDLParsers:3607 - Unit work/Display_On_Off_Control/Display_On_Off_Control is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd".
+WARNING:HDLParsers:3607 - Unit work/Entry_Mode_Set is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd".
+WARNING:HDLParsers:3607 - Unit work/Entry_Mode_Set/Entry_Mode_Set is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd".
+WARNING:HDLParsers:3607 - Unit work/Function_Set is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd".
+WARNING:HDLParsers:3607 - Unit work/Function_Set/Function_Set is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd".
+WARNING:HDLParsers:3607 - Unit work/defs is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/defs.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/defs.vhd".
+WARNING:HDLParsers:3607 - Unit work/write_module is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd".
+WARNING:HDLParsers:3607 - Unit work/write_module/Behavioral is now defined in a different file.  It was defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd", and is now defined in "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd".
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/defs.vhd" in Library work.
+Package <defs> compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd" in Library work.
+Entity <write_module> compiled.
+Entity <write_module> (Architecture <behavioral>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd" in Library work.
+Entity <function_set> compiled.
+Entity <function_set> (Architecture <function_set>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd" in Library work.
+Entity <display_on_off_control> compiled.
+Entity <display_on_off_control> (Architecture <display_on_off_control>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd" in Library work.
+Entity <clear_display> compiled.
+Entity <clear_display> (Architecture <clear_display>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd" in Library work.
+Entity <entry_mode_set> compiled.
+Entity <entry_mode_set> (Architecture <entry_mode_set>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd" in Library work.
+Entity <power_on_init> compiled.
+Entity <power_on_init> (Architecture <power_on_init>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd" in Library work.
+Entity <set_ddram_address> compiled.
+Entity <set_ddram_address> (Architecture <set_ddram_address>) compiled.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd" in Library work.
+Architecture afficheur_main of Entity afficheur is up to date.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -184,7 +208,7 @@ Entity <Clear_Display> analyzed. Unit <Clear_Display> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <write_module>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/write_module.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd".
     Found finite state machine <FSM_0> for signal <w_state>.
     -----------------------------------------------------------------------
     | States             | 6                                              |
@@ -213,32 +237,32 @@ Unit <write_module> synthesized.
 
 
 Synthesizing Unit <Set_Ddram_Address>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/setddramaddress.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd".
 Unit <Set_Ddram_Address> synthesized.
 
 
 Synthesizing Unit <Clear_Display>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/cleardisplay.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/cleardisplay.vhd".
 Unit <Clear_Display> synthesized.
 
 
 Synthesizing Unit <Function_Set>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/functionset.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/functionset.vhd".
 Unit <Function_Set> synthesized.
 
 
 Synthesizing Unit <Display_On_Off_Control>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/displayonoffcontrol.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/displayonoffcontrol.vhd".
 Unit <Display_On_Off_Control> synthesized.
 
 
 Synthesizing Unit <Entry_Mode_Set>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/entrymodeset.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/entrymodeset.vhd".
 Unit <Entry_Mode_Set> synthesized.
 
 
 Synthesizing Unit <Power_On_Init>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/poweroninit.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/poweroninit.vhd".
     Found finite state machine <FSM_1> for signal <fsm_state>.
     -----------------------------------------------------------------------
     | States             | 11                                             |
@@ -255,13 +279,13 @@ Synthesizing Unit <Power_On_Init>.
     Found 1-bit register for signal <disp_onoff_enable<0>>.
     Found 1-bit register for signal <entry_mode_enable<0>>.
     Found 1-bit register for signal <fs_enable<0>>.
-    Found 27-bit adder for signal <fsm_state$add0000> created at line 236.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0000> created at line 107.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0001> created at line 153.
-    Found 4-bit comparator greater for signal <fsm_state$cmp_gt0002> created at line 156.
-    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0003> created at line 238.
+    Found 27-bit adder for signal <fsm_state$add0000> created at line 167.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0000> created at line 99.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0001> created at line 124.
+    Found 4-bit comparator greater for signal <fsm_state$cmp_gt0002> created at line 127.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0003> created at line 169.
     Found 4-bit register for signal <func_set_repeat_counter>.
-    Found 4-bit subtractor for signal <func_set_repeat_counter$addsub0000> created at line 157.
+    Found 4-bit subtractor for signal <func_set_repeat_counter$addsub0000> created at line 128.
     Found 27-bit register for signal <timer_counter>.
     Summary:
 	inferred   1 Finite State Machine(s).
@@ -272,7 +296,8 @@ Unit <Power_On_Init> synthesized.
 
 
 Synthesizing Unit <afficheur>.
-    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak61450/ELE740/mygit/Phase 1/code/main.vhd".
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/main.vhd".
+WARNING:Xst:1306 - Output <led> is never assigned.
 WARNING:Xst:653 - Signal <write_char_done<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <wait_transition_done<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <wait_anim_done<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
@@ -297,9 +322,9 @@ INFO:Xst:1799 - State wait_transition_delay_state is never reached in FSM <fsm_s
     Found 1-bit register for signal <do_power_on_init<0>>.
     Found 1-bit register for signal <do_set_ddram_addr<0>>.
     Found 32-bit up counter for signal <expr_idx>.
-    Found 32-bit comparator less for signal <fsm_state$cmp_lt0000> created at line 189.
+    Found 32-bit comparator less for signal <fsm_state$cmp_lt0000> created at line 178.
     Found 32-bit register for signal <i>.
-    Found 32-bit subtractor for signal <i$addsub0000> created at line 177.
+    Found 32-bit subtractor for signal <i$addsub0000> created at line 166.
     Found 32-bit register for signal <j>.
     Found 11-bit register for signal <lcd>.
     Found 2-bit register for signal <offset>.
@@ -786,11 +811,7 @@ WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd3> 
 WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd1> of sequential type is unconnected in block <afficheur>.
 WARNING:Xst:2677 - Node <COMP_INIT/COMP_DISP_CLEAR/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
 WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/LCD_en> of sequential type is unconnected in block <afficheur>.
-WARNING:Xst:1293 - FF/Latch <COMP_INIT/timer_counter_1> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_2> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_3> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_4> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <COMP_INIT/timer_counter_5> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_6> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_7> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <COMP_INIT/timer_counter_8> has a constant value of 0 in block <afficheur>. This FF/Latch will be trimmed during the optimization process.
@@ -823,6 +844,10 @@ WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd1> 
 WARNING:Xst:2677 - Node <COMP_INIT/COMP_ENTRY_MODE/COMP_WRITE/w_state_FSM_FFd2> of sequential type is unconnected in block <afficheur>.
 WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_26> of sequential type is unconnected in block <afficheur>.
 WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_25> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_4> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_3> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_2> of sequential type is unconnected in block <afficheur>.
+WARNING:Xst:2677 - Node <COMP_INIT/timer_counter_1> of sequential type is unconnected in block <afficheur>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -861,20 +886,20 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 12
+# IOs                              : 20
 
 Cell Usage :
-# BELS                             : 245
+# BELS                             : 231
 #      GND                         : 1
-#      INV                         : 33
+#      INV                         : 31
 #      LUT1                        : 1
-#      LUT2                        : 26
-#      LUT3                        : 19
-#      LUT4                        : 41
-#      LUT5                        : 34
-#      LUT6                        : 22
+#      LUT2                        : 14
+#      LUT3                        : 16
+#      LUT4                        : 40
+#      LUT5                        : 41
+#      LUT6                        : 21
 #      MUXCY                       : 31
-#      MUXF7                       : 4
+#      MUXF7                       : 2
 #      VCC                         : 1
 #      XORCY                       : 32
 # FlipFlops/Latches                : 84
@@ -894,18 +919,18 @@ Selected Device : 5vlx50tff1136-1
 
 Slice Logic Utilization: 
  Number of Slice Registers:              84  out of  28800     0%  
- Number of Slice LUTs:                  176  out of  28800     0%  
-    Number used as Logic:               176  out of  28800     0%  
+ Number of Slice LUTs:                  164  out of  28800     0%  
+    Number used as Logic:               164  out of  28800     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    181
-   Number with an unused Flip Flop:      97  out of    181    53%  
-   Number with an unused LUT:             5  out of    181     2%  
-   Number of fully used LUT-FF pairs:    79  out of    181    43%  
+ Number of LUT Flip Flop pairs used:    168
+   Number with an unused Flip Flop:      84  out of    168    50%  
+   Number with an unused LUT:             4  out of    168     2%  
+   Number of fully used LUT-FF pairs:    80  out of    168    47%  
    Number of unique control sets:         3
 
 IO Utilization: 
- Number of IOs:                          12
+ Number of IOs:                          20
  Number of bonded IOBs:                  12  out of    480     2%  
 
 Specific Feature Utilization:
@@ -943,7 +968,7 @@ Timing Summary:
 ---------------
 Speed Grade: -1
 
-   Minimum period: 3.197ns (Maximum Frequency: 312.793MHz)
+   Minimum period: 3.133ns (Maximum Frequency: 319.183MHz)
    Minimum input arrival time before clock: No path found
    Maximum output required time after clock: 3.264ns
    Maximum combinational path delay: No path found
@@ -954,16 +979,16 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 3.197ns (frequency: 312.793MHz)
+  Clock period: 3.133ns (frequency: 319.183MHz)
   Total number of paths / destination ports: 1176 / 91
 -------------------------------------------------------------------------
-Delay:               3.197ns (Levels of Logic = 8)
+Delay:               3.133ns (Levels of Logic = 34)
   Source:            i_0 (FF)
-  Destination:       i_4 (FF)
+  Destination:       i_31 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: i_0 to i_4
+  Data Path: i_0 to i_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -973,13 +998,39 @@ Delay:               3.197ns (Levels of Logic = 8)
      MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<1> (Msub_i_addsub0000_cy<1>)
      MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<2> (Msub_i_addsub0000_cy<2>)
      MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<3> (Msub_i_addsub0000_cy<3>)
-     XORCY:CI->O           1   0.357   0.576  Msub_i_addsub0000_xor<4> (i_addsub0000<4>)
-     LUT4:I2->O            1   0.094   0.576  i_mux0000<4>21 (i_mux0000<4>2)
-     LUT2:I0->O            1   0.094   0.000  i_4_rstpot (i_4_rstpot)
-     FD:D                     -0.018          i_4
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<4> (Msub_i_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<5> (Msub_i_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<6> (Msub_i_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<7> (Msub_i_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<8> (Msub_i_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<9> (Msub_i_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<10> (Msub_i_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<11> (Msub_i_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<12> (Msub_i_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<13> (Msub_i_addsub0000_cy<13>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<14> (Msub_i_addsub0000_cy<14>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<15> (Msub_i_addsub0000_cy<15>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<16> (Msub_i_addsub0000_cy<16>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<17> (Msub_i_addsub0000_cy<17>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<18> (Msub_i_addsub0000_cy<18>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<19> (Msub_i_addsub0000_cy<19>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<20> (Msub_i_addsub0000_cy<20>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<21> (Msub_i_addsub0000_cy<21>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<22> (Msub_i_addsub0000_cy<22>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<23> (Msub_i_addsub0000_cy<23>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<24> (Msub_i_addsub0000_cy<24>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<25> (Msub_i_addsub0000_cy<25>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<26> (Msub_i_addsub0000_cy<26>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<27> (Msub_i_addsub0000_cy<27>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<28> (Msub_i_addsub0000_cy<28>)
+     MUXCY:CI->O           1   0.026   0.000  Msub_i_addsub0000_cy<29> (Msub_i_addsub0000_cy<29>)
+     MUXCY:CI->O           0   0.026   0.000  Msub_i_addsub0000_cy<30> (Msub_i_addsub0000_cy<30>)
+     XORCY:CI->O           1   0.357   0.480  Msub_i_addsub0000_xor<31> (i_addsub0000<31>)
+     LUT4:I3->O            1   0.094   0.000  i_mux0000<31>1 (i_mux0000<31>)
+     FD:D                     -0.018          i_31
     ----------------------------------------
-    Total                      3.197ns (1.560ns logic, 1.637ns route)
-                                       (48.8% logic, 51.2% route)
+    Total                      3.133ns (2.168ns logic, 0.965ns route)
+                                       (69.2% logic, 30.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
@@ -1003,14 +1054,14 @@ Offset:              3.264ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.68 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.22 secs
  
 --> 
 
-Total memory usage is 239528 kilobytes
+Total memory usage is 237992 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  397 (   0 filtered)
+Number of warnings :  415 (   0 filtered)
 Number of infos    :    7 (   0 filtered)
 

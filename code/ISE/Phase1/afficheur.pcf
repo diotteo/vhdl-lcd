@@ -1,0 +1,27 @@
+//! **************************************************************************
+// Written by: Map P.58f on Wed Feb 04 18:30:47 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "lcden" LOCATE = SITE "AA5" LEVEL 1;
+COMP "led<0>" LOCATE = SITE "AG8" LEVEL 1;
+COMP "led<1>" LOCATE = SITE "AH8" LEVEL 1;
+COMP "led<2>" LOCATE = SITE "AH9" LEVEL 1;
+COMP "clk" LOCATE = SITE "AG18" LEVEL 1;
+COMP "led<3>" LOCATE = SITE "AG10" LEVEL 1;
+COMP "led<4>" LOCATE = SITE "AH10" LEVEL 1;
+COMP "led<5>" LOCATE = SITE "AG11" LEVEL 1;
+COMP "led<6>" LOCATE = SITE "AF11" LEVEL 1;
+COMP "led<7>" LOCATE = SITE "AE11" LEVEL 1;
+COMP "lcdrs" LOCATE = SITE "V7" LEVEL 1;
+COMP "lcdrw" LOCATE = SITE "W6" LEVEL 1;
+COMP "lcdd<0>" LOCATE = SITE "Y8" LEVEL 1;
+COMP "lcdd<1>" LOCATE = SITE "AB7" LEVEL 1;
+COMP "lcdd<2>" LOCATE = SITE "AB5" LEVEL 1;
+COMP "lcdd<3>" LOCATE = SITE "AC4" LEVEL 1;
+COMP "lcdd<4>" LOCATE = SITE "AB6" LEVEL 1;
+COMP "lcdd<5>" LOCATE = SITE "AC5" LEVEL 1;
+COMP "lcdd<6>" LOCATE = SITE "AC7" LEVEL 1;
+COMP "lcdd<7>" LOCATE = SITE "AD7" LEVEL 1;
+SCHEMATIC END;
+

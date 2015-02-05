@@ -27,6 +27,15 @@ package defs is
 	constant LCD_EN_IDX : natural := 10;
 	-- length in bits of the lcd vector
 	constant LCD_LEN : natural := 11;
+	constant LCDD_LEN : natural := 8;
+
+	type lcd_type is record
+		rs : std_logic;
+		rw : std_logic;
+		en : std_logic;
+		data : std_logic_vector(LCDD_LEN - 1 downto 0);
+	end record;
+
 
 	--- Component declarations ---
 

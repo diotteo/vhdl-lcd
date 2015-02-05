@@ -54,6 +54,7 @@ package defs is
 			);
 	end component;
 
+	constant CLR_DISP_WAIT_COUNT : natural := 1.52 ms / CLK_PERIOD;
 	component Clear_Display is
 		port(
 			clk    : in    std_logic;
@@ -74,6 +75,7 @@ package defs is
 			);
 	end component;
 
+	constant DISP_ON_OFF_CTL_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
 	component Display_On_Off_Control is
 	port(
 			clk         : in    std_logic;
@@ -86,6 +88,7 @@ package defs is
 			);
 	end component;
 
+	constant EMS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
 	component Entry_Mode_Set is
 	port(
 			clk    : in    std_logic;
@@ -97,6 +100,7 @@ package defs is
 			);
 	end component;
 
+	constant FCT_SET_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
 	component Function_Set is
 	port(
 			clk    : in    std_logic;
@@ -150,10 +154,6 @@ package defs is
 
 
 	constant POI_INIT_WAIT_COUNT : natural := 40 ms / CLK_PERIOD;
-	constant POI_FS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
-	constant POI_DO_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
-	constant POI_DC_WAIT_COUNT : natural := 1.52 ms / CLK_PERIOD;
-	constant POI_EMS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
 	component Power_On_Init is
 	port(
 		clk   : in    std_logic;

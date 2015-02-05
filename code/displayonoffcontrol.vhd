@@ -30,7 +30,7 @@ entity Display_On_Off_Control is
 			disp_on     : in    std_logic;
 			cur_on      : in    std_logic;
 			cur_blink_on: in    std_logic;
-			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd         : out   lcd_type
 			);
 end Display_On_Off_Control;
 
@@ -46,9 +46,9 @@ begin
 			done,
 			'0',
 			instr,
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd.rs,
+			lcd.rw,
+			lcd.en,
+			lcd.data
 			);
 end Display_On_Off_Control;

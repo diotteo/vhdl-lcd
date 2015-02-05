@@ -38,7 +38,7 @@ entity Return_Home is
 			clk    : in    std_logic;
 			enable : in    boolean;
 			done   : out   boolean;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 end Return_Home;
 
@@ -51,10 +51,10 @@ begin
 			done,
 			'0',
 			x"02",
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd.rs,
+			lcd.rw,
+			lcd.en,
+			lcd.data
 			);
 end Return_Home;
 

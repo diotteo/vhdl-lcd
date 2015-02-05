@@ -32,7 +32,7 @@ entity Cursor_Or_Display_Shift is
 			done   : out   boolean;
 			sh_d_c : in    std_logic; -- shift entire display, !cursor
 			sh_r_l : in    std_logic; -- shift right, !left
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 end Cursor_Or_Display_Shift;
 
@@ -48,9 +48,9 @@ begin
 			done,
 			'0',
 			instr,
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd.rs,
+			lcd.rw,
+			lcd.en,
+			lcd.data
 			);
 end Cursor_Or_Display_Shift;

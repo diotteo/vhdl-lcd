@@ -62,7 +62,7 @@ package defs is
 			clk    : in    std_logic;
 			enable : in    boolean;
 			done   : out   boolean;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -73,7 +73,7 @@ package defs is
 			done   : out   boolean;
 			sh_d_c : in    std_logic; -- shift entire display, !cursor
 			sh_r_l : in    std_logic; -- shift right, !left
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -85,7 +85,7 @@ package defs is
 			disp_on     : in    std_logic;
 			cur_on      : in    std_logic;
 			cur_blink_on: in    std_logic;
-			lcd         : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd         : out   lcd_type
 			);
 	end component;
 
@@ -96,7 +96,7 @@ package defs is
 			done   : out   boolean;
 			i_d    : in    std_logic;
 			sh     : in    std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -108,7 +108,7 @@ package defs is
 			data_len: in   std_logic;
 			nlines : in    std_logic;
 			font   : in    std_logic;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -117,7 +117,7 @@ package defs is
 			clk    : in    std_logic;
 			enable : in    boolean;
 			done   : out   boolean;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -127,7 +127,7 @@ package defs is
 			enable : in    boolean;
 			done   : out   boolean;
 			address: in    std_logic_vector(5 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -137,7 +137,7 @@ package defs is
 			enable : in    boolean;
 			done   : out   boolean;
 			address: in    std_logic_vector(6 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -147,7 +147,7 @@ package defs is
 			enable : in    boolean;
 			done   : out   boolean;
 			data   : in    std_logic_vector(7 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 	end component;
 
@@ -157,7 +157,7 @@ package defs is
 		clk   : in    std_logic;
 		enable: in    boolean;
 		done  : out   boolean;
-		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
+		lcd   : inout lcd_type
 		);
 	end component;
 
@@ -169,7 +169,7 @@ package defs is
 		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
 		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
 		pos	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
-		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0) --Vecteur contenant les signaux a envoyer au LCD
+		lcd    : out   lcd_type --Vecteur contenant les signaux a envoyer au LCD
 		);
 	end component;
 

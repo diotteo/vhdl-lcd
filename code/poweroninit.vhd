@@ -28,8 +28,7 @@ entity Power_On_Init is
 		clk   : in    std_logic;
 		enable: in    boolean;
 		done  : out   boolean;
-		lcd   : inout std_logic_vector(LCD_LEN - 1 downto 0)
-		);
+		lcd   : inout lcd_type);
 end Power_On_Init;
 
 
@@ -58,10 +57,10 @@ architecture Power_On_Init of Power_On_Init is
 	signal entry_mode_enable: boolean := false;
 	signal entry_mode_done  : boolean;
 
-	signal fs_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal dooc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal ems_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal fs_lcd   : lcd_type;
+	signal dooc_lcd : lcd_type;
+	signal cd_lcd   : lcd_type;
+	signal ems_lcd  : lcd_type;
 begin
 
 	COMP_FUNC_SET: Function_Set port map (clk, fs_enable, fs_done, '1', '1', '0', fs_lcd);
@@ -80,7 +79,7 @@ begin
 
 				-- Attends après le signal Enable pour commencer le Power On
 				when READY_STATE =>
-					lcd(LCD_EN_IDX) <= '0';
+					lcd.en <= '0';
 					timer_counter := 0;
 
 					if (enable) then

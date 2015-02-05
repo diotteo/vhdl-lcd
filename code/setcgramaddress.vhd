@@ -39,7 +39,7 @@ entity Set_Cgram_Address is
 			enable : in    boolean;
 			done   : out   boolean;
 			address: in    std_logic_vector(5 downto 0);
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 end Set_Cgram_Address;
 
@@ -55,9 +55,9 @@ begin
 			done,
 			'0',
 			instr,
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd.rs,
+			lcd.rw,
+			lcd.en,
+			lcd.data
 			);
 end Set_Cgram_Address;

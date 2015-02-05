@@ -30,7 +30,7 @@ entity Write_First_line is
 		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
 		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
 		pos	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
-		lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+		lcd   : out   lcd_type
 		);
 end Write_First_line;
 
@@ -58,8 +58,8 @@ architecture Write_First_line of Write_First_line is
 	signal i: integer range 0 to 16 := 16; -- Index pointant dans le string
 	
 	-- Signaux intermédiaire à transmettre au LCD 
-	signal sda_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal wr_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal sda_lcd: lcd_type;
+	signal wr_lcd : lcd_type;
 	
 	-- Vecteur contenant le caractere ascii en vecteur de bits
 	signal character_string : std_logic_vector(7 downto 0);

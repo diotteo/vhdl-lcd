@@ -26,7 +26,7 @@ entity Clear_Display is
 			clk    : in    std_logic;
 			enable : in    boolean;
 			done   : out   boolean;
-			lcd    : out   std_logic_vector(LCD_LEN - 1 downto 0)
+			lcd    : out   lcd_type
 			);
 end Clear_Display;
 
@@ -40,10 +40,7 @@ begin
 			done,
 			'0',
 			x"01",
-			lcd(LCD_RS_IDX),
-			lcd(LCD_RW_IDX),
-			lcd(LCD_EN_IDX),
-			lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX)
+			lcd
 			);
 end Clear_Display;
 

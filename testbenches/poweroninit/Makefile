@@ -1,5 +1,5 @@
 CODE = ../../code/
-SRC = $(CODE)/poweroninit.vhd $(CODE)/defs.vhd
+SRC = $(CODE)/defs.vhd $(CODE)/write_module.vhd $(CODE)/functionset.vhd $(CODE)/displayonoffcontrol.vhd $(CODE)/cleardisplay.vhd $(CODE)/entrymodeset.vhd $(CODE)/poweroninit.vhd
 TB = poi_tb
 
 .PHONY: default analyze elaborate wave run

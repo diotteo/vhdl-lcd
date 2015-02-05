@@ -53,10 +53,10 @@ architecture afficheur_main of afficheur is
 
 	signal fsm_state : state_t := INIT_STATE;
 
-	signal lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal poi_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal rc_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
-	signal cd_lcd : std_logic_vector(LCD_LEN - 1 downto 0);
+	signal lcd    : lcd_type;
+	signal poi_lcd: lcd_type;
+	signal rc_lcd : lcd_type;
+	signal cd_lcd : lcd_type;
 
 	signal do_power_on_init: boolean;
 	signal power_on_init_done: boolean;
@@ -77,10 +77,10 @@ architecture afficheur_main of afficheur is
 begin
 
 	-- lcd variables are hidden in a vector
-	lcdd <= lcd(LCDD_MAX_IDX downto LCDD_MIN_IDX);
-	lcdrs <= lcd(LCD_RS_IDX);
-	lcdrw <= lcd(LCD_RW_IDX);
-	lcden <= lcd(LCD_EN_IDX);
+	lcdd <= lcd.data;
+	lcdrs <= lcd.rs;
+	lcdrw <= lcd.rw;
+	lcden <= lcd.en;
 
 	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, poi_lcd);
 	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), rc_lcd);

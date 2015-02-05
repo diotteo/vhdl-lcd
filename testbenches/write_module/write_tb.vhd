@@ -86,10 +86,8 @@ begin
 			assert lcdd = patterns(i).lcdd
 				report "lcdd: wrong value" severity error;
 
-			if (patterns(i).wait_delay = 80) then -- 'enable' state
-				wait for 80 ns;
-			elsif (patterns(i).wait_delay = 1200) then -- 'hold' state
-				wait for 1200 ns;
+			if (patterns(i).wait_delay /= 0) then
+				wait for patterns(i).wait_delay * 1 ns;
 			end if;
 
 		end loop;

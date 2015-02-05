@@ -53,14 +53,14 @@ begin
 		constant patterns : pattern_array :=
 				((false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0 fs), -- unknown initial state
 				 (true,  '0', ('U', 'U', 'U', "UUUUUUUU"), 0 fs), -- 'ready' state
-				 --(), -- 'init wait' state
-				 --(), -- 'function set (1/3)' state
-				 --(), -- 'function set (2/3)' state
-				 --(), -- 'function set (3/3)' state
-				 --(), -- 'display on' state
-				 --(), -- 'display clear' state
-				 --()); -- 'entry mode' state
-				 (false, 'U', ('U', 'U', 'U', "UUUUUUUU"), 0 fs));
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), POI_INIT_WAIT_COUNT * CLK_PERIOD), -- 'init wait' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), FCT_SET_WAIT_COUNT * CLK_PERIOD), -- 'function set (1/3)' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), FCT_SET_WAIT_COUNT * CLK_PERIOD), -- 'function set (2/3)' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), FCT_SET_WAIT_COUNT * CLK_PERIOD), -- 'function set (3/3)' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), DISP_ON_OFF_CTL_WAIT_COUNT * CLK_PERIOD), -- 'display on' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), CLR_DISP_WAIT_COUNT * CLK_PERIOD), -- 'display clear' state
+				 (false, '0', ('U', 'U', 'U', "UUUUUUUU"), EMS_WAIT_COUNT * CLK_PERIOD), -- 'entry mode' state
+				 (false, '1', ('U', 'U', 'U', "UUUUUUUU"), 0 fs)); -- 'done' state
 
 		variable l: line;
 	begin
@@ -81,14 +81,25 @@ begin
 						report "done: " & boolean'image(done) & " /= " & std_logic'image(patterns(i).done) severity error;
 			end if;
 
-			assert lcd.rs = patterns(i).lcd.rs
-				report "lcd.rs: " & std_logic'image(lcd.rs) & " /= " & std_logic'image(patterns(i).lcd.rs) severity error;
-			assert lcd.rw = patterns(i).lcd.rw
-				report "lcd.rw: " & std_logic'image(lcd.rw) & " /= " & std_logic'image(patterns(i).lcd.rw) severity error;
-			assert lcd.en = patterns(i).lcd.en
-				report "lcd.en: " & std_logic'image(lcd.en) & " /= " & std_logic'image(patterns(i).lcd.en) severity error;
-			assert lcd.data = patterns(i).lcd.data
-				report "lcd.data: wrong value" severity error;
+			if (patterns(i).lcd.rs /= 'U') then
+				assert lcd.rs = patterns(i).lcd.rs
+					report "lcd.rs: " & std_logic'image(lcd.rs) & " /= " & std_logic'image(patterns(i).lcd.rs) severity error;
+			end if;
+
+			if (patterns(i).lcd.rw /= 'U') then
+				assert lcd.rw = patterns(i).lcd.rw
+					report "lcd.rw: " & std_logic'image(lcd.rw) & " /= " & std_logic'image(patterns(i).lcd.rw) severity error;
+			end if;
+
+			if (patterns(i).lcd.en /= 'U') then
+				assert lcd.en = patterns(i).lcd.en
+					report "lcd.en: " & std_logic'image(lcd.en) & " /= " & std_logic'image(patterns(i).lcd.en) severity error;
+			end if;
+
+			if (patterns(i).lcd.data /= "UUUUUUUU") then
+				assert lcd.data = patterns(i).lcd.data
+					report "lcd.data: wrong value" severity error;
+			end if;
 
 			if (patterns(i).wait_delay /= 0 fs) then
 				wait for patterns(i).wait_delay;

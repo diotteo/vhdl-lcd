@@ -9,7 +9,7 @@ entity write_tb is
 end write_tb;
 
 architecture behav of write_tb is
-	signal clock : std_logic := '0';
+	signal clock : std_logic;
 	signal enable: boolean := false;
 	signal rs    : std_logic;
 	signal instr : std_logic_vector(7 downto 0);
@@ -19,10 +19,22 @@ architecture behav of write_tb is
 	signal lcd_en: std_logic;
 	signal lcdd  : std_logic_vector(7 downto 0);
 
+	signal runsim: boolean := true;
+
 begin
 	comp_test: write_module port map (clock, enable, done, rs, instr, lcd_rs, lcd_rw, lcd_en, lcdd);
 
-	clock <= not clock after 5 ns; -- 100 MHz clock
+	process
+	begin
+		if (not runsim) then
+			wait;
+		else
+			clock <= '0';
+			wait for 5 ns;
+			clock <= '1';
+			wait for 5 ns;
+		end if;
+	end process;
 
 	process
 		type pattern_type is record
@@ -82,8 +94,7 @@ begin
 
 		end loop;
 
-		wait for 20 ns;
-		assert false report "end of test" severity failure;
+		runsim <= false;
 		wait;
 	end process;
 end behav;

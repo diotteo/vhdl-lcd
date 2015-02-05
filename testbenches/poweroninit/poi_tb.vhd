@@ -14,10 +14,20 @@ architecture behav of poi_tb is
 	signal done  : boolean;
 	signal lcd   : lcd_type;
 
+	-- These are set to track lcd, used only because GHDL doesn't support records well
+	signal lcd_data: std_logic_vector(LCDD_LEN - 1 downto 0);
+	signal lcd_en  : std_logic;
+	signal lcd_rs  : std_logic;
+	signal lcd_rw  : std_logic;
+
 	signal runsim: boolean := true;
 
 begin
 	comp_test: Power_On_Init port map (clock, enable, done, lcd);
+	lcd_data <= lcd.data;
+	lcd_en <= lcd.en;
+	lcd_rs <= lcd.rs;
+	lcd_rw <= lcd.rw;
 
 	process
 	begin

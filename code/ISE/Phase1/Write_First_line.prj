@@ -1,0 +1,5 @@
+vhdl work "../../write_module.vhd"
+vhdl work "../../defs.vhd"
+vhdl work "../../writedatatoram.vhd"
+vhdl work "../../setddramaddress.vhd"
+vhdl work "../../write_line.vhd"

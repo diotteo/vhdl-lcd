@@ -1,0 +1,552 @@
+Release 14.5 - xst P.58f (nt)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.09 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> Reading design: Write_First_line.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Write_First_line.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Write_First_line"
+Output Format                      : NGC
+Target Device                      : xc5vlx50t-1-ff1136
+
+---- Source Options
+Top Module Name                    : Write_First_line
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/defs.vhd" in Library work.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd" in Library work.
+Architecture behavioral of Entity write_module is up to date.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd" in Library work.
+Architecture set_ddram_address of Entity set_ddram_address is up to date.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/writedatatoram.vhd" in Library work.
+Architecture write_data_to_ram of Entity write_data_to_ram is up to date.
+Compiling vhdl file "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_line.vhd" in Library work.
+Entity <write_first_line> compiled.
+Entity <write_first_line> (Architecture <write_first_line>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <Write_First_line> in library <work> (architecture <write_first_line>).
+
+Analyzing hierarchy for entity <Set_Ddram_Address> in library <work> (architecture <set_ddram_address>).
+
+Analyzing hierarchy for entity <Write_Data_To_Ram> in library <work> (architecture <write_data_to_ram>).
+
+Analyzing hierarchy for entity <write_module> in library <work> (architecture <behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <Write_First_line> in library <work> (Architecture <write_first_line>).
+Entity <Write_First_line> analyzed. Unit <Write_First_line> generated.
+
+Analyzing Entity <Set_Ddram_Address> in library <work> (Architecture <set_ddram_address>).
+Entity <Set_Ddram_Address> analyzed. Unit <Set_Ddram_Address> generated.
+
+Analyzing Entity <write_module> in library <work> (Architecture <behavioral>).
+INFO:Xst:2679 - Register <LCD_rw> in unit <write_module> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <write_module> analyzed. Unit <write_module> generated.
+
+Analyzing Entity <Write_Data_To_Ram> in library <work> (Architecture <write_data_to_ram>).
+Entity <Write_Data_To_Ram> analyzed. Unit <Write_Data_To_Ram> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <write_module>.
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_module.vhd".
+    Found finite state machine <FSM_0> for signal <w_state>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 6                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Power Up State     | ready_state                                    |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <LCDD>.
+    Found 1-bit register for signal <LCD_en>.
+    Found 1-bit register for signal <LCD_rs>.
+    Found 1-bit register for signal <done<0>>.
+    Found 8-bit register for signal <counter>.
+    Found 8-bit adder for signal <counter$share0000> created at line 71.
+    Found 8-bit comparator greatequal for signal <w_state$cmp_ge0000> created at line 101.
+    Found 8-bit comparator greatequal for signal <w_state$cmp_ge0001> created at line 113.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  19 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <write_module> synthesized.
+
+
+Synthesizing Unit <Set_Ddram_Address>.
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/setddramaddress.vhd".
+Unit <Set_Ddram_Address> synthesized.
+
+
+Synthesizing Unit <Write_Data_To_Ram>.
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/writedatatoram.vhd".
+Unit <Write_Data_To_Ram> synthesized.
+
+
+Synthesizing Unit <Write_First_line>.
+    Related source file is "//sole.ens.ad.etsmtl.ca/ens2/home/ak67270/ELE740/phase1/Phase 1/code/write_line.vhd".
+    Found finite state machine <FSM_1> for signal <fsm_state>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 13                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 6                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | ready_state                                    |
+    | Power Up State     | ready_state                                    |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <done<0>>.
+    Found 11-bit register for signal <lcd>.
+    Found 1-bit register for signal <do_set_ddram_addr<0>>.
+    Found 1-bit register for signal <do_write_data_to_ram<0>>.
+    Found 27-bit adder for signal <fsm_state$add0000> created at line 123.
+    Found 27-bit comparator greater for signal <fsm_state$cmp_gt0000> created at line 126.
+    Found 5-bit comparator greater for signal <fsm_state$cmp_gt0001> created at line 157.
+    Found 5-bit register for signal <i>.
+    Found 5-bit subtractor for signal <i$addsub0000> created at line 140.
+    Found 27-bit register for signal <timer_counter>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  46 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <Write_First_line> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 4
+ 27-bit adder                                          : 1
+ 5-bit subtractor                                      : 1
+ 8-bit adder                                           : 2
+# Registers                                            : 16
+ 1-bit register                                        : 9
+ 11-bit register                                       : 1
+ 27-bit register                                       : 1
+ 5-bit register                                        : 1
+ 8-bit register                                        : 4
+# Comparators                                          : 6
+ 27-bit comparator greater                             : 1
+ 5-bit comparator greater                              : 1
+ 8-bit comparator greatequal                           : 4
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <fsm_state/FSM> on signal <fsm_state[1:6]> with one-hot encoding.
+-----------------------------------
+ State                 | Encoding
+-----------------------------------
+ ready_state           | 000001
+ set_cursor_state      | 000010
+ set_cursor_wait_state | 000100
+ write_char_state      | 001000
+ write_char_wait_state | 010000
+ done_state            | 100000
+-----------------------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <COMP_RST_CURSOR/COMP_WRITE/w_state/FSM> on signal <w_state[1:6]> with one-hot encoding.
+Optimizing FSM <COMP_WR_CHAR/COMP_WRITE/w_state/FSM> on signal <w_state[1:6]> with one-hot encoding.
+---------------------------------
+ State               | Encoding
+---------------------------------
+ ready_state         | 000001
+ init_state          | 000010
+ signal_settle_state | 000100
+ enable_state        | 001000
+ hold_state          | 010000
+ done_state          | 100000
+---------------------------------
+WARNING:Xst:1710 - FF/Latch <LCDD_7> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 0 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <LCD_rs> (without init value) has a constant value of 1 in block <COMP_WRITE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <lcd_9> (without init value) has a constant value of 0 in block <Write_First_line>. This FF/Latch will be trimmed during the optimization process.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 2
+# Adders/Subtractors                                   : 4
+ 27-bit adder                                          : 1
+ 5-bit subtractor                                      : 1
+ 8-bit adder                                           : 2
+# Registers                                            : 84
+ Flip-Flops                                            : 84
+# Comparators                                          : 6
+ 27-bit comparator greater                             : 1
+ 5-bit comparator greater                              : 1
+ 8-bit comparator greatequal                           : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <Write_First_line> ...
+
+Optimizing unit <write_module> ...
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <write_module>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <counter_7> has a constant value of 0 in block <write_module>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <lcd_9> (without init value) has a constant value of 0 in block <Write_First_line>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_WR_CHAR/COMP_WRITE/LCD_rs> (without init value) has a constant value of 1 in block <Write_First_line>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCD_rs> (without init value) has a constant value of 0 in block <Write_First_line>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <COMP_RST_CURSOR/COMP_WRITE/LCDD_7> (without init value) has a constant value of 1 in block <Write_First_line>. This FF/Latch will be trimmed during the optimization process.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Write_First_line, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 96
+ Flip-Flops                                            : 96
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Write_First_line.ngr
+Top Level Output File Name         : Write_First_line
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 150
+
+Cell Usage :
+# BELS                             : 280
+#      GND                         : 1
+#      INV                         : 3
+#      LUT1                        : 26
+#      LUT2                        : 15
+#      LUT3                        : 14
+#      LUT4                        : 21
+#      LUT5                        : 35
+#      LUT6                        : 86
+#      MUXCY                       : 32
+#      MUXF7                       : 19
+#      VCC                         : 1
+#      XORCY                       : 27
+# FlipFlops/Latches                : 96
+#      FD                          : 31
+#      FDE                         : 26
+#      FDR                         : 38
+#      FDS                         : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 149
+#      IBUF                        : 137
+#      OBUF                        : 12
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 5vlx50tff1136-1 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              96  out of  28800     0%  
+ Number of Slice LUTs:                  200  out of  28800     0%  
+    Number used as Logic:               200  out of  28800     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    208
+   Number with an unused Flip Flop:     112  out of    208    53%  
+   Number with an unused LUT:             8  out of    208     3%  
+   Number of fully used LUT-FF pairs:    88  out of    208    42%  
+   Number of unique control sets:         5
+
+IO Utilization: 
+ Number of IOs:                         150
+ Number of bonded IOBs:                 150  out of    480    31%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 96    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -1
+
+   Minimum period: 4.672ns (Maximum Frequency: 214.036MHz)
+   Minimum input arrival time before clock: 3.951ns
+   Maximum output required time after clock: 3.264ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 4.672ns (frequency: 214.036MHz)
+  Total number of paths / destination ports: 16058 / 104
+-------------------------------------------------------------------------
+Delay:               4.672ns (Levels of Logic = 26)
+  Source:            timer_counter_0 (FF)
+  Destination:       timer_counter_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: timer_counter_0 to timer_counter_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.471   0.341  timer_counter_0 (timer_counter_0)
+     INV:I->O              1   0.238   0.000  Madd_fsm_state_add0000_lut<0>_INV_0 (Madd_fsm_state_add0000_lut<0>)
+     MUXCY:S->O            1   0.372   0.000  Madd_fsm_state_add0000_cy<0> (Madd_fsm_state_add0000_cy<0>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<1> (Madd_fsm_state_add0000_cy<1>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<2> (Madd_fsm_state_add0000_cy<2>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<3> (Madd_fsm_state_add0000_cy<3>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<4> (Madd_fsm_state_add0000_cy<4>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<5> (Madd_fsm_state_add0000_cy<5>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<6> (Madd_fsm_state_add0000_cy<6>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<7> (Madd_fsm_state_add0000_cy<7>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<8> (Madd_fsm_state_add0000_cy<8>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<9> (Madd_fsm_state_add0000_cy<9>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<10> (Madd_fsm_state_add0000_cy<10>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<11> (Madd_fsm_state_add0000_cy<11>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<12> (Madd_fsm_state_add0000_cy<12>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<13> (Madd_fsm_state_add0000_cy<13>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<14> (Madd_fsm_state_add0000_cy<14>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<15> (Madd_fsm_state_add0000_cy<15>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<16> (Madd_fsm_state_add0000_cy<16>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<17> (Madd_fsm_state_add0000_cy<17>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<18> (Madd_fsm_state_add0000_cy<18>)
+     MUXCY:CI->O           1   0.026   0.000  Madd_fsm_state_add0000_cy<19> (Madd_fsm_state_add0000_cy<19>)
+     XORCY:CI->O           2   0.357   0.978  Madd_fsm_state_add0000_xor<20> (fsm_state_add0000<20>)
+     LUT5:I0->O            1   0.094   0.000  Mcompar_fsm_state_cmp_gt0000_lut<4> (Mcompar_fsm_state_cmp_gt0000_lut<4>)
+     MUXCY:S->O            1   0.372   0.000  Mcompar_fsm_state_cmp_gt0000_cy<4> (Mcompar_fsm_state_cmp_gt0000_cy<4>)
+     MUXCY:CI->O          31   0.254   0.607  Mcompar_fsm_state_cmp_gt0000_cy<5> (Mcompar_fsm_state_cmp_gt0000_cy<5>)
+     LUT6:I5->O            1   0.094   0.000  timer_counter_mux0000<9>1 (timer_counter_mux0000<9>)
+     FDR:D                    -0.018          timer_counter_17
+    ----------------------------------------
+    Total                      4.672ns (2.746ns logic, 1.926ns route)
+                                       (58.8% logic, 41.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 246 / 70
+-------------------------------------------------------------------------
+Offset:              3.951ns (Levels of Logic = 6)
+  Source:            line_1<13><7> (PAD)
+  Destination:       COMP_WR_CHAR/COMP_WRITE/LCDD_7 (FF)
+  Destination Clock: clk rising
+
+  Data Path: line_1<13><7> to COMP_WR_CHAR/COMP_WRITE/LCDD_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   0.818   0.789  line_1_13__7_IBUF (line_1_13__7_IBUF)
+     LUT4:I0->O            1   0.094   0.576  character_string<7>151 (character_string<7>151)
+     LUT6:I4->O            1   0.094   0.000  character_string<7>252_G (N37)
+     MUXF7:I1->O           2   0.254   0.978  character_string<7>252 (character_string<7>252)
+     LUT6:I1->O            1   0.094   0.000  character_string<7>314_G (N57)
+     MUXF7:I1->O           1   0.254   0.000  character_string<7>314 (character_string<7>)
+     FDE:D                    -0.018          COMP_WR_CHAR/COMP_WRITE/LCDD_7
+    ----------------------------------------
+    Total                      3.951ns (1.608ns logic, 2.343ns route)
+                                       (40.7% logic, 59.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 11 / 11
+-------------------------------------------------------------------------
+Offset:              3.264ns (Levels of Logic = 1)
+  Source:            done_0 (FF)
+  Destination:       done<0> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: done_0 to done<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              2   0.471   0.341  done_0 (done_0)
+     OBUF:I->O                 2.452          done_0_OBUF (done<0>)
+    ----------------------------------------
+    Total                      3.264ns (2.923ns logic, 0.341ns route)
+                                       (89.6% logic, 10.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.43 secs
+ 
+--> 
+
+Total memory usage is 241064 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   10 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

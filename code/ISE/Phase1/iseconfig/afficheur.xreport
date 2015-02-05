@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-02-03T13:42:05</DateModified>
+  <DateModified>2015-02-04T18:29:37</DateModified>
   <ModuleName>afficheur</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>J:/ELE740/mygit/Phase 1/code/ISE/Phase1/iseconfig/afficheur.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>J:/ELE740/mygit/Phase 1/code/ISE/Phase1</ImplementationReportsDirectory>
+  <SavedFilePath>J:/ELE740/phase1/Phase 1/code/ISE/Phase1/iseconfig/afficheur.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>J:/ELE740/phase1/Phase 1/code/ISE/Phase1\</ImplementationReportsDirectory>
   <DateInitialized>2015-02-03T13:42:04</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

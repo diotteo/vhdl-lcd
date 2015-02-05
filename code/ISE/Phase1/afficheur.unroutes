@@ -1,0 +1,20 @@
+Release 14.5 - par P.58f (nt)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Wed Feb 04 18:31:41 2015
+
+All signals are completely routed.
+
+WARNING:ParHelpers:362 - There are 8 sourceless signals in this design. This design will not pass the DRC check run by
+   Bitgen.
+
+   led<0>_OBUF
+   led<1>_OBUF
+   led<2>_OBUF
+   led<3>_OBUF
+   led<4>_OBUF
+   led<5>_OBUF
+   led<6>_OBUF
+   led<7>_OBUF
+
+

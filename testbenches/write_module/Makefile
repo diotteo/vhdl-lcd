@@ -1,5 +1,5 @@
 CODE = ../../code/
-SRC = $(CODE)/write_module.vhd $(CODE)/defs.vhd
+SRC = $(CODE)/defs.vhd $(CODE)/write_module.vhd
 TB = write_tb
 
 .PHONY: default analyze elaborate wave run

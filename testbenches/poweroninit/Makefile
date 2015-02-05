@@ -2,6 +2,9 @@ CODE = ../../code/
 SRC = $(CODE)/defs.vhd $(CODE)/write_module.vhd $(CODE)/functionset.vhd $(CODE)/displayonoffcontrol.vhd $(CODE)/cleardisplay.vhd $(CODE)/entrymodeset.vhd $(CODE)/poweroninit.vhd
 TB = poi_tb
 
+PS_FILE ?= tb.ps
+tb.ps: makewave;
+
 .PHONY: default
 default: run
 
@@ -26,5 +29,5 @@ viewwave: makewave
 	gtkwave tb.vcd
 
 .PHONY: ps2pdfwave
-ps2pdfwave: makewave
-	ps2pdf -dPDFSETTINGS=/prepress -dEPSCrop tb.ps
+ps2pdfwave: $(PS_FILE)
+	ps2pdf -dPDFSETTINGS=/prepress -dEPSCrop $(PS_FILE)

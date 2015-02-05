@@ -43,9 +43,6 @@ begin
 			done,
 			'1',
 			data,
-			lcd.rs,
-			lcd.rw,
-			lcd.en,
-			lcd.data
+			lcd
 			);
 end Write_Data_To_Ram;

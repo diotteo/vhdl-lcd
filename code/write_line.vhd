@@ -64,6 +64,11 @@ architecture Write_First_line of Write_First_line is
 	-- Vecteur contenant le caractere ascii en vecteur de bits
 	signal character_string : std_logic_vector(7 downto 0);
 	
+	--Signal permettant de contrôler la minuterie
+	signal start_timer : boolean := false;
+	signal timer_ns :		integer;
+	signal timer_done:	boolean;
+	
 begin
 
 	--Définis les vecteurs instructions pour le module Write First Line
@@ -71,8 +76,9 @@ begin
 	COMP_WR_CHAR: Write_Data_To_Ram port map (clk, do_write_data_to_ram, write_data_to_ram_done, character_string, wr_lcd); -- Génère l'instruction pour écrire le charactère à l'index i de line_1
 	character_string <= std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
 	
+	TIMER_WAIT: Timer port map (clk, rst, start_timer, timer_ns, timer_done);
+	
 	process(clk)
-		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
 	begin
 
 		if rising_edge(clk) then
@@ -82,7 +88,7 @@ begin
 			
 				do_set_ddram_addr <= false;
 				do_write_data_to_ram <= false;
-				timer_counter := 0;
+				start_timer <= false;
 				i <= 16;
 				fsm_state <= READY_STATE;
 				
@@ -97,7 +103,7 @@ begin
 						--RAZ des registres et compteurs
 						do_set_ddram_addr <= false;
 						
-						timer_counter := 0;
+						start_timer <= false;
 						i <= 16;
 						done <= false;
 						
@@ -120,12 +126,13 @@ begin
 					-- Délai de 40 us avant pour terminer la configuration du curseur
 					when SET_CURSOR_WAIT_STATE =>
 
-						timer_counter := timer_counter + 1;
+						start_timer <= true;
+						timer_ns <= 4000;
 						
 						--Delai 40ms
-						if timer_counter > 4000 then
+						if timer_done then
 							fsm_state <= WRITE_CHAR_STATE;
-							timer_counter := 0;
+							start_timer <= false;
 						end if;
 
 
@@ -145,13 +152,13 @@ begin
 					
 					-- Délai de 40 us pour terminer l'écriture
 					when WRITE_CHAR_WAIT_STATE =>
+												
+						start_timer <= true;
+						timer_ns <= 4000;
 						
-						timer_counter := timer_counter + 1;
-						
-						
-						if (timer_counter > 4000) then
-							timer_counter := 0;
-							
+						--Delai 40ms
+						if timer_done then
+							start_timer <= false;
 							-- Si toute la ligne a été écrite, nous terminons le module
 							-- Sinon, nous écrivons le prochain caractère
 							if (i > 0) then

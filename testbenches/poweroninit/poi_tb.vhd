@@ -91,7 +91,7 @@ begin
 				report "lcd.data: wrong value" severity error;
 
 			if (patterns(i).wait_delay /= 0) then
-				wait for patterns(i).wait_delay * 1 ns;
+				wait for patterns(i).wait_delay;
 			end if;
 
 		end loop;

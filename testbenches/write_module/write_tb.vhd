@@ -50,18 +50,18 @@ begin
 			instr : std_logic_vector(7 downto 0);
 			done  : std_logic;
 			lcd: lcd_type;
-			wait_delay: natural;
+			wait_delay: time;
 		end record;
 
 		type pattern_array is array (natural range <>) of pattern_type;
 		constant patterns : pattern_array :=
-				((false, 'U', "UUUUUUUU", 'U', ('U', 'U', 'U', "UUUUUUUU"), 0),    -- unknown initial state
-				 (true,  '0', x"01",      '0', ('U', 'U', 'U', "UUUUUUUU"), 0),    -- 'ready' state
-				 (true,  '0', x"01",      '0', ('U', 'U', 'U', "UUUUUUUU"), 0),    -- 'init' state
-				 (false, '0', x"01",      '0', ('0', '0', '0', x"01"     ), 0),    -- 'signal settle' state
-				 (false, '0', x"01",      '0', ('0', '1', '0', x"01"     ), 80),   -- 'enable' state
-				 (false, '0', x"01",      '0', ('0', '0', '0', x"01"     ), 1200), -- 'hold' state
-				 (false, '0', x"01",      '1', ('0', '0', '0', x"01"     ), 0));   -- 'done' state
+				((false, 'U', "UUUUUUUU", 'U', ('U', 'U', 'U', "UUUUUUUU"), 0 fs),    -- unknown initial state
+				 (true,  '0', x"01",      '0', ('U', 'U', 'U', "UUUUUUUU"), 0 fs),    -- 'ready' state
+				 (true,  '0', x"01",      '0', ('U', 'U', 'U', "UUUUUUUU"), 0 fs),    -- 'init' state
+				 (false, '0', x"01",      '0', ('0', '0', '0', x"01"     ), 0 fs),    -- 'signal settle' state
+				 (false, '0', x"01",      '0', ('0', '0', '1', x"01"     ), 80 ns),   -- 'enable' state
+				 (false, '0', x"01",      '0', ('0', '0', '0', x"01"     ), 1200 ns), -- 'hold' state
+				 (false, '0', x"01",      '1', ('0', '0', '0', x"01"     ), 0 fs));   -- 'done' state
 
 		variable l: line;
 	begin
@@ -90,8 +90,8 @@ begin
 			assert lcd.data = patterns(i).lcd.data
 				report "lcd.data: wrong value" severity error;
 
-			if (patterns(i).wait_delay /= 0) then
-				wait for patterns(i).wait_delay * 1 ns;
+			if (patterns(i).wait_delay /= 0 fs) then
+				wait for patterns(i).wait_delay;
 			end if;
 
 		end loop;

@@ -121,7 +121,7 @@ begin
 
 					done <= true;
 
-					if (enable) then
+					if (not enable) then
 						w_state <= READY_STATE;
 					end if;
 

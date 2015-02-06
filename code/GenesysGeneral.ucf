@@ -94,7 +94,7 @@ NET "led<6>"  LOC = "AF11"; # Bank = 22, Pin name = IO_L16P_22,     Sch name = L
 NET "led<7>"  LOC = "AE11"; # Bank = 22, Pin name = IO_L16N_22,     Sch name = LD7
 
 ## onBoard PUSH BUTTONS
-# NET "btn<0>" LOC = "G6";  # Bank = 12, Pin name = IO_L17P_12,        Sch name = BTN0
+  NET "reset" LOC = "G6";  # Bank = 12, Pin name = IO_L17P_12,        Sch name = BTN0
 # NET "btn<1>" LOC = "G7";  # Bank = 12, Pin name = IO_L17N_12,        Sch name = BTN1
 # NET "btn<2>" LOC = "E6";  # Bank = 12, Pin name = IO_L19P_12,        Sch name = BTNU
 # NET "btn<3>" LOC = "J17"; # Bank = 3,  Pin name = IO_L4N_GC_VREF_3,  Sch name = BTNR

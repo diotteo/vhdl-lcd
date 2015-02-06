@@ -123,7 +123,14 @@ begin
 					--Init variables and what not here
 
 					offset := 0;
+
+					-- Initialize the lcd.en fields to 0.
+					-- This is useful when we connect the LCD pins to an uninitialized module
 					lcd.en <= '0';
+					poi_lcd.en <= '0';
+					rc_lcd.en  <= '0';
+					cd_lcd.en  <= '0';
+					wl_lcd.en  <= '0';
 					fsm_state <= POWER_ON_INIT_STATE;
 
 				--Execute la séquence d'initialisation

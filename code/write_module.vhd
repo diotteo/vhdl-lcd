@@ -61,15 +61,15 @@ begin
 
 				when READY_STATE =>
 					done <= false;
-
+					
+					-- Prépare les signaux qui seront envoyés au LCD
+					lcd.rs <= rs;
+					lcd.rw <= '0'; --Mode write
+					lcd.en <= '0';
+					lcd.data <= instr;
+					
 					if (enable) then
 						w_state <= SIGNAL_SETTLE_STATE;
-						
-						-- Prépare les signaux qui seront envoyés au LCD
-						lcd.rs <= rs;
-						lcd.rw <= '0'; --Mode write
-						lcd.en <= '0';
-						lcd.data <= instr;
 						
 						counter <= 0;
 					end if;

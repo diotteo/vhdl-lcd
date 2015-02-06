@@ -86,13 +86,13 @@ begin
 	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, cd_lcd);
 
 	process(clk)
-		variable i, j: integer;
-		variable offset: integer := 0;
-		variable charpos: integer := 0;
-		variable expr_idx: integer := 0;
+		variable i, j    : natural;
+		variable offset  : natural := 0;
+		variable charpos : natural := 0;
+		variable expr_idx: natural := 0;
 
 		--FIXME: We need to figure out how to print characters and therefore which type to use
-		constant EXPR_IDX_MAX: integer := 8 * 32 * 3 - 1;
+		constant EXPR_IDX_MAX: natural := 8 * 32 * 3 - 1;
 		variable expr: std_logic_vector(EXPR_IDX_MAX downto 0);
 	begin
 		if rising_edge(clk) then

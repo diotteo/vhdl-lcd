@@ -51,10 +51,7 @@ begin
 			done,
 			'0',
 			x"02",
-			lcd.rs,
-			lcd.rw,
-			lcd.en,
-			lcd.data
+			lcd
 			);
 end Return_Home;
 

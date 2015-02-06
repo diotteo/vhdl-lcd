@@ -22,7 +22,7 @@ use IEEE.std_logic_1164.all;
 package defs is
 	constant CLK_PERIOD : time := 10 ns;
 	constant ANIMATION_DELAY_WAIT_COUNT : natural := 500 ms / CLK_PERIOD;
-	constant TRANSITION_DELAY_WAIT_COUNT : natural := 5000 ms / CLK_PERIOD;
+	constant TRANSITION_DELAY_WAIT_COUNT : natural := 5 sec / CLK_PERIOD;
 	
 	constant LCDD_LEN : natural := 8;
 

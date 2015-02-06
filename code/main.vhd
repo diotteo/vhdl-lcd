@@ -76,15 +76,19 @@ architecture afficheur_main of afficheur is
 	signal wait_transition_done: boolean;
 
 	--Signal permettant de contrôler la minuterie
-	signal start_timer : boolean := false;
-	signal timer_ns :		integer;
-	signal timer_done:	boolean;
+	signal start_timer: boolean := false;
+	signal timer_ns   : natural;
+	signal timer_done : boolean;
 
-	type string_array is array (2 downto 0) of string (0 to 32);
-	signal exprs_array: string_array;
+	constant NB_EXPR : natural := 3;
+	type string_array is array (NB_EXPR - 1 downto 0) of string (1 to 32);
+	constant exprs_array: string_array := (
+			"What... is your name?           ",
+			"What... is your quest?          ",
+			"What... is your favorite color? ");
 
-	signal expr_idx: integer range 0 to 2 := 0;
-	signal i: integer range 0 to 16 := 0;
+	signal expr_idx: natural range 0 to 2 := 0;
+	signal i: natural range 0 to 16 := 0;
 
 
 	constant LAST_ADDR: std_logic_vector(6 downto 0) := std_logic_vector(to_unsigned(16#50#, 7));
@@ -105,22 +109,10 @@ begin
 
 	TIMER_WAIT: Timer port map (clk, reset, start_timer, timer_ns, timer_done);
 
-	exprs_array(0) <= "What... is your name?           ";
-	exprs_array(1) <= "What... is your quest?          ";
-	exprs_array(2) <= "What... is your favorite color? ";
-
 	process(clk)
-		--variable i, j    : natural;
-		--variable offset  : natural := 0;
-		--variable charpos : natural := 0;
-		--variable expr_idx: natural := 0;
-		variable j: integer; -- i Compteur pour répéter l'animation sur une ligne
-		variable offset: integer := 0;
-		variable charpos: integer := 0;
-
-		--FIXME: We need to figure out how to print characters and therefore which type to use
-		constant EXPR_IDX_MAX: natural := 8 * 32 * 3 - 1;
-		variable expr: std_logic_vector(EXPR_IDX_MAX downto 0);
+		variable j: natural; -- Compteur pour répéter l'animation sur une ligne
+		variable offset: natural := 0;
+		variable charpos: natural := 0;
 	begin
 
 		if rising_edge(clk) then
@@ -184,24 +176,6 @@ begin
 
 					end if;
 
-				-- Délai d'animation pour la transition de la ligne
-					when CLR_DISP_WAIT_STATE =>
-
-					start_timer <= true;
-					timer_ns <= CLR_DISP_WAIT_COUNT;
-
-					if (timer_done) then
-						start_timer <= false;
-
-						--if != 0
-						if (offset /= 0) then
-							fsm_state <= WRITE_FIRST_LINE_STATE;
-						else
-							fsm_state <= RST_CURSOR_STATE;
-						end if;
-					end if;
-
-
 				-- Place le curseur sur la 2e ligne de l'afficheur
 				when RST_CURSOR_STATE =>
 					do_set_ddram_addr <= true;
@@ -259,7 +233,7 @@ begin
 
 				-- Calcul l'offset pour passer a la prochaine expression
 				when INCR_EXPR_STATE =>
-					if expr_idx = EXPR_IDX_MAX then
+					if expr_idx = NB_EXPR - 1 then
 						expr_idx <= 0;
 					else
 						expr_idx <= expr_idx + 1;

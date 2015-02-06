@@ -92,9 +92,8 @@ begin
 		variable expr_idx: natural := 0;
 
 		--FIXME: We need to figure out how to print characters and therefore which type to use
-		constant NB_EXPR: natural := 3;
-		type expr_type is array(1 to NB_EXPR) of string(1 to 32);
-		variable expr: expr_type;
+		constant EXPR_IDX_MAX: natural := 8 * 32 * 3 - 1;
+		variable expr: std_logic_vector(EXPR_IDX_MAX downto 0);
 	begin
 		if rising_edge(clk) then
 			case fsm_state is
@@ -174,6 +173,7 @@ begin
 					--COMP_CHAR_WRITE: WRITE_CHAR port map (expr(charpos))
 
 					if (write_char_done) then
+						-- FIXME: Is this possible?
 						if (i < j) then
 							j := j - 1;
 							fsm_state <= WAIT_ANIM_DELAY_STATE;
@@ -201,7 +201,7 @@ begin
 
 
 				when INCR_EXPR_STATE =>
-					if expr_idx = NB_EXPR - 1 then
+					if expr_idx = EXPR_IDX_MAX then
 						expr_idx := 0;
 					else
 						expr_idx := expr_idx + 1;

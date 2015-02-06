@@ -64,11 +64,8 @@ architecture afficheur_main of afficheur is
 	signal set_ddram_addr_done: boolean;
 	signal do_clr_disp: boolean;
 	signal clr_disp_done: boolean;
-
-
 	signal do_write_char: boolean;
 	signal write_char_done: boolean;
-
 	signal do_write_line: boolean;
 	signal write_line_done: boolean;
 
@@ -124,6 +121,12 @@ begin
 
 					offset := 0;
 
+					do_power_on_init <= false;
+					do_set_ddram_addr <= false;
+					do_clr_disp <= false;
+					do_write_char <= false;
+					do_write_line <= false;
+
 					-- Initialize the lcd.en fields to 0.
 					-- This is useful when we connect the LCD pins to an uninitialized module
 					-- lcd.en <= '0';
@@ -173,8 +176,8 @@ begin
 
 				-- Écrit la premiere ligne de l'afficheur sans animation
 				when WRITE_FIRST_LINE_STATE =>
-
 					do_write_line <= true;
+					lcd <= wl_lcd;
 
 					if (write_line_done) then
 
@@ -205,8 +208,8 @@ begin
 
 				-- Permet d'écrire un nombre de caractères sur la ligne 2 dépendant de l'animation
 				when WRITE_EXPR_STATE =>
-
 					do_write_line <= true;
+					lcd <= wl_lcd;
 
 					if (write_line_done) then
 
@@ -221,7 +224,6 @@ begin
 
 				-- Délai d'animation pour la transition de la ligne
 				when WAIT_ANIM_DELAY_STATE =>
-
 					start_timer <= true;
 					timer_ns <= ANIMATION_DELAY_WAIT_COUNT;
 
@@ -251,7 +253,6 @@ begin
 
 				--Délai avant de passer à la prochaine expression
 				when WAIT_TRANSITION_DELAY_STATE =>
-
 					start_timer <= true;
 					timer_ns <= TRANSITION_DELAY_WAIT_COUNT;
 

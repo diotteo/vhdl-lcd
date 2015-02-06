@@ -48,13 +48,13 @@ architecture Power_On_Init of Power_On_Init is
 
 	signal fsm_state : STATE_TYPE := READY_STATE;
 
-	signal fs_enable : boolean := false;
+	signal fs_enable : boolean;
 	signal fs_done   : boolean;
-	signal disp_onoff_enable: boolean := false;
+	signal disp_onoff_enable: boolean;
 	signal disp_onoff_done  : boolean;
-	signal disp_clr_enable: boolean := false;
+	signal disp_clr_enable: boolean;
 	signal disp_clr_done  : boolean;
-	signal entry_mode_enable: boolean := false;
+	signal entry_mode_enable: boolean;
 	signal entry_mode_done  : boolean;
 
 	signal fs_lcd   : lcd_type;
@@ -80,6 +80,13 @@ begin
 				-- Attends après le signal Enable pour commencer le Power On
 				when READY_STATE =>
 					lcd.en <= '0';
+					done <= false;
+					
+					fs_enable <= false;
+					disp_onoff_enable <= false;
+					disp_clr_enable <= false;
+					entry_mode_enable <= false;
+					
 					timer_counter := 0;
 
 					if (enable) then
@@ -194,6 +201,10 @@ begin
 				-- L'initialisation est terminée, le signal Enable doit retourner à zéro pour recommencer
 				when DONE_STATE =>
 					done <= true;
+					
+					if (not enable) then
+						fsm_state <= DONE_STATE;
+					end if;
 
 			end case;
 		end if;

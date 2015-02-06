@@ -72,8 +72,7 @@ architecture afficheur_main of afficheur is
 	signal wait_anim_done: boolean;
 	signal wait_transition_done: boolean;
 
-	-- FIXME: Replace this by the legal equivalent of x"50" (6 downto 0)
-	constant LAST_ADDR: std_logic_vector(7 downto 0) := x"50";
+	constant LAST_ADDR: std_logic_vector(6 downto 0) := std_logic_vector(to_unsigned(16#50#, 7));
 begin
 
 	-- lcd variables are hidden in a vector
@@ -83,7 +82,7 @@ begin
 	lcden <= lcd.en;
 
 	COMP_INIT: Power_On_Init port map (clk, do_power_on_init, power_on_init_done, poi_lcd);
-	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR (6 downto 0), rc_lcd);
+	COMP_RST_CURSOR: Set_Ddram_Address port map (clk, do_set_ddram_addr, set_ddram_addr_done, LAST_ADDR, rc_lcd);
 	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, cd_lcd);
 
 	process(clk)

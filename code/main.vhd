@@ -90,6 +90,8 @@ architecture afficheur_main of afficheur is
 
 	constant LAST_ADDR: std_logic_vector(6 downto 0) := std_logic_vector(to_unsigned(16#50#, 7));
 begin
+	led(0) <= clk;
+
 
 	-- lcd variables are hidden in a vector
 	lcdd <= lcd.data;
@@ -102,7 +104,7 @@ begin
 	COMP_CLR_DISP: Clear_Display port map (clk, do_clr_disp, clr_disp_done, cd_lcd);
 
 	-- FIX ME change the start address for dynamic address
-	COMP_WRITE_LINE: Write_First_line port map (clk, reset, do_write_line, write_line_done, "TESTTESTTESTTEST", LAST_ADDR, 10, wl_lcd );
+	COMP_WRITE_LINE: Write_First_line port map (clk, reset, do_write_line, write_line_done, "TESTTESTTESTTEST", LAST_ADDR, 16, wl_lcd);
 
 	TIMER_WAIT: Timer port map (clk, reset, start_timer, timer_ns, timer_done);
 
@@ -117,6 +119,7 @@ begin
 
 				-- Initialise les compteurs et registres
 				when INIT_STATE =>
+					led(7 downto 1) <= "0000000";
 					--Init variables and what not here
 
 					offset := 0;
@@ -138,6 +141,8 @@ begin
 
 				--Execute la séquence d'initialisation
 				when POWER_ON_INIT_STATE =>
+					led(7 downto 1) <= "0000001";
+				
 					-- raise power on init's enable bit
 					do_power_on_init <= true;
 					lcd <= poi_lcd;
@@ -149,6 +154,8 @@ begin
 
 				-- Efface l'écran avant l'écriture d'une expression
 				when CLR_DISP_STATE =>
+					led(7 downto 1) <= "0000010";
+					
 					do_clr_disp <= true;
 					lcd <= cd_lcd;
 
@@ -176,6 +183,7 @@ begin
 
 				-- Écrit la premiere ligne de l'afficheur sans animation
 				when WRITE_FIRST_LINE_STATE =>
+					led(7 downto 1) <= "0000100";
 					do_write_line <= true;
 					lcd <= wl_lcd;
 
@@ -188,6 +196,7 @@ begin
 
 				-- Place le curseur sur la 2e ligne de l'afficheur
 				when RST_CURSOR_STATE =>
+					led(7 downto 1) <= "0001000";
 					do_set_ddram_addr <= true;
 					lcd <= rc_lcd;
 
@@ -203,11 +212,12 @@ begin
 					i <= i - 1;
 
 					-- i - 1 as decrement will take effect only at next clock cycle
-					charpos := to_integer(to_unsigned(expr_idx, 10) sll 5) + i - 1;
+					--charpos := to_integer(to_unsigned(expr_idx, 10) sll 5) + i - 1;
 					fsm_state <= WRITE_EXPR_STATE;
 
 				-- Permet d'écrire un nombre de caractères sur la ligne 2 dépendant de l'animation
 				when WRITE_EXPR_STATE =>
+					led(7 downto 1) <= "0010000";
 					do_write_line <= true;
 					lcd <= wl_lcd;
 
@@ -224,6 +234,7 @@ begin
 
 				-- Délai d'animation pour la transition de la ligne
 				when WAIT_ANIM_DELAY_STATE =>
+					led(7 downto 1) <= "0100000";
 					start_timer <= true;
 					timer_ns <= ANIMATION_DELAY_WAIT_COUNT;
 
@@ -253,6 +264,7 @@ begin
 
 				--Délai avant de passer à la prochaine expression
 				when WAIT_TRANSITION_DELAY_STATE =>
+					led(7 downto 1) <= "1000000";
 					start_timer <= true;
 					timer_ns <= TRANSITION_DELAY_WAIT_COUNT;
 

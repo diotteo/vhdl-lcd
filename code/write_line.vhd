@@ -139,7 +139,7 @@ begin
 					-- Permet d'écrire le caractère à l'index i sur l'écran
 					when WRITE_CHAR_STATE =>
 						
-						character_string <=  std_logic_vector(to_unsigned(character'pos(line_1(i)),8)); -- std_logic_vector(to_unsigned(natural(character'pos(line_1(i))), 8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
+						character_string <=  std_logic_vector(to_unsigned(character'pos(line_1(i)),8)); --Conversion d'un caractère de la string pointée par l'index i en vecteur
 	
 						do_write_data_to_ram <= true;
 						lcd <= wr_lcd;

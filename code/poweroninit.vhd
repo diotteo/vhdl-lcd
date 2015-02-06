@@ -69,8 +69,8 @@ begin
 	COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', ems_lcd);
 
 	process(clk)
-		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
-		variable func_set_repeat_counter : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
+		variable timer_counter : natural := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
+		variable func_set_repeat_counter : natural := 0; --Compteur d'iteration pour repeter une instruction
 	begin
 
 		if rising_edge(clk) then

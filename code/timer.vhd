@@ -39,7 +39,7 @@ architecture Timer of Timer is
 begin
 
 	process(clk)
-		variable timer_counter : integer range 0 to 1000000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
+		variable timer_counter : natural := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
 	begin
 
 		if rising_edge(clk) then

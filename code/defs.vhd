@@ -21,8 +21,8 @@ use IEEE.std_logic_1164.all;
 
 package defs is
 	constant CLK_PERIOD : time := 10 ns;
-	constant ANIMATION_DELAY_WAIT_COUNT : natural := 500 ms / CLK_PERIOD;
-	constant TRANSITION_DELAY_WAIT_COUNT : natural := 5 sec / CLK_PERIOD;
+	constant ANIMATION_DELAY_WAIT_COUNT : natural := 500_000_00;  --500 ms / CLK_PERIOD;
+	constant TRANSITION_DELAY_WAIT_COUNT : natural := 5_000_000_00; -- 5 sec / CLK_PERIOD;
 	
 	constant LCDD_LEN : natural := 8;
 
@@ -55,7 +55,7 @@ package defs is
 			);
 	end component;
 
-	constant CLR_DISP_WAIT_COUNT : natural := 1.52 ms / CLK_PERIOD;
+	constant CLR_DISP_WAIT_COUNT : natural := 1_520_000_00; -- 1520 us / CLK_PERIOD;
 	component Clear_Display is
 		port(
 			clk    : in    std_logic;
@@ -76,7 +76,7 @@ package defs is
 			);
 	end component;
 
-	constant DISP_ON_OFF_CTL_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
+	constant DISP_ON_OFF_CTL_WAIT_COUNT : natural := 40_00; -- 40 us / CLK_PERIOD;
 	component Display_On_Off_Control is
 	port(
 			clk         : in    std_logic;
@@ -89,7 +89,7 @@ package defs is
 			);
 	end component;
 
-	constant EMS_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
+	constant EMS_WAIT_COUNT : natural := 40_00; -- 40 us / CLK_PERIOD;
 	component Entry_Mode_Set is
 	port(
 			clk    : in    std_logic;
@@ -101,7 +101,7 @@ package defs is
 			);
 	end component;
 
-	constant FCT_SET_WAIT_COUNT : natural := 40 us / CLK_PERIOD;
+	constant FCT_SET_WAIT_COUNT : natural := 40_00; -- 40 us / CLK_PERIOD;
 	component Function_Set is
 	port(
 			clk    : in    std_logic;
@@ -154,7 +154,7 @@ package defs is
 	end component;
 
 
-	constant POI_INIT_WAIT_COUNT : natural := 40 ms / CLK_PERIOD;
+	constant POI_INIT_WAIT_COUNT : natural := 40_00; -- 40 ms / CLK_PERIOD;
 	component Power_On_Init is
 	port(
 		clk   : in    std_logic;

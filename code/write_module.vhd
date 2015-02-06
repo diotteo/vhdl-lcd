@@ -44,7 +44,6 @@ architecture Behavioral of write_module is
 
 	TYPE STATE_TYPE IS (
 			READY_STATE,
-			INIT_STATE,
 			SIGNAL_SETTLE_STATE,
 			ENABLE_STATE,
 			HOLD_STATE,
@@ -64,20 +63,16 @@ begin
 					done <= false;
 
 					if (enable) then
-						w_state <= INIT_STATE;
+						w_state <= SIGNAL_SETTLE_STATE;
+						
+						-- Prépare les signaux qui seront envoyés au LCD
+						lcd.rs <= rs;
+						lcd.rw <= '0'; --Mode write
+						lcd.en <= '0';
+						lcd.data <= instr;
+						
+						counter <= 0;
 					end if;
-
-				when INIT_STATE =>
-
-					-- Prépare les signaux qui seront envoyés au LCD
-					lcd.rs <= rs;
-					lcd.rw <= '0'; --Mode write
-					lcd.en <= '0';
-					lcd.data <= instr;
-
-					counter <= 0;
-
-					w_state <= SIGNAL_SETTLE_STATE;
 
 				when SIGNAL_SETTLE_STATE =>
 					lcd.en <= '1';

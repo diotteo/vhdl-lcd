@@ -101,7 +101,7 @@ begin
 				when INIT_STATE =>
 					--Init variables and what not here
 
-					lcd(LCD_EN_IDX) <= '0';
+					lcd.en <= '0';
 					fsm_state <= POWER_ON_INIT_STATE;
 
 

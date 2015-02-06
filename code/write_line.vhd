@@ -30,6 +30,7 @@ entity Write_First_line is
 		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
 		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
 		position	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
+		char_to_write: in integer range 0 to 16; --Nombre de lettre a écrire venant du string
 		lcd   : out   lcd_type
 		);
 end Write_First_line;
@@ -55,7 +56,7 @@ architecture Write_First_line of Write_First_line is
 	signal do_write_data_to_ram: boolean := false;
 	signal write_data_to_ram_done: boolean;
 	
-	signal i: integer range 0 to 16 := 16; -- Index pointant dans le string
+	signal i: integer range 0 to 16; -- Index pointant dans le string
 	
 	-- Signaux intermédiaire à transmettre au LCD 
 	signal sda_lcd: lcd_type;
@@ -88,7 +89,7 @@ begin
 				do_set_ddram_addr <= false;
 				do_write_data_to_ram <= false;
 				start_timer <= false;
-				i <= 16;
+				i <= char_to_write;
 				fsm_state <= READY_STATE;
 				
 			else
@@ -103,7 +104,7 @@ begin
 						do_set_ddram_addr <= false;
 						
 						start_timer <= false;
-						i <= 16;
+						i <= char_to_write;
 						done <= false;
 						
 						if (enable) then

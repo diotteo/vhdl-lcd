@@ -34,7 +34,7 @@ end Power_On_Init;
 
 architecture Power_On_Init of Power_On_Init is
 	type STATE_TYPE is (
-		READY_STATE,
+		READY_STATE, 			
 		INIT_WAIT_STATE,
 		FUNCTION_SET_STATE,
 		FUNCTION_SET_WAIT_STATE,

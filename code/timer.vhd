@@ -1,20 +1,18 @@
 ----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    Timer
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Create Date:
--- Design Name:
--- Module Name:
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Description:    Module permettant de minuter certain nombre de coups d'horloge
 --
--- Dependencies:
+-- Dependencies:   Write Module
 --
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision: 0.01
+-- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
 

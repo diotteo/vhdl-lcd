@@ -1,20 +1,18 @@
 ----------------------------------------------------------------------------------
--- Company:
--- Engineer:
+-- Company: ETS - ELE740
+-- Programmer: Olivier Diotte & Marc-André Séguin
+-- 
+-- Create Date:    11:13:42 01/20/2015 
+-- Module Name:    Write_Module
+-- Project Name:   Afficheur LCD
+-- Target Devices: Virtex 5 LX50T
 --
--- Create Date:    10:15:18 01/27/2015
--- Design Name:
--- Module Name:    write_module - Behavioral
--- Project Name:
--- Target Devices:
--- Tool versions:
--- Description:
+-- Description:    Module permettant d'envoyer une commande d'écriture au LCD
 --
--- Dependencies:
+-- Dependencies:  LCD
 --
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+-- Revision: 0.01
+-- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
 use work.defs.all;
@@ -22,14 +20,7 @@ use work.defs.all;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.numeric_std.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 
 

@@ -1,12 +1,12 @@
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:    2015/01/29
 -- Module Name:    cleardisplay.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction clear display display on/off permettant de générer le vecteur instruction pour effacer l'écran
+-- Description:    Fonction clear display display on/off permettant de generer le vecteur instruction pour effacer l'ecran
 --
 -- Dependencies:   Module Write
 --

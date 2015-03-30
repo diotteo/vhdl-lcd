@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    functionset.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction du LCD permettant de configurer le nombre de ligne du LCD, la taille du caractère et taille du bus data
+-- Description:    Fonction du LCD permettant de configurer le nombre de ligne du LCD, la taille du caractere et taille du bus data
 --
 -- Dependencies:   Write Module
 --

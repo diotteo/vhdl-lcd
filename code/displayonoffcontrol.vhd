@@ -1,12 +1,12 @@
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    displayonoffcontrol.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction display on/off permettant de générer le vecteur instruction associé à la fonction
+-- Description:    Fonction display on/off permettant de generer le vecteur instruction associe a la fonction
 --
 -- Dependencies:   Module Write
 --

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-AndrÃ© SÃ©guin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    main.vhd
@@ -25,8 +25,8 @@ use IEEE.numeric_std.all;
 entity afficheur is
 	port(
 		clk   : in    std_logic; --Horloge de 100Mhz venant de l'oscillateur du FPGA
-		reset : in 	  std_logic; -- Bouton 1 utilisé comme reset
-		led   : out   std_logic_vector(7 downto 0); -- Bus de LED sur la carte de dÃ©veloppement
+		reset : in 	  std_logic; -- Bouton 1 utilise comme reset
+		led   : out   std_logic_vector(7 downto 0); -- Bus de LED sur la carte de developpement
 		lcdrs : out   std_logic; -- Signal RS ( 0:instruction/ 1:data) contrÃ´lant le LCD
 		lcdrw : out   std_logic; -- Signal RW (1:Read / 0:Write) contrÃ´lant le LCD
 		lcden : out   std_logic; -- Signal enable permettant de valider l'instruction au LCD
@@ -38,16 +38,16 @@ end afficheur;
 architecture afficheur_main of afficheur is
 	type state_t is (
 			INIT_STATE,					-- Initialise les compteurs et registres
-			POWER_ON_INIT_STATE, 	--Execute la séquence d'initialisation
-			CLR_DISP_STATE, 			-- Efface l'écran avant l'écriture d'une expression
-			CLR_DISP_WAIT_STATE,		-- Délai de 40us pour terminer l'instruction clear display
+			POWER_ON_INIT_STATE, 	--Execute la sequence d'initialisation
+			CLR_DISP_STATE, 			-- Efface l'ecran avant l'ecriture d'une expression
+			CLR_DISP_WAIT_STATE,		-- Delai de 40us pour terminer l'instruction clear display
 			WRITE_FIRST_LINE_STATE,	-- Écrit la premiere ligne de l'afficheur sans animation
 			RST_CURSOR_STATE,			-- Place le curseur sur la 2e ligne de l'afficheur
-			DECR_I_STATE,				-- Décrémente le compteur d'itération pour l'animation
-			WRITE_EXPR_STATE,			-- Permet d'écrire un nombre de caractères sur la ligne 2 dépendant de l'animation
-			WAIT_ANIM_DELAY_STATE,	-- Délai d'animation pour la transition de la ligne
+			DECR_I_STATE,				-- Decremente le compteur d'iteration pour l'animation
+			WRITE_EXPR_STATE,			-- Permet d'ecrire un nombre de caracteres sur la ligne 2 dependant de l'animation
+			WAIT_ANIM_DELAY_STATE,	-- Delai d'animation pour la transition de la ligne
 			INCR_EXPR_STATE,			-- Calcul l'offset pour passer a la prochaine expression
-			WAIT_TRANSITION_DELAY_STATE --Délai avant de passer à la prochaine expression
+			WAIT_TRANSITION_DELAY_STATE --Delai avant de passer a la prochaine expression
 			);
 
 	signal fsm_state : state_t := INIT_STATE;
@@ -109,7 +109,7 @@ begin
 	TIMER_WAIT: Timer port map (clk, reset, start_timer, timer_ns, timer_done);
 
 	process(clk)
-		variable j: natural; -- Compteur pour répéter l'animation sur une ligne
+		variable j: natural; -- Compteur pour repeter l'animation sur une ligne
 		variable offset: natural := 0;
 		variable charpos: natural := 0;
 	begin
@@ -139,7 +139,7 @@ begin
 					-- wl_lcd.en  <= '0';
 					fsm_state <= POWER_ON_INIT_STATE;
 
-				--Execute la séquence d'initialisation
+				--Execute la sequence d'initialisation
 				when POWER_ON_INIT_STATE =>
 					led(7 downto 1) <= "0000001";
 				
@@ -152,7 +152,7 @@ begin
 						fsm_state <= CLR_DISP_STATE;
 					end if;
 
-				-- Efface l'écran avant l'écriture d'une expression
+				-- Efface l'ecran avant l'ecriture d'une expression
 				when CLR_DISP_STATE =>
 					led(7 downto 1) <= "0000010";
 					
@@ -164,7 +164,7 @@ begin
 						fsm_state <= CLR_DISP_WAIT_STATE;
 					end if;
 
-				-- Délais de 40us pour terminer l'instruction clear display
+				-- Delais de 40us pour terminer l'instruction clear display
 				when CLR_DISP_WAIT_STATE =>
 
 					start_timer <= true;
@@ -207,7 +207,7 @@ begin
 						fsm_state <= DECR_I_STATE;
 					end if;
 
-				-- Décrémente le compteur d'animation pour une ligne
+				-- Decremente le compteur d'animation pour une ligne
 				when DECR_I_STATE =>
 					i <= i - 1;
 
@@ -215,7 +215,7 @@ begin
 					--charpos := to_integer(to_unsigned(expr_idx, 10) sll 5) + i - 1;
 					fsm_state <= WRITE_EXPR_STATE;
 
-				-- Permet d'écrire un nombre de caractères sur la ligne 2 dépendant de l'animation
+				-- Permet d'ecrire un nombre de caracteres sur la ligne 2 dependant de l'animation
 				when WRITE_EXPR_STATE =>
 					led(7 downto 1) <= "0010000";
 					do_write_line <= true;
@@ -232,7 +232,7 @@ begin
 						end if;
 					end if;
 
-				-- Délai d'animation pour la transition de la ligne
+				-- Delai d'animation pour la transition de la ligne
 				when WAIT_ANIM_DELAY_STATE =>
 					led(7 downto 1) <= "0100000";
 					start_timer <= true;
@@ -245,7 +245,7 @@ begin
 							fsm_state <= DECR_I_STATE;
 						elsif (offset = 0) then
 							offset := 16; --Prochaine ligne
-							fsm_state <= CLR_DISP_STATE; --Prepare l'écran pour la prochaine ligne
+							fsm_state <= CLR_DISP_STATE; --Prepare l'ecran pour la prochaine ligne
 						else
 							fsm_state <= INCR_EXPR_STATE;
 						end if;
@@ -262,7 +262,7 @@ begin
 					offset := 0;
 					fsm_state <= WAIT_TRANSITION_DELAY_STATE;
 
-				--Délai avant de passer à la prochaine expression
+				--Delai avant de passer a la prochaine expression
 				when WAIT_TRANSITION_DELAY_STATE =>
 					led(7 downto 1) <= "1000000";
 					start_timer <= true;

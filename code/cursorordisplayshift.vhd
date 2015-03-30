@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    cursorordisplayshift.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction du LCD permettant de décaler le curseur ou l'écran
+-- Description:    Fonction du LCD permettant de decaler le curseur ou l'ecran
 --
 -- Dependencies:   Write Module
 --

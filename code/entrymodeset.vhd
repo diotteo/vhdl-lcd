@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    entrymodeset.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction du LCD permettant de définir le sens d'écriture et de décalage
+-- Description:    Fonction du LCD permettant de definir le sens d'ecriture et de decalage
 --
 -- Dependencies:   Write Module
 --

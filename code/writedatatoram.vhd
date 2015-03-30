@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    writedatatoram.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fonction du LCD permettant de générer l'instruction d'écriture d'un caractère
+-- Description:    Fonction du LCD permettant de generer l'instruction d'ecriture d'un caractere
 --
 -- Dependencies:   Write Module
 --

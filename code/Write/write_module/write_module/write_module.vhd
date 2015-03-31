@@ -33,17 +33,17 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity write_module is
 	port( 
-			clk :	in	STD_LOGIC; --Signal de l'horloge cadencé à 100Mhz
+			clk :	in	STD_LOGIC; --Signal de l'horloge cadencÃ© Ã  100Mhz
 			
-			-- Signaux permettant de contrôler l'état du module
-			send   : in  STD_LOGIC; -- Démarre la séquence d'envoie sur un front montant
-			ins_in : in  STD_LOGIC_VECTOR(8 downto 0); -- Instruction ou donnée à envoyer(7 downto 0) + bit RS(8)
-			done_write   : out STD_LOGIC; -- Niveau haut lorsque le module a terminé l'envoie
+			-- Signaux permettant de contrÃ´ler l'Ã©tat du module
+			send   : in  STD_LOGIC; -- DÃ©marre la sÃ©quence d'envoie sur un front montant
+			ins_in : in  STD_LOGIC_VECTOR(8 downto 0); -- Instruction ou donnÃ©e Ã  envoyer(7 downto 0) + bit RS(8)
+			done_write   : out STD_LOGIC; -- Niveau haut lorsque le module a terminÃ© l'envoie
 			
-			-- Signaux qui seront liés au LCD
+			-- Signaux qui seront liÃ©s au LCD
 			LCD_rs_out_w : out STD_LOGIC; -- Signal permettant de choisir entre DATA/INSTRUCTION
 			LCD_enable_w : out STD_LOGIC; -- Signal permettant de valider la commande 
-			LCD_rw_out_w : out STD_LOGIC; -- Signal permettant de sélectionner le mode write ou read
+			LCD_rw_out_w : out STD_LOGIC; -- Signal permettant de sÃ©lectionner le mode write ou read
 			LCDD_out_w   : out STD_LOGIC_VECTOR(7 downto 0) -- Bus d'instruction vers le LDC
 			);
 end write_module;
@@ -58,7 +58,7 @@ architecture Behavioral of write_module is
 							  DONE);
 							  
    SIGNAL w_state   : STATE_TYPE := READY;
-	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les états 100Mhz (T=10 ns)
+	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les Ã©tats 100Mhz (T=10 ns)
 begin
 	process(clk)
 	begin
@@ -76,7 +76,7 @@ begin
 			
 				when INIT =>
 					
-					-- Prépare les signaux qui seront envoyés au LCD
+					-- PrÃ©pare les signaux qui seront envoyÃ©s au LCD
 					LCDD_out_w <= ins_in(7 downto 0);
 					LCD_rs_out_w <= ins_in(8); 
 					LCD_enable_w <= '0';

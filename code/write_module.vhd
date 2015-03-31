@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-AndrÃ© SÃ©guin
 -- 
 -- Create Date:    11:13:42 01/20/2015 
 -- Module Name:    Write_Module
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Module permettant d'envoyer une commande d'écriture au LCD
+-- Description:    Module permettant d'envoyer une commande d'Ã©criture au LCD
 --
 -- Dependencies:  LCD
 --
@@ -26,15 +26,15 @@ use IEEE.numeric_std.all;
 
 entity write_module is
 	port(
-			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
+			clk : in    std_logic; --Signal de l'horloge cadencÃ© Ã  100Mhz
 
-			-- Signaux permettant de contrôler l'état du module
-			enable: in  boolean; -- Démarre la séquence d'envoie sur un front montant
-			done  : out boolean; -- Niveau haut lorsque le module a terminé l'envoie
+			-- Signaux permettant de contrÃ´ler l'Ã©tat du module
+			enable: in  boolean; -- DÃ©marre la sÃ©quence d'envoie sur un front montant
+			done  : out boolean; -- Niveau haut lorsque le module a terminÃ© l'envoie
 			rs    : in  std_logic;
-			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnée à envoyer(7 downto 0)
+			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnÃ©e Ã  envoyer(7 downto 0)
 
-			-- Signaux qui seront liés au LCD
+			-- Signaux qui seront liÃ©s au LCD
 			lcd : out lcd_type
 			);
 end write_module;
@@ -50,7 +50,7 @@ architecture Behavioral of write_module is
 			DONE_STATE);
 
 	SIGNAL w_state : STATE_TYPE := READY_STATE;
-	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les états 100Mhz (T=10 ns)
+	SIGNAL counter : integer range 0 to 255 := 0; --Compteur d'horloge pour minuter les Ã©tats 100Mhz (T=10 ns)
 begin
 	process(clk)
 	begin
@@ -62,7 +62,7 @@ begin
 				when READY_STATE =>
 					done <= false;
 					
-					-- Prépare les signaux qui seront envoyés au LCD
+					-- PrÃ©pare les signaux qui seront envoyÃ©s au LCD
 					lcd.rs <= rs;
 					lcd.rw <= '0'; --Mode write
 					lcd.en <= '0';

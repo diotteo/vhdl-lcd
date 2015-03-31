@@ -11,11 +11,11 @@ end write_line_tb;
 architecture behav of write_line_tb is
 	  
 	signal clock  : std_logic; --Horloge du compteur 
-	signal rst	  : std_logic; --Signal synchrone pour remettre à zéro la machine a état
-	signal enable: boolean; -- Signal permettant de démarrer la séquence d'écriture (Doit être mis à 0 avant la prochaie écriture)
-	signal done  : boolean;   -- Signal indiquant que la séquence d'écriture est terminée
-	signal line_1: string ( 1 to 16 ); --Signal contenant le text à écrire
-	signal position:	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
+	signal rst	  : std_logic; --Signal synchrone pour remettre a zero la machine a etat
+	signal enable: boolean; -- Signal permettant de demarrer la sequence d'ecriture (Doit être mis a 0 avant la prochaie ecriture)
+	signal done  : boolean;   -- Signal indiquant que la sequence d'ecriture est terminee
+	signal line_1: string ( 1 to 16 ); --Signal contenant le text a ecrire
+	signal position:	  std_logic_vector(6 downto 0); --Position où commencer a ecrire la ligne
 	signal lcd   : lcd_type;
 
 	signal runsim: boolean := true;

@@ -41,7 +41,7 @@ architecture afficheur_main of afficheur is
 			POWER_ON_INIT_STATE, 	--Execute la sequence d'initialisation
 			CLR_DISP_STATE, 			-- Efface l'ecran avant l'ecriture d'une expression
 			CLR_DISP_WAIT_STATE,		-- Delai de 40us pour terminer l'instruction clear display
-			WRITE_FIRST_LINE_STATE,	-- Écrit la premiere ligne de l'afficheur sans animation
+			WRITE_FIRST_LINE_STATE,	-- Ecrit la premiere ligne de l'afficheur sans animation
 			RST_CURSOR_STATE,			-- Place le curseur sur la 2e ligne de l'afficheur
 			DECR_I_STATE,				-- Decremente le compteur d'iteration pour l'animation
 			WRITE_EXPR_STATE,			-- Permet d'ecrire un nombre de caracteres sur la ligne 2 dependant de l'animation
@@ -72,7 +72,7 @@ architecture afficheur_main of afficheur is
 	signal wait_anim_done: boolean;
 	signal wait_transition_done: boolean;
 
-	--Signal permettant de contrôler la minuterie
+	--Signal permettant de controler la minuterie
 	signal start_timer: boolean := false;
 	signal timer_ns   : natural;
 	signal timer_done : boolean;
@@ -181,7 +181,7 @@ begin
 						end if;
 					end if;
 
-				-- Écrit la premiere ligne de l'afficheur sans animation
+				-- Ecrit la premiere ligne de l'afficheur sans animation
 				when WRITE_FIRST_LINE_STATE =>
 					led(7 downto 1) <= "0000100";
 					do_write_line <= true;

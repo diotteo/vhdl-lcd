@@ -51,7 +51,7 @@ architecture Behavioral of afficheur is
 begin
 	
 	process(clk)
-		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
+		variable timer_counter : integer range 0 to 100000000 := 0; --Compteur d'horloge pour minuter les etats 100Mhz (10 ns)
 		variable enable_counter : integer range 0 to 100 := 0; --Compteur d'horloge pour minuter l'activation du signal enable
 		variable ins_loop_counter : integer range 0 to 10 := 0; --Compteur d'iteration pour repeter une instruction
 	begin
@@ -92,7 +92,7 @@ begin
 						enable_counter := enable_counter + 1;
 					end if;
 					
-					--Délais 37 us
+					--Delais 37 us
 					if timer_counter > 3700 then
 						enable_counter := 0;
 						timer_counter := 0;
@@ -122,7 +122,7 @@ begin
 						enable_counter := enable_counter + 1;
 					end if;
 					
-					--Délais 37 us
+					--Delais 37 us
 					if timer_counter > 3700 then
 						enable_counter := 0;
 						timer_counter := 0;
@@ -146,7 +146,7 @@ begin
 						enable_counter := enable_counter + 1;
 					end if;
 					
-					--Délais 1.52ms
+					--Delais 1.52ms
 					if timer_counter > 152000 then
 						enable_counter := 0;
 						timer_counter := 0;
@@ -170,7 +170,7 @@ begin
 						enable_counter := enable_counter + 1;
 					end if;
 					
-					--Délais 37us
+					--Delais 37us
 					if timer_counter >3700 then
 						enable_counter := 0;
 						timer_counter := 0;

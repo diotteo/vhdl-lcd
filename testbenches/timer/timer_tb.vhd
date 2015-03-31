@@ -12,9 +12,9 @@ architecture behav of timer_tb is
 	
 
 	signal clock  : std_logic; --Horloge du compteur 
-	signal rst	  : std_logic; --Signal synchrone pour remettre à zéro le compteur
-	signal start_timer: boolean; --Signal permettant de démarrer le compteur. Doit être remis à 0 pour commencer à compter de nouveau
-	signal clk_count: integer; -- Nombre de coup d'horloge à compter
+	signal rst	  : std_logic; --Signal synchrone pour remettre a zero le compteur
+	signal start_timer: boolean; --Signal permettant de demarrer le compteur. Doit être remis a 0 pour commencer a compter de nouveau
+	signal clk_count: integer; -- Nombre de coup d'horloge a compter
 	signal timer_done  : boolean; -- Signal avertissant la fin du compte
 
 	signal runsim: boolean := true;

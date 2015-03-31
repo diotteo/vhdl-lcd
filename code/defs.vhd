@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    defs.vhd
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Fichier librairie contenant les constantes de notre système et les components de celui-ci
+-- Description:    Fichier librairie contenant les constantes de notre systeme et les components de celui-ci
 --
 -- Dependencies:   None
 --
@@ -29,7 +29,7 @@ package defs is
 	type lcd_type is record
 		-- Signal permettant de choisir entre DATA/INSTRUCTION
 		rs : std_logic;
-		-- Signal permettant de sélectionner le mode write ou read
+		-- Signal permettant de selectionner le mode write ou read
 		rw : std_logic;
 		-- Signal permettant de valider la commande
 		en : std_logic;
@@ -42,15 +42,15 @@ package defs is
 
 	component write_module is
 		port(
-			clk : in    std_logic; --Signal de l'horloge cadencé à 100Mhz
+			clk : in    std_logic; --Signal de l'horloge cadence a 100Mhz
 
-			-- Signaux permettant de contrôler l'état du module
-			enable: in  boolean; -- Démarre la séquence d'envoie sur un front montant
-			done  : out boolean; -- Niveau haut lorsque le module a terminé l'envoie
+			-- Signaux permettant de controler l'etat du module
+			enable: in  boolean; -- Demarre la sequence d'envoie sur un front montant
+			done  : out boolean; -- Niveau haut lorsque le module a termine l'envoie
 			rs    : in  std_logic;
-			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnée à envoyer(7 downto 0)
+			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnee a envoyer(7 downto 0)
 
-			-- Signaux qui seront liés au LCD
+			-- Signaux qui seront lies au LCD
 			lcd   : out lcd_type
 			);
 	end component;
@@ -167,12 +167,12 @@ package defs is
 	component Write_First_line is
 	port(
 		clk   : in    std_logic; --Horloge du compteur 
-		rst	: in	  std_logic; --Signal synchrone pour remettre à zéro le compteur  
-		enable: in    boolean;   -- Signal permettant de démarrer la séquence d'écriture (Doit être mis à 0 avant la prochaie écriture)
-		done  : out   boolean;   -- Signal indiquant que la séquence d'écriture est terminée
-		line_1: in    string ( 1 to 16 ); --Signal contenant le text à écrire
-		position	: in	  std_logic_vector(6 downto 0); --Position où commencer à écrire la ligne
-		char_to_write: in integer range 0 to 16; --Nombre de lettre a écrire venant du string
+		rst	: in	  std_logic; --Signal synchrone pour remettre a zero le compteur  
+		enable: in    boolean;   -- Signal permettant de demarrer la sequence d'ecriture (Doit être mis a 0 avant la prochaie ecriture)
+		done  : out   boolean;   -- Signal indiquant que la sequence d'ecriture est terminee
+		line_1: in    string ( 1 to 16 ); --Signal contenant le text a ecrire
+		position	: in	  std_logic_vector(6 downto 0); --Position où commencer a ecrire la ligne
+		char_to_write: in integer range 0 to 16; --Nombre de lettre a ecrire venant du string
 		lcd    : out   lcd_type --Vecteur contenant les signaux a envoyer au LCD
 		);
 	end component;
@@ -180,9 +180,9 @@ package defs is
 	component Timer is
 	port(
 		clk   : in    std_logic; --Horloge du compteur 
-		rst	  : in	  std_logic; --Signal synchrone pour remettre à zéro le compteur
-		start_timer: in    boolean; --Signal permettant de démarrer le compteur. Doit être remis à 0 pour commencer à compter de nouveau
-		clk_count: in integer; -- Nombre de coup d'horloge à compter
+		rst	  : in	  std_logic; --Signal synchrone pour remettre a zero le compteur
+		start_timer: in    boolean; --Signal permettant de demarrer le compteur. Doit être remis a 0 pour commencer a compter de nouveau
+		clk_count: in integer; -- Nombre de coup d'horloge a compter
 		timer_done  : out   boolean -- Signal avertissant la fin du compte
 		);
 	end component;

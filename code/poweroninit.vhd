@@ -1,13 +1,13 @@
 ----------------------------------------------------------------------------------
 -- Company: ETS - ELE740
--- Programmer: Olivier Diotte & Marc-André Séguin
+-- Programmer: Olivier Diotte & Marc-Andre Seguin
 --
 -- Create Date:
 -- Module Name:    Power_On_Init
 -- Project Name:   Afficheur LCD
 -- Target Devices: Virtex 5 LX50T
 --
--- Description:    Module permettant d'envoyer la séquence d'initialisation au LCD.
+-- Description:    Module permettant d'envoyer la sequence d'initialisation au LCD.
 --
 -- Dependencies:   Write Module
 --
@@ -69,7 +69,7 @@ begin
 	COMP_ENTRY_MODE: Entry_Mode_Set port map (clk, entry_mode_enable, entry_mode_done, '0', '0', ems_lcd);
 
 	process(clk)
-		variable timer_counter : natural := 0; --Compteur d'horloge pour minuter les états 100Mhz (10 ns)
+		variable timer_counter : natural := 0; --Compteur d'horloge pour minuter les etats 100Mhz (10 ns)
 		variable func_set_repeat_counter : natural := 0; --Compteur d'iteration pour repeter une instruction
 	begin
 
@@ -77,7 +77,7 @@ begin
 
 			case fsm_state is
 
-				-- Attends après le signal Enable pour commencer le Power On
+				-- Attends apres le signal Enable pour commencer le Power On
 				when READY_STATE =>
 					lcd.en <= '0';
 					done <= false;
@@ -109,7 +109,7 @@ begin
 					end if;
 
 
-				-- Transmet l'instruction function set au lcd pour configurer les caractérisitques du LCD (taille, nb ligne)
+				-- Transmet l'instruction function set au lcd pour configurer les caracterisitques du LCD (taille, nb ligne)
 				when FUNCTION_SET_STATE =>
 					--led <= "01000000";
 					fs_enable <= true;
@@ -122,7 +122,7 @@ begin
 
 
 
-				-- Délai de 40 us pour terminer la transmission de Function Set
+				-- Delai de 40 us pour terminer la transmission de Function Set
 				when FUNCTION_SET_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
@@ -148,7 +148,7 @@ begin
 						fsm_state <= DISP_ON_WAIT_STATE;
 					end if;
 
-				-- Délai de 40 us pour terminer la transmission de Disp_On
+				-- Delai de 40 us pour terminer la transmission de Disp_On
 				when DISP_ON_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
@@ -158,7 +158,7 @@ begin
 					end if;
 
 
-				-- Transmet l'instruction display_clear au lcd pour effacer l'écran.
+				-- Transmet l'instruction display_clear au lcd pour effacer l'ecran.
 				when DISP_CLR_STATE =>
 
 					disp_clr_enable <= true;
@@ -169,7 +169,7 @@ begin
 						fsm_state <= DISP_CLR_WAIT_STATE;
 					end if;
 
-				-- Délai de 1.52 ms pour terminer la transmission de Disp_Clear
+				-- Delai de 1.52 ms pour terminer la transmission de Disp_Clear
 				when DISP_CLR_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
@@ -179,7 +179,7 @@ begin
 					end if;
 
 
-				-- Transmet l'instruction Entry_mode au lcd pour définir le sens d'écriture.
+				-- Transmet l'instruction Entry_mode au lcd pour definir le sens d'ecriture.
 				when ENTRY_MODE_STATE =>
 					entry_mode_enable <= true;
 					lcd <= ems_lcd;
@@ -189,7 +189,7 @@ begin
 						fsm_state <= ENTRY_MODE_WAIT_STATE;
 					end if;
 
-				-- Délai de 40 us pour terminer la transmission de Entry_mode
+				-- Delai de 40 us pour terminer la transmission de Entry_mode
 				when ENTRY_MODE_WAIT_STATE =>
 					timer_counter := timer_counter + 1;
 
@@ -198,7 +198,7 @@ begin
 						fsm_state <= DONE_STATE;
 					end if;
 
-				-- L'initialisation est terminée, le signal Enable doit retourner à zéro pour recommencer
+				-- L'initialisation est terminee, le signal Enable doit retourner a zero pour recommencer
 				when DONE_STATE =>
 					done <= true;
 					

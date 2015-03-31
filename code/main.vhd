@@ -27,8 +27,8 @@ entity afficheur is
 		clk   : in    std_logic; --Horloge de 100Mhz venant de l'oscillateur du FPGA
 		reset : in 	  std_logic; -- Bouton 1 utilise comme reset
 		led   : out   std_logic_vector(7 downto 0); -- Bus de LED sur la carte de developpement
-		lcdrs : out   std_logic; -- Signal RS ( 0:instruction/ 1:data) contrôlant le LCD
-		lcdrw : out   std_logic; -- Signal RW (1:Read / 0:Write) contrôlant le LCD
+		lcdrs : out   std_logic; -- Signal RS ( 0:instruction/ 1:data) controlant le LCD
+		lcdrw : out   std_logic; -- Signal RW (1:Read / 0:Write) controlant le LCD
 		lcden : out   std_logic; -- Signal enable permettant de valider l'instruction au LCD
 		lcdd  : out std_logic_vector(7 downto 0) --Vecteur de Data/Instruction pour le LCD
 		);

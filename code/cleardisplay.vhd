@@ -23,10 +23,10 @@ use IEEE.numeric_std.all;
 
 entity Clear_Display is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			lcd : out lcd_type
 			);
 end Clear_Display;
 

@@ -28,8 +28,8 @@ entity Timer is
 	port(
 		clk : in std_logic; --Horloge du compteur
 		rst : in std_logic; --Signal synchrone pour remettre a zero le compteur
-		start_timer: in boolean; --Signal permettant de demarrer le compteur. Doit être remis a 0 pour commencer a compter de nouveau
-		clk_count: in integer; -- Nombre de coup d'horloge a compter
+		start_timer : in boolean; --Signal permettant de demarrer le compteur. Doit être remis a 0 pour commencer a compter de nouveau
+		clk_count : in integer; -- Nombre de coup d'horloge a compter
 		timer_done : out boolean -- Signal avertissant la fin du compte
 		);
 end Timer;

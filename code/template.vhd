@@ -33,7 +33,7 @@ use IEEE.numeric_std.all;
 
 entity ENTITY_NAME_HERE is
 	port(
-			clk : in    std_logic
+			clk : in std_logic
 			);
 end ENTITY_NAME_HERE;
 

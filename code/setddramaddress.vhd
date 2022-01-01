@@ -35,21 +35,21 @@ use IEEE.numeric_std.all;
 
 entity Set_Ddram_Address is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			address: in    std_logic_vector(6 downto 0);
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			address : in std_logic_vector(6 downto 0);
+			lcd : out lcd_type
 			);
 end Set_Ddram_Address;
 
 
 architecture Set_Ddram_Address of Set_Ddram_Address is
-	signal instr: std_logic_vector(7 downto 0);
+	signal instr : std_logic_vector(7 downto 0);
 begin
 	instr <= x"80" or ("0" & address);
 
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,

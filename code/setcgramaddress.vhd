@@ -35,21 +35,21 @@ use IEEE.numeric_std.all;
 
 entity Set_Cgram_Address is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			address: in    std_logic_vector(5 downto 0);
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			address : in std_logic_vector(5 downto 0);
+			lcd : out lcd_type
 			);
 end Set_Cgram_Address;
 
 
 architecture Set_Cgram_Address of Set_Cgram_Address is
-	signal instr: std_logic_vector(7 downto 0);
+	signal instr : std_logic_vector(7 downto 0);
 begin
 	instr <= x"40" or address;
 
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,

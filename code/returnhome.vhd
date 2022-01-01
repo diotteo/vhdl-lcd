@@ -35,17 +35,17 @@ use IEEE.numeric_std.all;
 
 entity Return_Home is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			lcd : out lcd_type
 			);
 end Return_Home;
 
 
 architecture Return_Home of Return_Home is
 begin
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,

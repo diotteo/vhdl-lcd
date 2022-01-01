@@ -27,22 +27,22 @@ use work.defs.all;
 
 entity Cursor_Or_Display_Shift is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			sh_d_c : in    std_logic; -- shift entire display, !cursor
-			sh_r_l : in    std_logic; -- shift right, !left
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			sh_d_c : in std_logic; -- shift entire display, !cursor
+			sh_r_l : in std_logic; -- shift right, !left
+			lcd : out lcd_type
 			);
 end Cursor_Or_Display_Shift;
 
 
 architecture Cursor_Or_Display_Shift of Cursor_Or_Display_Shift is
-	signal instr: std_logic_vector(7 downto 0);
+	signal instr : std_logic_vector(7 downto 0);
 begin
 	instr <= (x"10" or (sh_d_c & sh_r_l & "00"));
 
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,

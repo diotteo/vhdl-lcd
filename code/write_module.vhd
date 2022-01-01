@@ -26,13 +26,13 @@ use IEEE.numeric_std.all;
 
 entity write_module is
 	port(
-			clk : in    std_logic; --Signal de l'horloge cadence a 100Mhz
+			clk : in std_logic; --Signal de l'horloge cadence a 100Mhz
 
 			-- Signaux permettant de controler l'etat du module
-			enable: in  boolean; -- Demarre la sequence d'envoie sur un front montant
-			done  : out boolean; -- Niveau haut lorsque le module a termine l'envoie
-			rs    : in  std_logic;
-			instr : in  std_logic_vector(7 downto 0); -- Instruction ou donnee a envoyer(7 downto 0)
+			enable : in boolean; -- Demarre la sequence d'envoie sur un front montant
+			done : out boolean; -- Niveau haut lorsque le module a termine l'envoie
+			rs : in std_logic;
+			instr : in std_logic_vector(7 downto 0); -- Instruction ou donnee a envoyer(7 downto 0)
 
 			-- Signaux qui seront lies au LCD
 			lcd : out lcd_type
@@ -58,62 +58,57 @@ begin
 		if rising_edge(clk) then
 
 			case w_state is
+			when READY_STATE =>
+				done <= false;
 
-				when READY_STATE =>
-					done <= false;
-					
-					-- Prepare les signaux qui seront envoyes au LCD
-					lcd.rs <= rs;
-					lcd.rw <= '0'; --Mode write
-					lcd.en <= '0';
-					lcd.data <= instr;
-					
-					if (enable) then
-						w_state <= SIGNAL_SETTLE_STATE;
-						
-						counter <= 0;
-					end if;
+				-- Prepare les signaux qui seront envoyes au LCD
+				lcd.rs <= rs;
+				lcd.rw <= '0'; --Mode write
+				lcd.en <= '0';
+				lcd.data <= instr;
 
-				when SIGNAL_SETTLE_STATE =>
-					lcd.en <= '1';
-					w_state <= ENABLE_STATE;
+				if (enable) then
+					w_state <= SIGNAL_SETTLE_STATE;
 
-				when ENABLE_STATE =>
+					counter <= 0;
+				end if;
 
-					lcd.en <= '1';
+			when SIGNAL_SETTLE_STATE =>
+				lcd.en <= '1';
+				w_state <= ENABLE_STATE;
 
-					--Delai d'activation enable 80 ns
-					if counter >= 7 then
-						w_state <= HOLD_STATE;
-						counter <= 0;
-					else
-						counter <= counter + 1;
-					end if;
+			when ENABLE_STATE =>
+				lcd.en <= '1';
 
-				when HOLD_STATE =>
+				--Delai d'activation enable 80 ns
+				if counter >= 7 then
+					w_state <= HOLD_STATE;
+					counter <= 0;
+				else
+					counter <= counter + 1;
+				end if;
 
-					lcd.en <= '0';
+			when HOLD_STATE =>
+				lcd.en <= '0';
 
-					--Delai avant le prochain write 1200 ns
-					if counter >= 119 then
-						w_state <= DONE_STATE;
-						counter <= 0;
-					else
-						counter <= counter + 1;
-					end if;
+				--Delai avant le prochain write 1200 ns
+				if counter >= 119 then
+					w_state <= DONE_STATE;
+					counter <= 0;
+				else
+					counter <= counter + 1;
+				end if;
 
 
-				when DONE_STATE =>
+			when DONE_STATE =>
+				done <= true;
 
-					done <= true;
-
-					if (not enable) then
-						w_state <= READY_STATE;
-					end if;
-
-				when others =>
-
+				if (not enable) then
 					w_state <= READY_STATE;
+				end if;
+
+			when others =>
+				w_state <= READY_STATE;
 
 			end case;
 		end if;

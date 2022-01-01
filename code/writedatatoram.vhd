@@ -26,18 +26,18 @@ use IEEE.numeric_std.all;
 
 entity Write_Data_To_Ram is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			data   : in    std_logic_vector(7 downto 0);
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			data : in std_logic_vector(7 downto 0);
+			lcd : out lcd_type
 			);
 end Write_Data_To_Ram;
 
 
 architecture Write_Data_To_Ram of Write_Data_To_Ram is
 begin
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,

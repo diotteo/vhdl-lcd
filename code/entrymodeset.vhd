@@ -24,22 +24,22 @@ use IEEE.numeric_std.all;
 
 entity Entry_Mode_Set is
 	port(
-			clk    : in    std_logic;
-			enable : in    boolean;
-			done   : out   boolean;
-			i_d    : in    std_logic;
-			sh     : in    std_logic;
-			lcd    : out   lcd_type
+			clk : in std_logic;
+			enable : in boolean;
+			done : out boolean;
+			i_d : in std_logic;
+			sh : in std_logic;
+			lcd : out lcd_type
 			);
 end Entry_Mode_Set;
 
 
 architecture Entry_Mode_Set of Entry_Mode_Set is
-	signal instr: std_logic_vector(7 downto 0);
+	signal instr : std_logic_vector(7 downto 0);
 begin
 	instr <= x"04" or ("000000" & i_d & sh);
 
-	COMP_WRITE: write_module port map (
+	COMP_WRITE : write_module port map (
 			clk,
 			enable,
 			done,
